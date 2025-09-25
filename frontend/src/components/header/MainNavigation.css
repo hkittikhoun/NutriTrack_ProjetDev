@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.main-header {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #b00020;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+  padding: 0;
+  z-index: 5;
+}
+
+.main-header__zone {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.main-header__zone--left {
+  justify-content: flex-start;
+  padding-left: 1.5rem;
+}
+
+.main-header__zone--center {
+  justify-content: center;
+}
+
+.main-header__zone--right {
+  justify-content: flex-end;
+  padding-right: 1.5rem;
+}
+
+.main-navigation__title {
+  color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.main-navigation__title a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.main-navigation__catalogue-btn {
+  border: none;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  background: transparent;
+  border-radius: 5px;
+  transition: all 0.3s;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.main-navigation__catalogue-btn:hover,
+.main-navigation__catalogue-btn.active {
+  background: white;
+  color: #b00020;
+  border: none;
+}
+
+.main-navigation__header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-navigation__menu-btn {
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.main-navigation__menu-btn span {
+  display: block;
+  width: 3rem;
+  height: 2.5px;
+  background: white;
+}
+
+.main-navigation__drawer-nav {
+  height: 100%;
+}
+
+main {
+  margin-top: 5rem;
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  main {
+    margin-top: 6rem;
+    padding-top: 2rem;
+  }
+  .main-header {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem 0;
+  }
+  .main-header__zone {
+    width: 100%;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+  .main-header__zone--center {
+    display: none !important;
+  }
+  .main-header__zone--right {
+    display: none !important;
+  }
+  .main-navigation__title {
+    font-size: 1.2rem;
+  }
+  .main-navigation__header-nav {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-navigation__menu-btn {
+    display: none;
+  }
+  .main-navigation__header-nav {
+    display: flex;
+  }
+}

@@ -1,0 +1,177 @@
+.catalogue-container {
+  max-width: 80vw;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff8f8;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(176, 0, 32, 0.08);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.catalogue-container h1 {
+  color: #b00020;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.dropdown-container {
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(176, 0, 32, 0.1);
+  border: 2px solid #b00020;
+}
+
+.dropdown-container label {
+  display: block;
+  color: #b00020;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.dropdown-container select {
+  width: 320px;
+  max-width: 320px;
+  padding: 0.8rem 1rem;
+  border: 2px solid #b00020;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dropdown-container select:focus {
+  outline: none;
+  border-color: #ff1744;
+  box-shadow: 0 0 8px rgba(176, 0, 32, 0.4);
+  transform: translateY(-1px);
+}
+
+.dropdown-container select:hover {
+  border-color: #ff1744;
+  box-shadow: 0 2px 6px rgba(176, 0, 32, 0.2);
+}
+
+.dropdown-container select option {
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.loading-message {
+  text-align: center;
+  color: #b00020;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 4px solid #b00020;
+}
+
+.foods-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.no-foods-message {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  font-style: italic;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px dashed #ccc;
+}
+
+@media (max-width: 768px) {
+  .catalogue-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    border-radius: 8px;
+  }
+
+  .catalogue-container h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .dropdown-container {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .dropdown-container select {
+    width: 280px;
+    max-width: 280px;
+    padding: 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  .foods-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalogue-container {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .catalogue-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .dropdown-container {
+    padding: 1rem;
+  }
+
+  .dropdown-container select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .dropdown-container label {
+    font-size: 1rem;
+  }
+}
+
+.catalogue-container {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.catalogue-container:hover {
+  box-shadow: 0 4px 20px rgba(176, 0, 32, 0.12);
+  transition: box-shadow 0.3s ease;
+}

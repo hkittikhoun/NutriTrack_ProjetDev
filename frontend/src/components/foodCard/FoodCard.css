@@ -1,0 +1,80 @@
+.food-card {
+  background: #fff;
+  border: 2px solid #b00020;
+  border-radius: 8px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(176, 0, 32, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.food-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(176, 0, 32, 0.15);
+}
+
+.food-title {
+  color: #b00020;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.nutrients {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.nutrient {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.4rem;
+  background: #fff8f8;
+  border-radius: 4px;
+  min-width: 70px;
+  flex: 1;
+  max-width: 100px;
+}
+
+.nutrient-symbol {
+  font-weight: bold;
+  color: #b00020;
+  font-size: 0.8rem;
+}
+
+.nutrient-value {
+  color: #333;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .food-card {
+    padding: 0.6rem;
+  }
+
+  .food-title {
+    font-size: 0.9rem;
+  }
+
+  .nutrients {
+    gap: 0.4rem;
+  }
+
+  .nutrient {
+    min-width: 60px;
+    padding: 0.3rem;
+  }
+
+  .nutrient-symbol {
+    font-size: 0.75rem;
+  }
+
+  .nutrient-value {
+    font-size: 0.7rem;
+  }
+}
