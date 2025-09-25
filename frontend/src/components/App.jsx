@@ -39,29 +39,13 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <RootLayout></RootLayout>,
-      errorElement: <ErrorPage></ErrorPage>,
+      element: <RootLayout />,
+      errorElement: <ErrorPage />,
       children: [
-        { path: "/", element: <Home></Home> },
-        { path: "/login", element: <Login></Login> },
-        { path: "/signup", element: <Signup></Signup> },
-      ],
-    },
-  ]);
-
-  const routerLoggedIn = createBrowserRouter([
-    {
-      path: "/",
-      element: <RootLayout></RootLayout>,
-      errorElement: <ErrorPage></ErrorPage>,
-      children: [
-        { path: "/", element: <Home></Home> },
-        { path: "/login", element: <Login></Login> },
-        { path: "/signup", element: <Signup></Signup> },
-        {
-          path: "/catalogue",
-          element: <CatalogueContainer></CatalogueContainer>,
-        },
+        { path: "/", element: <Home /> },
+        { path: "/login", element: <Login /> },
+        { path: "/signup", element: <Signup /> },
+        { path: "/catalogue", element: <CatalogueContainer /> },
       ],
     },
   ]);
@@ -70,7 +54,7 @@ const App = () => {
     <AuthContext.Provider
       value={{ isLoggedIn, userId, userToken, login, logout }}
     >
-      <RouterProvider router={isLoggedIn ? routerLoggedIn : router} />
+      <RouterProvider router={router} />
     </AuthContext.Provider>
   );
 };
