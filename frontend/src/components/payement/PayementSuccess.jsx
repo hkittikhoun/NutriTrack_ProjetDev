@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import { AuthContext } from "../../context/auth-context";
+import { API_BASE_URL } from "../../config/api";
 import "./PayementSuccess.css";
 
 export default function PaymentSuccess() {
@@ -19,20 +20,17 @@ export default function PaymentSuccess() {
 
         if (!sessionId) {
           setError("No payment session found");
+          setLoading(false);
           return;
         }
 
-        // Vérifier le paiement côté serveur
-        const response = await fetch(
-          "http://localhost:3001/api/verify-payment",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ sessionId }),
-          }
-        );
+        const response = await fetch(`${API_BASE_URL}/api/verify-payment`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ sessionId }),
+        });
 
         if (!response.ok) {
           throw new Error("Payment verification failed");
@@ -41,12 +39,10 @@ export default function PaymentSuccess() {
         const result = await response.json();
 
         if (result.success) {
-          // Récupérer les données d'inscription
           const signupData = JSON.parse(
             sessionStorage.getItem("signupData") || "{}"
           );
 
-          // Créer le compte utilisateur
           const { data, error: signupError } = await supabase.auth.signUp({
             email: result.customerEmail,
             password: signupData.password,
@@ -67,36 +63,30 @@ export default function PaymentSuccess() {
           if (signupError) {
             console.error("Signup error:", signupError);
 
-            // Gestion spécifique des erreurs Supabase
             if (
               signupError.message.includes("already been registered") ||
               signupError.message.includes("Database error saving new user") ||
               signupError.message.includes("User already registered")
             ) {
-              // L'utilisateur existe déjà, mais on ne tente PAS de se connecter
-              // car il doit d'abord vérifier son email
               setError(
                 "Your payment was successful! Please check your email for the confirmation link, then use the login page to access your account."
               );
+              setLoading(false);
               return;
             }
 
-            // Autres erreurs
             setError(
               "Account creation failed. Please contact support with your payment confirmation."
             );
+            setLoading(false);
             return;
           }
 
-          // Nettoyer les données temporaires
           sessionStorage.removeItem("signupData");
 
-          // Vérifier si l'utilisateur a besoin de confirmer son email
           if (data.user && !data.session) {
-            // L'utilisateur doit confirmer son email
             setEmailSent(true);
           } else if (data.session) {
-            // Connexion automatique (si la confirmation email est désactivée)
             auth.login(data.user.id, data.session.access_token);
             setTimeout(() => {
               navigate("/");
@@ -140,6 +130,9 @@ export default function PaymentSuccess() {
               className="continue-button"
             >
               Go to Login
+            </button>
+            <button onClick={() => navigate("/")} className="home-button">
+              Return to Home
             </button>
           </div>
         </div>

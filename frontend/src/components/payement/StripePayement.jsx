@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE_URL } from "../../config/api";
 import "./StripePayement.css";
 
 export default function StripePayment({
@@ -14,9 +15,8 @@ export default function StripePayment({
       setLoading(true);
       setError("");
 
-      // Créer une session de checkout Stripe
       const response = await fetch(
-        "http://localhost:3001/api/create-checkout-session",
+        `${API_BASE_URL}/api/create-checkout-session`,
         {
           method: "POST",
           headers: {
@@ -24,7 +24,7 @@ export default function StripePayment({
           },
           body: JSON.stringify({
             email: userEmail,
-            amount: 500, // 5.00 CAD en centimes
+            amount: 500,
             currency: "cad",
             product_name: "NutriTrack Account Creation",
           }),
@@ -32,14 +32,19 @@ export default function StripePayment({
       );
 
       if (!response.ok) {
-        throw new Error("Failed to create checkout session");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to create checkout session");
       }
 
       const session = await response.json();
 
-      // Rediriger vers Stripe Checkout
-      window.location.href = session.url;
+      if (session.url) {
+        window.location.href = session.url;
+      } else {
+        throw new Error("No checkout URL received");
+      }
     } catch (err) {
+      console.error("Payment error:", err);
       setError("Payment error: " + err.message);
     } finally {
       setLoading(false);
