@@ -17,7 +17,6 @@ export default function SavedRecipeDetails() {
     searchParams.get("edit") === "true"
   );
 
-  // Edit state
   const [editTitle, setEditTitle] = useState("");
   const [editAuthor, setEditAuthor] = useState("");
   const [editDescription, setEditDescription] = useState("");
@@ -38,6 +37,7 @@ export default function SavedRecipeDetails() {
       try {
         setLoading(true);
 
+        // Charger la recette (accessible à tous)
         const { data: recipeData, error: rErr } = await supabase
           .from("recipes")
           .select("*")
@@ -51,6 +51,7 @@ export default function SavedRecipeDetails() {
         }
         setRecipe(recipeData);
 
+        // Charger les ingrédients (accessible à tous)
         const { data: ingredientsData, error: iErr } = await supabase
           .from("recipe_ingredients")
           .select("*")
@@ -64,6 +65,7 @@ export default function SavedRecipeDetails() {
         }
         setIngredients(ingredientsData || []);
 
+        // Charger les instructions (accessible à tous)
         const { data: instructionsData, error: insErr } = await supabase
           .from("recipe_instructions")
           .select("*")
@@ -77,6 +79,7 @@ export default function SavedRecipeDetails() {
         }
         setInstructions(instructionsData || []);
 
+        // Vérifier si l'utilisateur essaie d'éditer une recette qui n'est pas la sienne
         if (
           searchParams.get("edit") === "true" &&
           (!auth?.userId || recipeData.user_id !== auth.userId)
@@ -86,6 +89,7 @@ export default function SavedRecipeDetails() {
           setTimeout(() => setNotice(null), 3000);
         }
 
+        // Charger les données d'édition uniquement si c'est le propriétaire
         if (recipeData.user_id === auth?.userId) {
           setEditTitle(recipeData.title || "");
           setEditAuthor(recipeData.author || "");
@@ -124,6 +128,7 @@ export default function SavedRecipeDetails() {
           );
           setEditInstructions(editInsts.length > 0 ? editInsts : [""]);
 
+          // Charger le panier pour le propriétaire
           const { data: authData, error: authErr } =
             await supabase.auth.getUser();
           if (!authErr && authData?.user?.id) {
@@ -456,11 +461,40 @@ export default function SavedRecipeDetails() {
     }
   };
 
+  if (loading && !recipe) {
+    return (
+      <div className="recipe-details">
+        <div className="loading">Loading recipe...</div>
+      </div>
+    );
+  }
+
+  if (error && !recipe) {
+    return (
+      <div className="recipe-details">
+        <div className="error">{error}</div>
+        <button onClick={() => navigate(-1)} className="back-btn">
+          Back
+        </button>
+      </div>
+    );
+  }
+
+  if (!recipe) {
+    return (
+      <div className="recipe-details">
+        <div className="error">Recipe not found</div>
+        <button onClick={() => navigate(-1)} className="back-btn">
+          Back
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="recipe-details">
       <h1>Recipe Details</h1>
       {notice && <div className="notice success">{notice}</div>}
-      {loading && <div>Loading...</div>}
       {error && <div className="error">{error}</div>}
 
       {!isEditing ? (
@@ -523,7 +557,7 @@ export default function SavedRecipeDetails() {
                     {ingredient.quantity && (
                       <span> — {ingredient.quantity}</span>
                     )}
-                    {ingredient.unit && <span>{ingredient.unit}</span>}
+                    {ingredient.unit && <span> {ingredient.unit}</span>}
                     {ingredient.preparation && (
                       <span> ({ingredient.preparation})</span>
                     )}

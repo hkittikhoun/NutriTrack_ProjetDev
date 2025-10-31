@@ -11,7 +11,7 @@ export default function SavedRecipe() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [notice, setNotice] = useState(null);
-  const [viewMode, setViewMode] = useState("all"); // "all" ou "mine"
+  const [viewMode, setViewMode] = useState("all");
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -26,20 +26,20 @@ export default function SavedRecipe() {
           )
           .order("created_at", { ascending: false });
 
-        // Si on veut voir seulement ses propres recettes
+        // Filtrer par utilisateur seulement si "mine" est sélectionné
         if (viewMode === "mine" && auth?.userId) {
           query = query.eq("user_id", auth.userId);
         }
 
         const { data, error } = await query;
         if (error) {
-          setError(error.message || "Impossible de charger les recettes");
+          setError(error.message || "Failed to load recipes");
           return;
         }
         setRecipes(data || []);
       } catch (e) {
         console.error(e);
-        setError("Erreur inattendue");
+        setError("Unexpected error");
       } finally {
         setLoading(false);
       }
@@ -48,68 +48,60 @@ export default function SavedRecipe() {
     fetchRecipes();
   }, [auth?.userId, viewMode]);
 
-  // Vérifier si l'utilisateur est propriétaire de la recette
   const isOwner = (recipe) => {
     return auth?.userId && recipe.user_id === auth.userId;
   };
 
   const handleDelete = async (recipe) => {
     if (!isOwner(recipe)) {
-      setNotice("Vous ne pouvez supprimer que vos propres recettes.");
+      setNotice("You can only delete your own recipes.");
       setTimeout(() => setNotice(null), 3000);
       return;
     }
 
-    const ok = window.confirm(`Supprimer la recette "${recipe.title}" ?`);
+    const ok = window.confirm(`Delete recipe "${recipe.title}"?`);
     if (!ok) return;
 
     try {
       setLoading(true);
 
-      // Supprimer les instructions d'abord (clé étrangère)
       const { error: instructionsErr } = await supabase
         .from("recipe_instructions")
         .delete()
         .eq("recipe_id", recipe.id);
 
       if (instructionsErr) {
-        setError(
-          "Impossible de supprimer les instructions: " + instructionsErr.message
-        );
+        setError("Failed to delete instructions: " + instructionsErr.message);
         return;
       }
 
-      // Supprimer les ingrédients
       const { error: ingredientsErr } = await supabase
         .from("recipe_ingredients")
         .delete()
         .eq("recipe_id", recipe.id);
 
       if (ingredientsErr) {
-        setError(
-          "Impossible de supprimer les ingrédients: " + ingredientsErr.message
-        );
+        setError("Failed to delete ingredients: " + ingredientsErr.message);
         return;
       }
 
-      // Supprimer la recette
       const { error: recipeErr } = await supabase
         .from("recipes")
         .delete()
         .eq("id", recipe.id)
-        .eq("user_id", auth.userId); // Sécurité supplémentaire
+        .eq("user_id", auth.userId);
 
       if (recipeErr) {
-        setError("Impossible de supprimer la recette: " + recipeErr.message);
+        setError("Failed to delete recipe: " + recipeErr.message);
         return;
       }
 
       setRecipes((prev) => prev.filter((r) => r.id !== recipe.id));
-      setNotice("Recette supprimée avec succès.");
+      setNotice("Recipe deleted successfully.");
       setTimeout(() => setNotice(null), 3000);
     } catch (e) {
       console.error(e);
-      setError("Erreur lors de la suppression");
+      setError("Error while deleting");
     } finally {
       setLoading(false);
     }
@@ -131,11 +123,11 @@ export default function SavedRecipe() {
   const getDifficultyLabel = (difficulty) => {
     switch (difficulty) {
       case "easy":
-        return "Facile";
+        return "Easy";
       case "medium":
-        return "Moyen";
+        return "Medium";
       case "hard":
-        return "Difficile";
+        return "Hard";
       default:
         return difficulty;
     }
@@ -206,7 +198,7 @@ export default function SavedRecipe() {
                   ⏱️ {recipe.cooking_time ? `${recipe.cooking_time} min` : "—"}
                 </span>
                 <span className="servings">
-                  🍽️ {recipe.servings ? `${recipe.servings} portions` : "—"}
+                  🍽️ {recipe.servings ? `${recipe.servings} servings` : "—"}
                 </span>
                 <span
                   className="difficulty"
