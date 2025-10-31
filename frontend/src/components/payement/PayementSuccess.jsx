@@ -127,11 +127,11 @@ export default function PaymentSuccess() {
           <div className="error-actions">
             <button
               onClick={() => navigate("/login")}
-              className="continue-button"
+              className="primary-button"
             >
               Go to Login
             </button>
-            <button onClick={() => navigate("/")} className="home-button">
+            <button onClick={() => navigate("/")} className="secondary-button">
               Return to Home
             </button>
           </div>
@@ -158,15 +158,15 @@ export default function PaymentSuccess() {
 
             <div className="email-steps">
               <div className="step">
-                <span className="step-number">1</span>
+                <span className="step-number">1. </span>
                 <span className="step-text">Check your email inbox</span>
               </div>
               <div className="step">
-                <span className="step-number">2</span>
+                <span className="step-number">2. </span>
                 <span className="step-text">Click the confirmation link</span>
               </div>
               <div className="step">
-                <span className="step-number">3</span>
+                <span className="step-number">3. </span>
                 <span className="step-text">Return to login</span>
               </div>
             </div>
@@ -182,11 +182,11 @@ export default function PaymentSuccess() {
           <div className="email-actions">
             <button
               onClick={() => navigate("/login")}
-              className="continue-button"
+              className="primary-button"
             >
               Go to Login
             </button>
-            <button onClick={() => navigate("/")} className="home-button">
+            <button onClick={() => navigate("/")} className="secondary-button">
               Return to Home
             </button>
           </div>
@@ -214,7 +214,10 @@ export default function PaymentSuccess() {
           </ul>
         </div>
 
-        <button onClick={() => navigate("/")} className="continue-button">
+        <button
+          onClick={() => navigate("/")}
+          className="primary-button dashboard-button"
+        >
           Continue to Dashboard
         </button>
       </div>
