@@ -3,77 +3,121 @@ import "./MonthlyJournal.css";
 export default function MonthlyJournal() {
   return (
     <section>
-      <h1>Monthly Journal: September</h1>
+      <h1>Monthly Journal: October</h1>
       <article style={{ marginBottom: "2rem" }}>
-        <h2>Nutrition Tip: Starting the School Year Right</h2>
+        <h2>Nutrition Tip: Embrace Fall Flavors</h2>
         <p>
-          September marks the back-to-school season! It's the perfect time to
-          get back into good eating habits. Prioritize seasonal fruits and
-          vegetables like apples, pears, carrots, and squash. Remember to stay
-          well-hydrated and plan your meals to maintain your rhythm.
+          October brings cooler weather and harvest season! It&apos;s time to
+          incorporate warming, nutrient-rich foods. Focus on seasonal vegetables
+          like pumpkin, sweet potatoes, Brussels sprouts, and mushrooms. These
+          are packed with vitamins A and C, perfect for boosting your immune
+          system as winter approaches. Don&apos;t forget to add warming spices
+          like cinnamon, ginger, and nutmeg to your meals!
         </p>
       </article>
 
       <article>
-        <h2>Healthy Recipe: Homemade Apple and Pear Compote</h2>
-        <a
-          href="https://www.mesrecettesfaciles.fr/recipe/compote-de-pommes-et-poires-maison?diaporama=9526"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "2rem",
+            marginBottom: "1rem",
+            flexWrap: "wrap",
+          }}
         >
-          <picture>
-            <source
-              type="image/webp"
-              srcSet="https://img.mesrecettesfaciles.fr/2025-01/compote-de-pommes-et-poires-maison-t6s-1200.webp"
-              media="(min-width: 769px)"
-            />
-            <source
-              type="image/webp"
-              srcSet="https://img.mesrecettesfaciles.fr/2025-01/compote-de-pommes-et-poires-maison-t6s-800.webp"
-              media="(min-width: 480px) and (max-width: 768px)"
-            />
-            <source
-              type="image/webp"
-              srcSet="https://img.mesrecettesfaciles.fr/2025-01/compote-de-pommes-et-poires-maison-t6s-400.webp"
-              media="(max-width: 479px)"
-            />
+          <a
+            href="https://www.salutbonjour.ca/cuisine/recettes/puree-de-citrouille-facile-et-rapide"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ flexShrink: 0 }}
+          >
             <img
-              src="https://img.mesrecettesfaciles.fr/2025-01/compote-de-pommes-et-poires-maison-t6s-800.webp"
-              alt="Homemade apple and pear compote"
+              srcSet="https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&x=0&y=0&w=0&h=0&width=480 1x, https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&x=0&y=0&w=0&h=0&width=960 2x"
+              src="https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&x=0&y=0&w=0&h=0&width=925"
+              alt="Easy and quick homemade pumpkin puree"
               style={{
                 width: "100%",
                 maxWidth: "350px",
                 borderRadius: "10px",
-                margin: "1rem auto",
-                display: "block",
                 boxShadow: "0 2px 8px rgba(176,0,32,0.10)",
               }}
             />
-          </picture>
-        </a>
+          </a>
+          <div style={{ flex: 1, minWidth: "250px" }}>
+            <h2 style={{ marginTop: 0 }}>
+              Easy and Quick Homemade Pumpkin Puree
+            </h2>
+            <p style={{ color: "#666", fontSize: "0.95rem" }}>
+              Perfect for pies or as a base for soups, this pumpkin puree recipe
+              is as easy as it is quick to prepare. An essential fall recipe to
+              use however you like!
+            </p>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: "1rem" }}>
+          <strong>Prep time:</strong> 25 min | <strong>Cook time:</strong> 2h
+        </div>
+
+        <h3 style={{ color: "#b00020", marginTop: "1.5rem" }}>Ingredients</h3>
         <ul>
-          <li>4 apples</li>
-          <li>4 pears</li>
-          <li>1 packet of vanilla sugar</li>
-          <li>1 tablespoon of lemon juice</li>
-          <li>1 to 2 tablespoons of water</li>
+          <li>2 pumpkins, 3.5 lbs (1.75 kg) each</li>
+          <li>Canola oil for cooking</li>
         </ul>
-        <p>
-          Peel and cut the apples and pears into small pieces. Place them in a
-          saucepan with the vanilla sugar, lemon juice, and water. Cook over low
-          heat for 20 to 25 minutes, stirring occasionally, until the fruits are
-          tender. Blend or mash according to desired texture. Let cool before
-          enjoying!
-        </p>
-        <p style={{ fontSize: "0.95rem", color: "#888" }}>
+
+        <h3 style={{ color: "#b00020", marginTop: "1.5rem" }}>Preparation</h3>
+        <ol style={{ lineHeight: "1.8" }}>
+          <li>Preheat oven to 300°F (150°C).</li>
+          <li>Cut around the stem. Remove and discard the flesh.</li>
+          <li>Cut the pumpkins into six or eight equal sections.</li>
+          <li>
+            Remove the inner flesh. Reserve the seeds to roast them, if desired.
+          </li>
+          <li>
+            Cut the pumpkin quarters in the middle to obtain triangular pieces
+            of identical size.
+          </li>
+          <li>
+            Place the pumpkin pieces in a baking dish. Drizzle with a little oil
+            and bake in the center of the oven for 2 hours or until a knife tip
+            inserted into the flesh comes out easily.
+          </li>
+          <li>
+            After 2 hours of cooking, the pumpkin will be soft and have a
+            beautiful orange color.
+          </li>
+          <li>Cut the ends of each piece of pumpkin. Detach the flesh.</li>
+          <li>
+            Cut into quarters and place in a large bowl. The pumpkin flesh will
+            be tender and easy to cut.
+          </li>
+          <li>Using a hand mixer or food processor, puree until smooth.</li>
+          <li>Season to taste and follow the desired recipe.</li>
+        </ol>
+
+        <div
+          style={{
+            background: "#fff8f8",
+            padding: "1rem",
+            borderRadius: "8px",
+            marginTop: "1.5rem",
+            borderLeft: "4px solid #b00020",
+          }}
+        >
+          <strong>Good to know:</strong> Use this puree in your fall pumpkin
+          latte, cookie, pie and muffin recipes.
+        </div>
+
+        <p style={{ fontSize: "0.95rem", color: "#888", marginTop: "1.5rem" }}>
           Source:{" "}
           <a
-            href="https://www.mesrecettesfaciles.fr/recipe/compote-de-pommes-et-poires-maison?diaporama=9526"
+            href="https://www.salutbonjour.ca/cuisine/recettes/puree-de-citrouille-facile-et-rapide"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#b00020" }}
           >
-            mesrecettesfaciles.fr
+            salutbonjour.ca
           </a>
         </p>
       </article>

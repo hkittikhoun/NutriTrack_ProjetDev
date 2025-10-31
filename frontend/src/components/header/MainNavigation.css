@@ -32,6 +32,7 @@
 
 .main-header__zone--center {
   justify-content: center;
+  gap: 0.5rem;
 }
 
 .main-header__zone--right {

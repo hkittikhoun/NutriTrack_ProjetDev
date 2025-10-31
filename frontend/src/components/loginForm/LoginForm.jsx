@@ -49,44 +49,42 @@ export default function LoginForm() {
       <h2 className="title">LOGIN</h2>
       {error && <div style={{ color: "red" }}>{error}</div>}
 
-      <div className="control-row">
-        <div className="control no-margin">
-          <label htmlFor="user">Email</label>
-          <input
-            id="user"
-            type="email"
-            name="user"
-            placeholder="Enter your email"
-            onChange={(event) => handleInputChange("user", event.target.value)}
-            value={entredValues.user}
-            required
-          />
-        </div>
-
-        <div className="control no-margin">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            onChange={(event) =>
-              handleInputChange("password", event.target.value)
-            }
-            value={entredValues.password}
-            required
-          />
-        </div>
-
-        <p className="form-actions">
-          <button className="button" type="submit">
-            LOG IN
-          </button>
-          <button className="button" onClick={handleSignInClick}>
-            SIGN IN
-          </button>
-        </p>
+      <div className="control">
+        <label htmlFor="user">Email</label>
+        <input
+          id="user"
+          type="email"
+          name="user"
+          placeholder="Enter your email"
+          onChange={(event) => handleInputChange("user", event.target.value)}
+          value={entredValues.user}
+          required
+        />
       </div>
+
+      <div className="control">
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          onChange={(event) =>
+            handleInputChange("password", event.target.value)
+          }
+          value={entredValues.password}
+          required
+        />
+      </div>
+
+      <p className="form-actions">
+        <button className="button" type="submit">
+          LOG IN
+        </button>
+        <button className="button" onClick={handleSignInClick}>
+          SIGN UP
+        </button>
+      </p>
     </form>
   );
 }

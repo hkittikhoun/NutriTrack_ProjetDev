@@ -1,0 +1,320 @@
+.nutrition-calculator-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #fff8f8;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(176, 0, 32, 0.08);
+}
+
+.nutrition-calculator-container h1 {
+  color: #b00020;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.calculator-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.no-food-selected {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.selection-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(176, 0, 32, 0.1);
+  border: 2px solid #b00020;
+  max-width: 400px;
+}
+
+.selection-card h3 {
+  color: #b00020;
+  margin-bottom: 1rem;
+}
+
+.selection-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.catalogue-btn {
+  background: #b00020;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.catalogue-btn:hover {
+  background: #d00030;
+}
+
+.calculator-content {
+  margin-top: 2rem;
+}
+
+.selected-food-section {
+  margin-bottom: 2rem;
+}
+
+.selected-food-section h3 {
+  color: #b00020;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.selected-food-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #b00020;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-food-card h4 {
+  color: #b00020;
+  margin: 0;
+  flex: 1;
+}
+
+.food-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.change-food-btn,
+.clear-food-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.change-food-btn {
+  background: #2196f3;
+  color: white;
+}
+
+.change-food-btn:hover {
+  background: #1976d2;
+}
+
+.clear-food-btn {
+  background: #ff5722;
+  color: white;
+}
+
+.clear-food-btn:hover {
+  background: #d84315;
+}
+
+.quantity-section {
+  margin-bottom: 2rem;
+}
+
+.quantity-section h3 {
+  color: #b00020;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.quantity-input-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #b00020;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quantity-input-container label {
+  color: #b00020;
+  font-weight: 600;
+  min-width: 150px;
+}
+
+.quantity-input-container input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.quantity-input-container input:focus {
+  outline: none;
+  border-color: #b00020;
+}
+
+.quantity-unit {
+  color: #b00020;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.loading-message {
+  text-align: center;
+  color: #b00020;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 4px solid #b00020;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border-left: 4px solid #c62828;
+  font-weight: 500;
+}
+
+.no-data-message {
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  font-style: italic;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px dashed #ccc;
+}
+
+.nutrition-results {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(176, 0, 32, 0.1);
+  border: 2px solid #b00020;
+}
+
+.nutrition-results h3 {
+  color: #b00020;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+}
+
+.nutrient-group {
+  margin-bottom: 2rem;
+}
+
+.nutrient-group h4 {
+  color: #b00020;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 2px solid #b00020;
+  padding-bottom: 0.5rem;
+}
+
+.nutrients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.nutrient-card {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  border-left: 4px solid;
+  transition: transform 0.2s ease;
+}
+
+.nutrient-card:hover {
+  transform: translateY(-2px);
+}
+
+.nutrient-card.energy {
+  border-left-color: #b00020;
+}
+
+.nutrient-card.macro {
+  border-left-color: #4caf50;
+}
+
+.nutrient-card.vitamin {
+  border-left-color: #ff9800;
+}
+
+.nutrient-card.mineral {
+  border-left-color: #2196f3;
+}
+
+.nutrient-card.other {
+  border-left-color: #9c27b0;
+}
+
+.nutrient-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.nutrient-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #b00020;
+}
+
+@media (max-width: 768px) {
+  .nutrition-calculator-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .selected-food-card {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .food-actions {
+    justify-content: center;
+  }
+
+  .quantity-input-container {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .quantity-input-container label {
+    min-width: auto;
+  }
+
+  .nutrients-grid {
+    grid-template-columns: 1fr;
+  }
+}

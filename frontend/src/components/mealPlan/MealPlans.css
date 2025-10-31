@@ -1,0 +1,80 @@
+.meal-plans-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.meal-plans-container h1 {
+  text-align: center;
+  color: #b00020;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.meal-plans-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  margin: 0 0.5rem;
+}
+
+.tab-button:hover {
+  color: #b00020;
+  background: rgba(176, 0, 32, 0.05);
+}
+
+.tab-button.active {
+  color: #b00020;
+  border-bottom-color: #b00020;
+  background: rgba(176, 0, 32, 0.1);
+}
+
+.meal-plans-content {
+  min-height: 400px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .meal-plans-container {
+    padding: 0 0.5rem;
+  }
+
+  .meal-plans-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .meal-plans-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    width: 100%;
+    max-width: 250px;
+    margin: 0;
+    border-radius: 6px;
+    border-bottom: none;
+  }
+
+  .tab-button.active {
+    background: #b00020;
+    color: white;
+    border-bottom: none;
+  }
+}

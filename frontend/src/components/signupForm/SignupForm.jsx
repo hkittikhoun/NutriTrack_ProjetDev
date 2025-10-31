@@ -1,140 +1,197 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { supabase } from "../../supabaseClient";
+import { Link } from "react-router-dom";
+import StripePayment from "../payement/StripePayement";
 import "./SignupForm.css";
 
 export default function Signup() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    firstName: "",
+    lastName: "",
+    terms: false,
+  });
+  const [showPayment, setShowPayment] = useState(false);
   const [passwordAreNotEqual, setPasswordAreNotEqual] = useState(false);
-  const [submittedData, setSubmittedData] = useState(null);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
-  async function handleSubmit(event) {
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  function handleSubmit(event) {
     event.preventDefault();
     setError(null);
-    const fd = new FormData(event.target);
-    const data = Object.fromEntries(fd.entries());
+    setPasswordAreNotEqual(false);
 
-    if (data.password !== data["confirm-password"]) {
+    // Validation
+    if (formData.password !== formData.confirmPassword) {
       setPasswordAreNotEqual(true);
       return;
     }
 
-    setPasswordAreNotEqual(false);
-
-    const { error: signupError } = await supabase.auth.signUp({
-      email: data.email,
-      password: data.password,
-      options: {
-        data: {
-          first_name: data["first-name"],
-          last_name: data["last-name"],
-          full_name: `${data["first-name"]} ${data["last-name"]}`,
-        },
-      },
-    });
-
-    if (signupError) {
-      setError("Error when signing up: " + signupError.message);
+    if (!formData.terms) {
+      setError("You must agree to the terms and conditions");
       return;
     }
 
-    setSubmittedData({
-      name: `${data["first-name"]} ${data["last-name"]}`,
-      email: data.email,
-    });
-    event.target.reset();
+    if (
+      !formData.email ||
+      !formData.password ||
+      !formData.firstName ||
+      !formData.lastName
+    ) {
+      setError("Please fill in all fields");
+      return;
+    }
 
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+    // Stocker les données temporairement et afficher le paiement
+    sessionStorage.setItem("signupData", JSON.stringify(formData));
+    setShowPayment(true);
+  }
+
+  const handlePaymentSuccess = () => {
+    // La gestion du succès se fait dans PaymentSuccess.jsx
+    console.log("Payment successful, redirecting...");
+  };
+
+  const handlePaymentCancel = () => {
+    setShowPayment(false);
+    sessionStorage.removeItem("signupData");
+  };
+
+  if (showPayment) {
+    return (
+      <StripePayment
+        userEmail={formData.email}
+        onPaymentSuccess={handlePaymentSuccess}
+        onPaymentCancel={handlePaymentCancel}
+      />
+    );
   }
 
   return (
-    <>
-      {submittedData && (
-        <div className="success-message">
-          <h3>Sign up successful! 🎉</h3>
-          <p>Name: {submittedData.name}</p>
-          <p>Email: {submittedData.email}</p>
-          <p>Redirecting to the login page...</p>
+    <form onSubmit={handleSubmit}>
+      <h2>Welcome on board!</h2>
+      <p>
+        We just need a little bit of information from you to get you started 🚀
+      </p>
+      <p className="payment-notice">
+        <strong>Registration fee: $5.00 CAD</strong> - One-time payment for
+        lifetime access
+      </p>
+
+      {error && (
+        <div className="control-error">
+          <p>{error}</p>
         </div>
       )}
 
-      <form onSubmit={handleSubmit}>
-        <h2>Welcome on board!</h2>
-        <p>
-          We just need a little bit of information from you to get you started
-          🚀
-        </p>
+      <div className="control">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
 
-        {error && (
-          <div className="control-error">
-            <p>{error}</p>
-          </div>
-        )}
+      <div className="control-row">
+        <div className="control">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="control">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            required
+          />
+          {passwordAreNotEqual && (
+            <div className="control-error">
+              <p>Passwords must match.</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <hr />
+
+      <div className="control-row">
+        <div className="control">
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
 
         <div className="control">
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" name="email" required />
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+      </div>
 
-        <div className="control-row">
-          <div className="control">
-            <label htmlFor="password">Password</label>
-            <input id="password" type="password" name="password" required />
-          </div>
-          <div className="control">
-            <label htmlFor="confirm-password">Confirm Password</label>
-            <input
-              id="confirm-password"
-              type="password"
-              name="confirm-password"
-              required
-            />
-            {passwordAreNotEqual && (
-              <div className="control-error">
-                <p>Passwords must match.</p>
-              </div>
-            )}
-          </div>
-        </div>
+      <div className="control">
+        <label htmlFor="terms-and-conditions">
+          <input
+            type="checkbox"
+            id="terms-and-conditions"
+            name="terms"
+            checked={formData.terms}
+            onChange={handleInputChange}
+            required
+          />{" "}
+          I agree to the terms and conditions and the $5.00 CAD registration fee
+        </label>
+      </div>
 
-        <hr />
-
-        <div className="control-row">
-          <div className="control">
-            <label htmlFor="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" required />
-          </div>
-
-          <div className="control">
-            <label htmlFor="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" required />
-          </div>
-        </div>
-
-        <div className="control">
-          <label htmlFor="terms-and-conditions">
-            <input
-              type="checkbox"
-              id="terms-and-conditions"
-              name="terms"
-              required
-            />{" "}
-            I agree to the terms and conditions
-          </label>
-        </div>
-
-        <p className="form-actions">
-          <Link to="/login" className="button button-flat">
-            Login
-          </Link>
-          <button type="submit" className="button">
-            Sign up
-          </button>
-        </p>
-      </form>
-    </>
+      <p className="form-actions">
+        <Link to="/login" className="button button-flat">
+          Login
+        </Link>
+        <button
+          type="submit"
+          className="button button-payment"
+          style={{
+            backgroundColor: "#b00020",
+            color: "white",
+            border: "2px solid white",
+          }}
+        >
+          Continue to Payment
+        </button>
+      </p>
+    </form>
   );
 }

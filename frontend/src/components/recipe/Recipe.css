@@ -1,0 +1,90 @@
+.recipe-container {
+  padding: 2rem 1rem;
+  max-width: 1600px; /* Augmenté de 1500px à 1600px */
+  margin: 0 auto;
+}
+
+.recipe-container h1 {
+  text-align: center;
+  color: #b00020;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.recipe-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+  padding: 1rem 2rem;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  margin: 0;
+  position: relative;
+}
+
+.tab-button:hover {
+  color: #b00020;
+  background: rgba(176, 0, 32, 0.05);
+}
+
+.tab-button.active {
+  color: #b00020;
+  border-bottom-color: #b00020;
+  background: rgba(176, 0, 32, 0.1);
+}
+
+.recipe-content {
+  min-height: 400px;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .recipe-container {
+    max-width: 1300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-container {
+    padding: 0 0.5rem;
+    max-width: 100%;
+  }
+
+  .recipe-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .recipe-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    width: 100%;
+    max-width: 250px;
+    margin: 0;
+    border-radius: 6px;
+    border-bottom: none;
+  }
+
+  .tab-button.active {
+    background: #b00020;
+    color: white;
+    border-bottom: none;
+  }
+}

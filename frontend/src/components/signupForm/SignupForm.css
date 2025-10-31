@@ -61,26 +61,23 @@ fieldset {
   font-size: 1rem;
   border-radius: 4px;
   border: none;
-  background-color: #b00020;
-  color: #fff;
   cursor: pointer;
   width: 100%;
 }
 
-.button:hover,
-.button:focus {
-  background-color: #ff4d4d;
+.button-payment {
+  background-color: #b00020;
+  color: #fff;
+}
+
+.button-payment:hover,
+.button-payment:focus {
+  background-color: #d00030;
 }
 
 .button-flat {
-  background-color: transparent;
+  background-color: white;
   color: #b00020;
-}
-
-.button-flat:hover,
-.button-flat:focus {
-  background-color: transparent;
-  color: #ff4d4d;
 }
 
 .title {
@@ -98,6 +95,7 @@ fieldset {
   align-items: center;
   gap: 0rem;
 }
+
 .success-message {
   background: #d4edda;
   border: 1px solid #c3e6cb;
@@ -115,4 +113,50 @@ fieldset {
   padding: 0.5rem;
   border-radius: 4px;
   margin-top: 0.5rem;
+}
+
+.payment-notice {
+  background: linear-gradient(135deg, #b00020, #d00030);
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.payment-notice strong {
+  font-size: 1.1rem;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.control-row .control:first-child {
+  margin-right: 0.5rem;
+}
+
+.control-row .control:last-child {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .control-row {
+    grid-template-columns: 1fr;
+  }
+
+  .control-row .control:first-child,
+  .control-row .control:last-child {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .payment-notice {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
 }

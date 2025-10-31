@@ -1,0 +1,367 @@
+.daily-plan {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.daily-plan .field-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+.daily-plan .field-row label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.daily-plan .field-row input {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  width: 220px;
+  font-size: 1rem;
+}
+
+.daily-plan .field-row input:focus {
+  outline: none;
+  border-color: #b00020;
+}
+
+.validation-errors {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #ffebee;
+  border-left: 4px solid #f44336;
+  border-radius: 4px;
+}
+
+.validation-errors .error-item {
+  color: #b00020;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.validation-errors .error-item:last-child {
+  margin-bottom: 0;
+}
+
+.cart-section {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  border-left: 4px solid #4caf50;
+}
+
+.cart-section h3 {
+  margin: 0 0 12px 0;
+  color: #2e7d32;
+  font-size: 1.1rem;
+}
+
+.prefill-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.prefill-btn:hover {
+  background: #45a049;
+}
+
+.prefill-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.meals-container {
+  margin-bottom: 24px;
+}
+
+.meals-container h2 {
+  color: #b00020;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.meals-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.meal-section {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+.meal-section:hover {
+  border-color: #b00020;
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.meal-header h3 {
+  margin: 0;
+  color: #b00020;
+  font-size: 1.2rem;
+}
+
+.add-meal-item-btn {
+  background: #b00020;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-meal-item-btn:hover {
+  background: #d00030;
+}
+
+.add-meal-item-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.no-meal-items {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.meal-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meal-item-row {
+  display: flex;
+  gap: 20px;
+  align-items: end;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.meal-item-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.meal-item-field:nth-child(2) {
+  flex: 0 0 120px;
+}
+
+.meal-item-field label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.meal-item-field select,
+.meal-item-field input {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: white;
+}
+
+.meal-item-field select:focus,
+.meal-item-field input:focus {
+  outline: none;
+  border-color: #b00020;
+}
+
+.meal-item-field input[type="number"] {
+  width: 100%;
+  text-align: center;
+}
+
+.meal-item-actions {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  flex: 0 0 auto;
+}
+
+.remove-meal-item-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.remove-meal-item-btn:hover {
+  background: #da190b;
+}
+
+.remove-meal-item-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 2px solid #e0e0e0;
+  justify-content: center;
+}
+
+.form-actions button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-actions button:first-child {
+  background: #b00020;
+  color: white;
+  border: none;
+}
+
+.form-actions button:first-child:hover:not(:disabled) {
+  background: #d00030;
+  transform: translateY(-1px);
+}
+
+.form-actions button:first-child:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-actions button:last-child {
+  background: #f5f5f5;
+  color: #666;
+  border: 2px solid #ddd;
+}
+
+.form-actions button:last-child:hover {
+  background: #e0e0e0;
+}
+
+.error {
+  background: #ffebee;
+  color: #b00020;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  border-left: 4px solid #f44336;
+}
+
+.notice.success {
+  background: #e8f5e8;
+  color: #2e7d32;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  border-left: 4px solid #4caf50;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .daily-plan {
+    padding: 12px;
+  }
+
+  .field-row {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .field-row input {
+    width: 100% !important;
+  }
+
+  .meal-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .meal-item-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .meal-item-field:nth-child(2) {
+    flex: 1;
+  }
+
+  .meal-item-actions {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+/* Ajout d'espacement supplémentaire entre les sections de repas */
+.meal-section:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+/* Style spécifique pour chaque repas */
+.meal-section[data-meal="morning"] {
+  border-left: 4px solid #ff9800;
+}
+
+.meal-section[data-meal="lunch"] {
+  border-left: 4px solid #2196f3;
+}
+
+.meal-section[data-meal="dinner"] {
+  border-left: 4px solid #9c27b0;
+}

@@ -1,0 +1,220 @@
+.lmj-cart {
+  color: rgb(255, 255, 255);
+  background-color: #008055;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  width: min(92vw, 420px);
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+  z-index: 1100;
+
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.lmj-cart h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.lmj-cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-x: visible;
+}
+
+/* Supprime l'ancien style générique qui cassait l'alignement */
+
+/* Items et contrôles du panier */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 10px;
+  background: #fff;
+  color: #333;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.cart-item-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cart-item-name {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.cart-item-meta {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap; /* pas de retour à la ligne */
+  margin-left: auto; /* pousse les contrôles complètement à droite */
+}
+
+.qty-btn {
+  background: #ffffff;
+  color: #008044;
+  border: 1px solid #008040;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.qty-value {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.remove-btn {
+  background: #ffe9e9;
+  color: #b00020;
+  border: 1px solid #ffb3b3;
+  border-radius: 4px;
+  width: 34px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-btn:hover {
+  background: #ffd6d6;
+}
+
+/* Message de confirmation/succès */
+.cart-notice {
+  margin: 0 0 12px 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #f1f8f4;
+  color: #1b5e20;
+  border-left: 4px solid #2e7d32;
+}
+
+.cart-notice.success {
+  background: #f1f8f4;
+  color: #1b5e20;
+  border-left-color: #2e7d32;
+}
+
+.lmj-cart button {
+  background-color: #ffffff;
+  color: #008044;
+  border: 1px solid #008040;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 16px;
+}
+
+.lmj-cart button:hover {
+  background-color: #6a006a;
+  color: white;
+}
+
+.lmj-cart input[type="number"] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 8px;
+  width: 72px;
+  text-align: center;
+}
+
+.lmj-cart input[type="number"]:focus {
+  outline: none;
+  border-color: #008055;
+  box-shadow: 0 0 0 2px rgba(128, 0, 128, 0.12);
+}
+
+.lmj-cart-toggle-button {
+  background: none;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.lmj-cart-closed {
+  padding: 24px;
+  width: 320px;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.lmj-cart-closed > button {
+  color: #008044;
+  background: none;
+  border: 1px solid #00805a;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.lmj-cart-closed > button:hover {
+  background-color: #00804b;
+  color: white;
+}
+
+/* Mobile: ancrer le panier en bas à droite */
+@media (max-width: 600px) {
+  .lmj-cart {
+    position: fixed;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    top: auto;
+    left: auto;
+    width: min(92vw, 420px);
+    max-height: 75vh;
+  }
+
+  .lmj-cart-closed {
+    position: fixed;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    top: auto;
+    left: auto;
+    width: auto;
+    padding: 0;
+    background: transparent;
+  }
+}
