@@ -18,7 +18,8 @@
     "@badeball/cypress-cucumber-preprocessor": "^24.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "cypress": "^15.7.1",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "wait-on": "^9.0.3"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
