@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import SavedRecipeDetails from "./SavedRecipeDetails";
 
@@ -36,7 +36,13 @@ vi.mock("../../supabaseClient", () => ({
 }));
 
 vi.mock("./RecipeForm", () => ({
-  RecipeForm: () => <div data-testid="recipe-form">Recipe Form</div>,
+  RecipeForm: ({ onCancel, onSave }) => (
+    <div data-testid="recipe-form">
+      Recipe Form
+      <button onClick={onCancel}>Cancel</button>
+      <button onClick={() => onSave({})}>Save</button>
+    </div>
+  ),
 }));
 
 vi.mock("../shared/recipe/utils", () => ({
@@ -67,7 +73,6 @@ describe("SavedRecipeDetails", () => {
     vi.clearAllMocks();
     mockAuth.userId = "user-123";
 
-    // Default mock chain
     mockFrom.mockReturnValue({
       select: mockSelect,
       update: mockUpdate,
@@ -198,5 +203,96 @@ describe("SavedRecipeDetails", () => {
     await waitFor(() => {
       expect(screen.getByRole("button", { name: /Back/i })).toBeInTheDocument();
     });
+  });
+
+  it("affiche le RecipeForm en mode édition et gère l'annulation", async () => {
+    const mockRecipe = {
+      id: 1,
+      title: "Edit Me",
+      author: "Me",
+      user_id: "user-123",
+    };
+    mockSingle.mockResolvedValueOnce({ data: mockRecipe, error: null });
+    mockOrder.mockResolvedValue({ data: [], error: null });
+
+    renderRecipeDetails("1?edit=true");
+
+    await waitFor(() => {
+      expect(screen.getByTestId("recipe-form")).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText("Cancel"));
+    await waitFor(() => {
+      expect(screen.getByText("Edit Me")).toBeInTheDocument();
+    });
+  });
+
+  it("affiche un message de succès après modification", async () => {
+    const mockRecipe = {
+      id: 1,
+      title: "Edit Me",
+      author: "Me",
+      user_id: "user-123",
+    };
+    mockSingle.mockResolvedValueOnce({ data: mockRecipe, error: null });
+    mockOrder.mockResolvedValue({ data: [], error: null });
+    mockUpdate.mockReturnValue({ eq: () => Promise.resolve({ error: null }) });
+
+    renderRecipeDetails("1?edit=true");
+
+    await waitFor(() => {
+      expect(screen.getByTestId("recipe-form")).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText("Save"));
+  });
+
+  it("affiche une erreur si la validation échoue", async () => {
+    vi.doMock("../shared/recipe/utils", () => ({
+      validateRecipe: () => ["Erreur de validation"],
+      getDifficultyColor: () => "#4caf50",
+      getDifficultyLabel: () => "Easy",
+      buildIngredientsData: (ingredients) => ingredients,
+      buildInstructionsData: (instructions) => instructions,
+    }));
+
+    const mockRecipe = {
+      id: 1,
+      title: "Edit Me",
+      author: "Me",
+      user_id: "user-123",
+    };
+    mockSingle.mockResolvedValueOnce({ data: mockRecipe, error: null });
+    mockOrder.mockResolvedValue({ data: [], error: null });
+
+    renderRecipeDetails("1?edit=true");
+
+    await waitFor(() => {
+      expect(screen.getByTestId("recipe-form")).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText("Save"));
+  });
+
+  it("affiche une erreur si la requête supabase échoue", async () => {
+    const mockRecipe = {
+      id: 1,
+      title: "Edit Me",
+      author: "Me",
+      user_id: "user-123",
+    };
+    mockSingle.mockResolvedValueOnce({ data: mockRecipe, error: null });
+    mockOrder.mockResolvedValue({ data: [], error: null });
+    mockUpdate.mockReturnValue({
+      eq: () => Promise.resolve({ error: { message: "Update failed" } }),
+    });
+
+    renderRecipeDetails("1?edit=true");
+
+    await waitFor(() => {
+      expect(screen.getByTestId("recipe-form")).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText("Save"));
   });
 });

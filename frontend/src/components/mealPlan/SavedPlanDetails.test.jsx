@@ -440,4 +440,97 @@ describe("SavedPlanDetails", () => {
       expect(screen.getByText(/Prefilled with/i)).toBeInTheDocument();
     });
   });
+
+  it("affiche une erreur si la mise à jour du plan échoue", async () => {
+    // Charger un plan éditable
+    pushResponse({
+      data: {
+        id: "plan-1",
+        title: "Edit Error",
+        author: "Me",
+        total_kcal: 1500,
+        status: "daily",
+        created_at: "2024-01-01T10:00:00",
+        user_id: "user-1",
+      },
+      error: null,
+    });
+    pushResponse({ data: [], error: null });
+    pushResponse({
+      data: [{ FoodID: 1, FoodDescription: "Apple" }],
+      error: null,
+    });
+    // Mock update qui échoue
+    nextResponses.push({ error: { message: "Update failed" } });
+
+    renderWithProviders({ userId: "user-1" });
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByText(/^Edit$/i));
+    });
+    await waitFor(() => {
+      fireEvent.click(screen.getByText(/Enregistrer/i));
+    });
+    await waitFor(() => {
+      expect(screen.getByText(/Update failed/i)).toBeInTheDocument();
+    });
+  });
+
+  it("affiche une erreur si la suppression des items échoue", async () => {
+    pushResponse({
+      data: {
+        id: "plan-1",
+        title: "Delete Error",
+        author: "Me",
+        total_kcal: 1500,
+        status: "daily",
+        created_at: "2024-01-01T10:00:00",
+        user_id: "user-1",
+      },
+      error: null,
+    });
+    pushResponse({ data: [], error: null });
+    pushResponse({
+      data: [{ FoodID: 1, FoodDescription: "Apple" }],
+      error: null,
+    });
+    // update OK, delete échoue
+    nextResponses.push({ error: null }); // update
+    nextResponses.push({ error: { message: "Delete failed" } }); // delete
+
+    renderWithProviders({ userId: "user-1" });
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByText(/^Edit$/i));
+    });
+    await waitFor(() => {
+      fireEvent.click(screen.getByText(/Enregistrer/i));
+    });
+    await waitFor(() => {
+      expect(screen.getByText(/Delete failed/i)).toBeInTheDocument();
+    });
+  });
+
+  it("affiche 'No items' si aucun aliment n'est présent dans un repas", async () => {
+    pushResponse({
+      data: {
+        id: "plan-1",
+        title: "Empty Meals",
+        author: "Me",
+        total_kcal: 1500,
+        status: "daily",
+        created_at: "2024-01-01T10:00:00",
+        user_id: "user-1",
+      },
+      error: null,
+    });
+    pushResponse({ data: [], error: null });
+    pushResponse({ data: [], error: null });
+
+    renderWithProviders({ userId: "user-1" });
+
+    await waitFor(() => {
+      expect(screen.getAllByText(/No items/i).length).toBe(3);
+    });
+  });
 });

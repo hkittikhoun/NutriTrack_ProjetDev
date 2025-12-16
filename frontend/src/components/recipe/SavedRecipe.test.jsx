@@ -61,8 +61,6 @@ describe("SavedRecipe", () => {
       order: mockOrder,
     });
 
-    // mockOrder needs to return a fresh promise-like object each time
-    // that can be both awaited directly AND has eq method
     mockOrder.mockImplementation(() => {
       const orderResult = Promise.resolve({ data: [], error: null });
       orderResult.eq = mockEq;
@@ -87,7 +85,7 @@ describe("SavedRecipe", () => {
   });
 
   it("affiche le message de chargement", () => {
-    mockOrder.mockImplementationOnce(() => new Promise(() => {})); // Never resolves
+    mockOrder.mockImplementationOnce(() => new Promise(() => {}));
     renderSavedRecipe();
     expect(screen.getByText(/Loading recipes.../i)).toBeInTheDocument();
   });
@@ -221,7 +219,6 @@ describe("SavedRecipe", () => {
     const myRecipesButton = screen.getByRole("button", { name: /My Recipes/i });
     await userEvent.click(myRecipesButton);
 
-    // Verify the button becomes active
     await waitFor(() => {
       expect(myRecipesButton).toHaveClass("active");
     });
@@ -250,5 +247,76 @@ describe("SavedRecipe", () => {
     await waitFor(() => {
       expect(screen.getByText(/Network error/i)).toBeInTheDocument();
     });
+  });
+
+  it("affiche un message spécifique si aucun résultat dans 'My Recipes'", async () => {
+    mockOrder.mockResolvedValueOnce({ data: [], error: null });
+    renderSavedRecipe();
+    await waitFor(() => {
+      expect(
+        screen.getByRole("button", { name: /My Recipes/i })
+      ).toBeInTheDocument();
+    });
+    const myRecipesButton = screen.getByRole("button", { name: /My Recipes/i });
+    await userEvent.click(myRecipesButton);
+    await waitFor(() => {
+      expect(
+        screen.getByText(/You haven't created any recipes yet/i)
+      ).toBeInTheDocument();
+    });
+  });
+
+  it("affiche une erreur si la suppression échoue", async () => {
+    const mockRecipes = [
+      {
+        id: 1,
+        title: "My Recipe",
+        author: "Me",
+        user_id: "user-123",
+        created_at: "2025-01-01",
+      },
+    ];
+    mockOrder.mockResolvedValueOnce({ data: mockRecipes, error: null });
+    mockEq.mockResolvedValueOnce({ error: { message: "Delete failed" } });
+
+    window.confirm = vi.fn(() => true);
+
+    renderSavedRecipe();
+
+    await waitFor(() => {
+      expect(screen.getByText("My Recipe")).toBeInTheDocument();
+    });
+
+    const deleteBtn = screen.getByRole("button", { name: /Delete/i });
+    await userEvent.click(deleteBtn);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Delete failed/i)).toBeInTheDocument();
+    });
+  });
+
+  it("n'appelle pas la suppression si l'utilisateur annule", async () => {
+    const mockRecipes = [
+      {
+        id: 1,
+        title: "My Recipe",
+        author: "Me",
+        user_id: "user-123",
+        created_at: "2025-01-01",
+      },
+    ];
+    mockOrder.mockResolvedValueOnce({ data: mockRecipes, error: null });
+    window.confirm = vi.fn(() => false);
+
+    renderSavedRecipe();
+
+    await waitFor(() => {
+      expect(screen.getByText("My Recipe")).toBeInTheDocument();
+    });
+
+    const deleteBtn = screen.getByRole("button", { name: /Delete/i });
+    await userEvent.click(deleteBtn);
+
+    expect(mockEq).not.toHaveBeenCalled();
   });
 });

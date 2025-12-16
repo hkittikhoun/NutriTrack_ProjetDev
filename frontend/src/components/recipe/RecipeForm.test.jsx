@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RecipeForm } from "./RecipeForm";
 
-// Mock child components
 vi.mock("../shared/recipe/IngredientRow", () => ({
   IngredientRow: ({ ingredient, onRemove, disableRemove }) => (
     <div data-testid={`ingredient-${ingredient.id}`}>
@@ -165,6 +164,16 @@ describe("RecipeForm", () => {
     expect(mockSetInstructions).toHaveBeenCalled();
   });
 
+  it("désactive le bouton Remove Ingredient si un seul ingrédient", () => {
+    renderForm({ ingredients: [{ id: 1, ingredientName: "" }] });
+    expect(screen.getByTestId("remove-ingredient-1")).toBeDisabled();
+  });
+
+  it("désactive le bouton Remove Instruction si une seule instruction", () => {
+    renderForm({ instructions: [""] });
+    expect(screen.getByTestId("remove-instruction-0")).toBeDisabled();
+  });
+
   it("appelle onSave quand le bouton Save est cliqué", async () => {
     renderForm();
     const saveButton = screen.getByRole("button", { name: /Save/i });
@@ -201,5 +210,29 @@ describe("RecipeForm", () => {
     const cancelButton = screen.getByRole("button", { name: /Cancel/i });
     await userEvent.click(cancelButton);
     expect(mockOnCancel).toHaveBeenCalled();
+  });
+
+  it("affiche 'Saving...' sur le bouton Save quand loading=true", () => {
+    renderForm({ loading: true });
+    expect(
+      screen.getByRole("button", { name: /Saving.../i })
+    ).toBeInTheDocument();
+  });
+
+  it("remplit le nom et la quantité depuis cartFoods quand on sélectionne un aliment", async () => {
+    const cartFoods = [{ foodId: "42", name: "Apple", cartQuantity: "2" }];
+    renderForm({
+      cartFoods,
+      ingredients: [
+        {
+          id: 1,
+          foodId: "",
+          ingredientName: "",
+          quantity: "",
+          unit: "g",
+          preparation: "",
+        },
+      ],
+    });
   });
 });
