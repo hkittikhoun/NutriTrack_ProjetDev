@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      # Backend
+      - name: Install backend deps
+        working-directory: backend
+        run: npm ci
+
+      - name: Start backend server
+        working-directory: backend
+        env:
+          NODE_ENV: test
+        run: |
+          nohup npm start >/dev/null 2>&1 & echo $! > backend.pid
+
+      - name: Wait for backend
+        run: npx wait-on http://localhost:3001/api/health
+
+      - name: Cypress E2E (backend)
+        working-directory: backend
+        run: npx cypress run
+
+      # Frontend
+      - name: Install frontend deps
+        working-directory: frontend
+        run: npm ci
+
+      - name: Start frontend dev server
+        working-directory: frontend
+        env:
+          NODE_ENV: test
+        run: |
+          nohup npm run dev >/dev/null 2>&1 & echo $! > frontend.pid
+
+      - name: Wait for frontend
+        run: npx wait-on http://localhost:5173
+
+      - name: Unit tests (Vitest)
+        working-directory: frontend
+        run: npm run test -- --run
+
+      - name: Cypress E2E (frontend)
+        working-directory: frontend
+        run: npx cypress run
+
+      - name: Cleanup servers
+        if: always()
+        run: |
+          [ -f backend/backend.pid ] && kill $(cat backend/backend.pid) || true
+          [ -f frontend/frontend.pid ] && kill $(cat frontend/frontend.pid) || true
