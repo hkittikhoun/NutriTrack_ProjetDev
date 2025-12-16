@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>export function getDifficultyLabel()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function getDifficultyLabel()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/recipe/utils.js [33:44]</i></p>
+<ul>
+    <li><b>12</b> lines of code</li>
+    <li><b>5</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function getDifficultyLabel(difficulty) {
+  switch (difficulty) {
+    case &quot;easy&quot;:
+      return &quot;Easy&quot;;
+    case &quot;medium&quot;:
+      return &quot;Medium&quot;;
+    case &quot;hard&quot;:
+      return &quot;Hard&quot;;
+    default:
+      return difficulty || &quot;Unknown&quot;;
+  }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>frontend/src/components/shared/buttons.css</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/shared/buttons.css (<b>38</b> lines of code) (<a href="buttons.css">raw</a>):</h3>
+<div id="editor">/* Actions &amp; boutons communs (partag&eacute;) */
+.action-buttons,
+.form-actions,
+.plan-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-buttons .edit-btn,
+.action-buttons .back-btn,
+.save-btn,
+.cancel-btn,
+.view-btn,
+.edit-btn,
+.delete-btn {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+  min-width: 120px;
+  border: none;
+}
+
+/* Responsive commun (&eacute;vite duplication dans Recipe.css et MealPlan.css) */
+@media (max-width: 768px) {
+  .action-buttons,
+  .form-actions,
+  .plan-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .action-buttons button,
+  .form-actions button,
+  .plan-actions button {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/css");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

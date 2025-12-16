@@ -1,0 +1,30 @@
+frontend/src/components/mealPlan/SavedPlans.css [97:105]:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  }
+  .view-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filter-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+frontend/src/components/shared/Recipe.css [556:564]:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  }
+  .view-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filter-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+

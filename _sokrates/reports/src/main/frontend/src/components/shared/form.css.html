@@ -1,0 +1,204 @@
+<html>
+<head>
+    <title>frontend/src/components/shared/form.css</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/shared/form.css (<b>155</b> lines of code) (<a href="form.css">raw</a>):</h3>
+<div id="editor">/* Base commune */
+form {
+  width: 90%;
+  max-width: 40rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.5);
+}
+
+.control,
+fieldset {
+  margin-bottom: 1rem;
+}
+
+.control.no-margin {
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+  padding-right: 1rem;
+}
+
+.control label {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  color: #2c3a34;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: left;
+}
+
+.control input,
+.control select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #758a8a;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.control input {
+  max-width: 100%;
+}
+.control select {
+  max-width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.title {
+  text-align: left;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem;
+}
+.control:first-of-type {
+  margin-top: 0;
+}
+
+/* Variantes Login (porter la classe sur &lt;form class=&quot;login-form&quot;&gt;) */
+.login-form .button {
+  background-color: #b00020;
+  color: #fff;
+}
+.login-form .button:hover,
+.login-form .button:focus {
+  background-color: #ff4d4d;
+}
+
+.login-form .button-flat {
+  background-color: transparent;
+  color: #b00020;
+}
+.login-form .button-flat:hover,
+.login-form .button-flat:focus {
+  background-color: transparent;
+  color: #ff4d4d;
+}
+
+/* Variantes Signup (porter la classe sur &lt;form class=&quot;signup-form&quot;&gt;) */
+.signup-form .button-payment {
+  background-color: #b00020;
+  color: #fff;
+}
+.signup-form .button-payment:hover,
+.signup-form .button-payment:focus {
+  background-color: #d00030;
+}
+
+/* Label &quot;terms&quot; sp&eacute;cifique Signup */
+.signup-form label[for=&quot;terms-and-conditions&quot;] {
+  display: flex;
+  align-items: center;
+  gap: 0rem;
+}
+
+.signup-form .button-flat {
+  background-color: white;
+  color: #b00020;
+}
+
+/* Sp&eacute;cifique Signup */
+.signup-form .success-message {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.signup-form .control-error {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.signup-form .payment-notice {
+  background: linear-gradient(135deg, #b00020, #d00030);
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+.signup-form .payment-notice strong {
+  font-size: 1.1rem;
+}
+
+.signup-form .control-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.signup-form .control-row .control:first-child {
+  margin-right: 0.5rem;
+}
+.signup-form .control-row .control:last-child {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .signup-form .control-row {
+    grid-template-columns: 1fr;
+  }
+  .signup-form .control-row .control:first-child,
+  .signup-form .control-row .control:last-child {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .signup-form .payment-notice {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/css");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

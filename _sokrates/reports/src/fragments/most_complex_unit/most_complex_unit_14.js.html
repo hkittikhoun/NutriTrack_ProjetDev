@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>export function prefillFromCartToMealPlans()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function prefillFromCartToMealPlans()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/hooks/useCartPrefill.js [1:15]</i></p>
+<ul>
+    <li><b>15</b> lines of code</li>
+    <li><b>3</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function prefillFromCartToMealPlans(cartFoods) {
+  if (!cartFoods || cartFoods.length === 0) return null;
+  const newMealPlans = { morning: [], lunch: [], dinner: [] };
+  const mealTypes = [&quot;morning&quot;, &quot;lunch&quot;, &quot;dinner&quot;];
+  cartFoods.forEach((c, idx) =&gt; {
+    const mealType = mealTypes[idx % 3];
+    newMealPlans[mealType].push({
+      id: Date.now() + idx,
+      foodId: String(c.foodId),
+      quantity: c.cartQuantity,
+      mealType,
+    });
+  });
+  return newMealPlans;
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

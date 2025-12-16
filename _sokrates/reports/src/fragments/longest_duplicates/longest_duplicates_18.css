@@ -1,0 +1,24 @@
+frontend/src/components/mealPlan/SavedPlans.css [66:71]:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  font-weight: 600;
+}
+.plan-meta {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+frontend/src/components/shared/MealPlan.css [41:46]:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  font-weight: 600;
+}
+.plan-meta {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+

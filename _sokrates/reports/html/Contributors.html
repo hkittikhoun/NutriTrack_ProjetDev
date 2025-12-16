@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>A2025_hkdgvu Contributors</title>
+  <style type="text/css" media="all">
+    body {
+      font-family: Roboto, Vollkorn, Ubuntu, Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+      margin-left:5%;
+      margin-right:5%;
+    }
+    table {
+      color: #333;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    td, th {
+      border: 1px solid #CCC;
+      height: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    th {
+      background: #F3F3F3;
+      font-weight: bold;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    td {
+      background: #FFFFFF;
+      text-align: left;
+    }
+    h3 {
+      margin-top: 0
+    }
+    h1 {
+      margin-bottom: 6px;
+    }
+    p {
+      margin-top: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    .reportSubtitle {
+      color: grey;
+    }
+    .group {
+      margin-bottom: 10px;
+      border: solid lightgrey 1px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 2px;
+    }
+    .section {
+      margin-bottom: 30px;
+      border: solid lightgrey 1px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 2px;
+      padding: 0;
+    }
+    .sectionHeader {
+      margin-bottom: 30px;
+      padding: 20px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      background-color: lightskyblue;
+    }
+    .sectionTitle {
+      font-size: 140%;
+    }
+    .sectionSubtitle {
+      font-size: 90%; color: grey;
+    }
+    .subSectionTitle {
+      font-size: 140%;
+    }
+    .subSectionSubtitle {
+      font-size: 90%; color: grey;
+    }
+    .subSection {
+      margin-bottom: 30px;
+      border: solid lightgrey 1px;
+      padding-top: 0;
+      padding-bottom: 0;
+      box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 1px 9px 0 rgba(0, 0, 0, 0.19);
+    }
+    .subSectionHeader {
+      border: solid lightgrey 1px;
+      padding: 6px;
+      background-color: lightgrey;
+      box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 2px 9px 0 rgba(0, 0, 0, 0.19);
+    }
+    .sectionBody {
+      margin: 20px;
+    }
+.tab {
+ overflow: hidden;
+ border: 1px solid #ccc;
+ background-color: #f1f1f1;
+}
+.tab button {
+ font-family: Roboto, Vollkorn, Ubuntu, Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+ font-size: 100%;
+ background-color: inherit;
+ float: left;
+ border: none;
+ outline: none;
+ cursor: pointer;
+ padding: 14px 16px;
+ transition: 0.3s;
+}
+.tab button:hover {
+ background-color: #ddd;
+}
+.tab button.active {
+ background-color: #ccc;
+}
+.tabcontent {
+ display: none;
+ padding: 6px 12px;
+ border: 1px solid #ccc;
+ overflow-y: auto;
+ border-top: none;
+}
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <script type="text/javascript">
+    function showHide(id) {
+      var e = document.getElementById(id);
+      e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+    }
+    function showHideDisappear(id) {
+      var e = document.getElementById(id);
+      e.style.display = '';      var eTrigger = document.getElementById(id + '_trigger');
+      eTrigger.style.display = 'none';
+    }
+    function openTab(evt, tabName) {
+     var i, tabcontent, tablinks;
+     tabcontent = document.getElementsByClassName("tabcontent");
+     for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+     }
+     tablinks = document.getElementsByClassName("tablinks");
+     for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+     }
+     document.getElementById(tabName).style.display = "block";
+     evt.currentTarget.className += " active";
+    }
+  </script>
+  
+</head>
+
+<body><div id="report">
+
+
+<div style='font-size: 36px; margin-top: 15px; padding-bottom: 15px; white-space: nowrap; overflow: hidden;'><a href='index.html' style="font-size: 100%;text-decoration:none">
+<img style='height: 64px' valign='middle' src='https://zeljkoobrenovic.github.io/sokrates-media/icons/repository.png'>
+<div style='margin-left: 4px; display: inline-block; vertical-align: middle; font-size: 120%'><div style='color: #bbbbbb; font-size: 60%;'>A2025_hkdgvu</div><div style='height: 34px; font-size: 100%'>Contributors</div></div></div>
+</a>
+</div>
+
+<p style="margin-top: 12px; color: grey">An overview of contributor trends.</p>
+<div class="tab">
+  <button class='tablinks active' onclick='openTab(event, "matrix")'>Contributors Matrix</button>
+  <button class='tablinks' onclick='openTab(event, "30_days")'>Past 30 Days</button>
+  <button class='tablinks' onclick='openTab(event, "90_days")'>Past 3 Months</button>
+  <button class='tablinks' onclick='openTab(event, "180_days")'>Past 6 Months</button>
+  <button class='tablinks' onclick='openTab(event, "365_days")'>Past Year</button>
+  <button class='tablinks' onclick='openTab(event, "contributors")'>Overview</button>
+  <button class='tablinks' onclick='openTab(event, "data")'>Data</button>
+</div>
+<div id="contributors" class="tabcontent" style="display: none">
+<div style="margin-top: 10px">
+Zoomable circles (number of contributors per file): 
+<a style='text-decoration: none' target='_blank' href='visuals/zoomable_circles_contributors_30_main.html'>30 days</a>
+ | 
+<a style='text-decoration: none' target='_blank' href='visuals/zoomable_circles_contributors_90_main.html'>90 days</a>
+ | 
+<a style='text-decoration: none' target='_blank' href='visuals/zoomable_circles_contributors_180_main.html'>6 months</a>
+ | 
+<a style='text-decoration: none' target='_blank' href='visuals/zoomable_circles_contributors_365_main.html'>past year</a>
+ | 
+<a style='text-decoration: none' target='_blank' href='visuals/zoomable_circles_contributors_main.html'>all time</a>
+<div style="color: grey; font-size: 80%">
+Files with only one contributor are shown as grey.
+</div>
+</div>
+<br/>
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Contributors</span></div><div class='sectionBody'>
+<div style="">
+<h2>Recent Contributors (3)</h2>
+<p style="color: grey">Committed in past 6 months (a rookie = the first commit in past year)</p>
+<p style="font-size: 80%">Past 30 days (1):</p>
+<div style='margin: 4px; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; text-align: center; border-bottom:2px solid green; display: inline-block;opacity:1.0' title='2155162@cmontmorency.qc.ca 75 commits (92%), between 2025-09-19 and 2025-12-13'>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width='64px' height='64px' viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#FFFFFF"></rect><g transform="translate(50 50) scale(0.69 0.69) rotate(0) translate(-50 -50)" style="fill:#1A1A1A"><svg fill="#1A1A1A" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><g><circle cx="50.2" cy="23.8" r="22.8" fill="blue"></circle><path d="M87.1,99H13.3V75.4c0-13.1,10.5-23.6,23.6-23.6h26.7c13.1,0,23.6,10.5,23.6,23.6L87.1,99z" fill="blue"></path></g></g></svg></g></svg>
+
+<div style='padding: 4px; font-size: 10px; width: 64px; overflow: hidden; max-height: 22px; min-height: 22px;'>
+2155162@cmontmorency.qc.ca
+</div>
+</div>
+<hr/>
+<p style="font-size: 80%">Past 31 to 90 days (2):</p>
+<div style='margin: 4px; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; text-align: center; border-bottom:2px solid green; display: inline-block;opacity:0.25333333333333335' title='prospectdydy01@hotmail.com 5 commits (6%), between 2025-10-15 and 2025-10-29'>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width='64px' height='64px' viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#FFFFFF"></rect><g transform="translate(50 50) scale(0.69 0.69) rotate(0) translate(-50 -50)" style="fill:#1A1A1A"><svg fill="#1A1A1A" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><g><circle cx="50.2" cy="23.8" r="22.8" fill="blue"></circle><path d="M87.1,99H13.3V75.4c0-13.1,10.5-23.6,23.6-23.6h26.7c13.1,0,23.6,10.5,23.6,23.6L87.1,99z" fill="blue"></path></g></g></svg></g></svg>
+
+<div style='padding: 4px; font-size: 10px; width: 64px; overflow: hidden; max-height: 22px; min-height: 22px;'>
+prospectdydy01@hotmail.com
+</div>
+</div>
+<div style='margin: 4px; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; text-align: center; border-bottom:2px solid green; display: inline-block;opacity:0.21066666666666667' title='1985613@cmontmorency.qc.ca 1 commits (1%), between 2025-09-25 and 2025-09-25'>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width='64px' height='64px' viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#FFFFFF"></rect><g transform="translate(50 50) scale(0.69 0.69) rotate(0) translate(-50 -50)" style="fill:#1A1A1A"><svg fill="#1A1A1A" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><g><g><circle cx="50.2" cy="23.8" r="22.8" fill="blue"></circle><path d="M87.1,99H13.3V75.4c0-13.1,10.5-23.6,23.6-23.6h26.7c13.1,0,23.6,10.5,23.6,23.6L87.1,99z" fill="blue"></path></g></g></svg></g></svg>
+
+<div style='padding: 4px; font-size: 10px; width: 64px; overflow: hidden; max-height: 22px; min-height: 22px;'>
+1985613@cmontmorency.qc.ca
+</div>
+</div>
+<hr/>
+<p style="font-size: 80%">No contributors in past 91 to 180 days.</p>
+<h2 style="margin-top: 40px">Historical Contributors (0)</h2>
+<p style="color: grey">Last contributors more than 6 months ago</p>
+</div>
+</div></div>
+</div>
+<div id="matrix" class="tabcontent" style="display: block">
+<div style="height: 20px">
+&nbsp;
+</div>
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Contributors Matrix (Per Month)</span></div><div class='sectionBody'>
+<div style="width: 100%; overflow-x: scroll; overflow-y: scroll; max-height: 600px">
+<table>
+<tr>
+<td style="min-width: 200px; border: none; border: none"></td>
+<td style="max-width: 100px; text-align: center; border: none">Commits<br>(3m)</td>
+<td style="max-width: 100px; text-align: center; border: none">Commit<br>Days</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-12: 1 contributor">
+1
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-11: 1 contributor">
+1
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-10: 2 contributors ">
+2
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-09: 2 contributors ">
+2
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-08: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-07: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-06: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-05: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-04: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-03: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-02: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-01: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-12: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-11: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-10: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-09: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-08: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-07: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-06: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-05: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-04: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-03: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-02: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-01: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2023-12: 0 contributors ">
+-
+</div>
+</td>
+</tr>
+<tr>
+<td style="border: none; font-weight: bold;">
+Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div>
+</td>
+<td style="text-align: center; border: none; font-weight: bold;">75</td>
+<td style="text-align: center; border: none; font-weight: bold;">13</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="cursor: help;padding: 0; margin: 0; display: inline-block; background-color: #483D8B; opacity: 0.9; border-radius: 50%; width: 10px; height: 10px;" title="Month 2025-12: 2 commit days">
+
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="cursor: help;padding: 0; margin: 0; display: inline-block; background-color: #483D8B; opacity: 0.7; border-radius: 50%; width: 10px; height: 10px;" title="Month 2025-11: 1 commit day">
+
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="cursor: help;padding: 0; margin: 0; display: inline-block; background-color: #483D8B; opacity: 0.5; border-radius: 50%; width: 10px; height: 10px;" title="Month 2025-10: 3 commit days">
+
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="cursor: help;padding: 0; margin: 0; display: inline-block; background-color: #483D8B; opacity: 0.29999999999999993; border-radius: 50%; width: 14px; height: 14px;" title="Month 2025-09: 7 commit days">
+
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+</tr>
+<tr>
+<td style="border: none; font-weight: bold;">
+Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div>
+</td>
+<td style="text-align: center; border: none; font-weight: bold;">5</td>
+<td style="text-align: center; border: none; font-weight: bold;">3</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="cursor: help;padding: 0; margin: 0; display: inline-block; background-color: #483D8B; opacity: 0.5; border-radius: 50%; width: 10px; height: 10px;" title="Month 2025-10: 3 commit days">
+
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+</tr>
+<tr>
+<td style="border: none; font-weight: bold;">
+Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div>
+</td>
+<td style="text-align: center; border: none; font-weight: bold;">1</td>
+<td style="text-align: center; border: none; font-weight: bold;">1</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="cursor: help;padding: 0; margin: 0; display: inline-block; background-color: #483D8B; opacity: 0.29999999999999993; border-radius: 50%; width: 10px; height: 10px;" title="Month 2025-09: 1 commit day">
+
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+<td style="text-align: center; padding: 0; border: none; vertical-align: middle;">
+<div style="color: lightgrey; font-size: 80%">
+-
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div></div>
+<div style="height: 20px">
+&nbsp;
+</div>
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Bots Matrix (Per Month)</span></div><div class='sectionBody'>
+<div style="width: 100%; overflow-x: scroll; overflow-y: scroll; max-height: 600px">
+<table>
+<tr>
+<td style="min-width: 200px; border: none; border: none"></td>
+<td style="max-width: 100px; text-align: center; border: none">Commits<br>(3m)</td>
+<td style="max-width: 100px; text-align: center; border: none">Commit<br>Days</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-12: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-11: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-10: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-09: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-08: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-07: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-06: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-05: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-04: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-03: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-02: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2025-01: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-12: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-11: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-10: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-09: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-08: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-07: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-06: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-05: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-04: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-03: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-02: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2024-01: 0 contributors ">
+-
+</div>
+</td>
+<td style="font-size: 70%; border: none; color: lightgrey; text-align: center">
+<div style="cursor: help;text-align: center" title="Month 2023-12: 0 contributors ">
+-
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div></div>
+</div>
+<div id="30_days" class="tabcontent" style="display: none">
+<br/>
+<p><b>1</b> contributor (<b>26</b> commit):</p>
+<div style='background-color: #75ADD2; display: inline-block; height: 20px; width: 600px' title='2155162@cmontmorency.qc.ca
+26 commits (100%)'>&nbsp;</div>
+<br/>
+<br/>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th>#</th>
+<th>Contributor<br></th>
+<th>First<br>Commit</th>
+<th>Latest<br>Commit</th>
+<th>Commits<br>Count</th>
+<th>File Updates<br>(per extension)</th>
+<tr style=''>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>2025-09-19</td>
+<td>2025-12-13</td>
+<td>26 (100%)</td>
+<td>html (2109), jsx (700), txt (576), css (360), json (289)</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="90_days" class="tabcontent" style="display: none">
+<br/>
+<p><b>3</b> contributors (<b>81</b> commits):</p>
+<div style='background-color: #75ADD2; display: inline-block; height: 20px; width: 556px' title='2155162@cmontmorency.qc.ca
+75 commits (93%)'>&nbsp;</div><div style='background-color: #584982; display: inline-block; height: 20px; width: 37px' title='prospectdydy01@hotmail.com
+5 commits (6%)
+top 2contributors together (66% of contributors) = 98% of all commits'>&nbsp;</div><div style='background-color: #FFFD98; display: inline-block; height: 20px; width: 7px' title='1985613@cmontmorency.qc.ca
+1 commits (1%)
+top 3contributors together (100% of contributors) = 100% of all commits'>&nbsp;</div>
+<br/>
+<br/>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th>#</th>
+<th>Contributor<br></th>
+<th>First<br>Commit</th>
+<th>Latest<br>Commit</th>
+<th>Commits<br>Count</th>
+<th>File Updates<br>(per extension)</th>
+<tr style=''>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>2025-09-19</td>
+<td>2025-12-13</td>
+<td>75 (92%)</td>
+<td>html (2112), jsx (825), txt (578), css (412), json (307)</td>
+</tr>
+<tr style='color: grey'>
+<td>2.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>2025-10-15</td>
+<td>2025-10-29</td>
+<td>5 (6%)</td>
+<td>jsx (12), css (5)</td>
+</tr>
+<tr style='color: grey'>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>2025-09-25</td>
+<td>2025-09-25</td>
+<td>1 (1%)</td>
+<td>jsx (2), css (1)</td>
+</tr>
+</table>
+</div>
+<h2 style="margin-top: 40px; margin-bottom: 0;">Contributor Dependencies</h2>
+<p style="color: grey; font-size: 80%; margin-bottom: 12px;">A contributor dependency is detected if two contributors have changed the same files in the past 90 days.</p>
+<h3 style="margin-top: 20px">Contributor Dependencies via Shared Files</h2>
+ <a href="javascript:showHide('showMoreBlock_5');")> - show contributor dependencies 2D graph</a><span id="showMoreBlock_5" style="display: none;">
+<p style="color: grey">The number on lines shows the number of same files that both persons changed in past <b>90</b> days.</p>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<br/>
+<br/>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_90_1.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_90_1.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+</span>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_90_1_force_2d.html'>- open 2D force graph</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_90_1_force_3d.html'>- open 3D force graph</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_90_2_force_2d.html'>- open 2D force graph (including all files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_90_2_force_2d_only_shared_file.html'>- open 2D force graph (including only shared files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_90_2_force_3d.html'>- open 3D force graph (including all files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_90_2_force_3d_only_shared_file.html'>- open 3D force graph (including only shared files)</a>
+<br/>
+<br/>
+<br/>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th></th>
+<th>Contributor 1</th>
+<th>Contributor 2</th>
+<th># shared files</th>
+<tr>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_6');")>8 shared files</a><span id="showMoreBlock_6" style="display: none;">
+<br>frontend/src/components/mealPlan/DailyPlan.css
+<br>frontend/src/components/App.jsx
+<br>frontend/src/components/foodCard/FoodCard.jsx
+<br>frontend/src/containers/Roots.jsx
+<br>frontend/src/components/mealPlan/DailyPlan.jsx
+<br>frontend/src/components/header/NavLinks.jsx
+<br>frontend/src/components/cart/Cart.jsx
+<br>frontend/src/components/header/MainNavigation.jsx
+</span>
+</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_7');")>3 shared files</a><span id="showMoreBlock_7" style="display: none;">
+<br>frontend/src/components/foodCard/FoodCard.jsx
+<br>frontend/src/components/catalogue/Catalogue.jsx
+<br>frontend/src/components/catalogue/Catalogue.css
+</span>
+</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_8');")>1 shared file</a><span id="showMoreBlock_8" style="display: none;">
+<br>frontend/src/components/foodCard/FoodCard.jsx
+</span>
+</td>
+</tr>
+</table>
+</div>
+<h3 style="margin-top: 20px">Most Connected Contributors</h2>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th></th>
+<th>Contributor</th>
+<th># connections</th>
+<th># commits</th>
+<tr>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>2</td>
+<td>75</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>2</td>
+<td>1</td>
+</tr>
+</table>
+</div>
+<p style="margin-bottom: 0; margin-top: 10px;">C-median: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 20px">A half of the contributors has more than 2.0 connections, and a half has less than this number.</p>
+<p style="margin-bottom: 0;">C-mean: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 20px">An average number of connections a contributor has with other contributors.</p>
+<p style="margin-bottom: 0;">C-index: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 40px">There are 2.0 contributors with 2.0 or more connections.</p>
+</div>
+<div id="180_days" class="tabcontent" style="display: none">
+<br/>
+<p><b>3</b> contributors (<b>81</b> commits):</p>
+<div style='background-color: #75ADD2; display: inline-block; height: 20px; width: 556px' title='2155162@cmontmorency.qc.ca
+75 commits (93%)'>&nbsp;</div><div style='background-color: #584982; display: inline-block; height: 20px; width: 37px' title='prospectdydy01@hotmail.com
+5 commits (6%)
+top 2contributors together (66% of contributors) = 98% of all commits'>&nbsp;</div><div style='background-color: #FFFD98; display: inline-block; height: 20px; width: 7px' title='1985613@cmontmorency.qc.ca
+1 commits (1%)
+top 3contributors together (100% of contributors) = 100% of all commits'>&nbsp;</div>
+<br/>
+<br/>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th>#</th>
+<th>Contributor<br></th>
+<th>First<br>Commit</th>
+<th>Latest<br>Commit</th>
+<th>Commits<br>Count</th>
+<tr style=''>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>2025-09-19</td>
+<td>2025-12-13</td>
+<td>75 (92%)</td>
+</tr>
+<tr style='color: grey'>
+<td>2.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>2025-10-15</td>
+<td>2025-10-29</td>
+<td>5 (6%)</td>
+</tr>
+<tr style='color: grey'>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>2025-09-25</td>
+<td>2025-09-25</td>
+<td>1 (1%)</td>
+</tr>
+</table>
+</div>
+<h2 style="margin-top: 40px; margin-bottom: 0;">Contributor Dependencies</h2>
+<p style="color: grey; font-size: 80%; margin-bottom: 12px;">A contributor dependency is detected if two contributors have changed the same files in the past 180 days.</p>
+<h3 style="margin-top: 20px">Contributor Dependencies via Shared Files</h2>
+ <a href="javascript:showHide('showMoreBlock_9');")> - show contributor dependencies 2D graph</a><span id="showMoreBlock_9" style="display: none;">
+<p style="color: grey">The number on lines shows the number of same files that both persons changed in past <b>180</b> days.</p>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<br/>
+<br/>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_180_3.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_180_3.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+</span>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_180_3_force_2d.html'>- open 2D force graph</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_180_3_force_3d.html'>- open 3D force graph</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_180_4_force_2d.html'>- open 2D force graph (including all files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_180_4_force_2d_only_shared_file.html'>- open 2D force graph (including only shared files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_180_4_force_3d.html'>- open 3D force graph (including all files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_180_4_force_3d_only_shared_file.html'>- open 3D force graph (including only shared files)</a>
+<br/>
+<br/>
+<br/>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th></th>
+<th>Contributor 1</th>
+<th>Contributor 2</th>
+<th># shared files</th>
+<tr>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_10');")>8 shared files</a><span id="showMoreBlock_10" style="display: none;">
+<br>frontend/src/components/mealPlan/DailyPlan.css
+<br>frontend/src/components/App.jsx
+<br>frontend/src/components/foodCard/FoodCard.jsx
+<br>frontend/src/containers/Roots.jsx
+<br>frontend/src/components/mealPlan/DailyPlan.jsx
+<br>frontend/src/components/header/NavLinks.jsx
+<br>frontend/src/components/cart/Cart.jsx
+<br>frontend/src/components/header/MainNavigation.jsx
+</span>
+</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_11');")>3 shared files</a><span id="showMoreBlock_11" style="display: none;">
+<br>frontend/src/components/foodCard/FoodCard.jsx
+<br>frontend/src/components/catalogue/Catalogue.jsx
+<br>frontend/src/components/catalogue/Catalogue.css
+</span>
+</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_12');")>1 shared file</a><span id="showMoreBlock_12" style="display: none;">
+<br>frontend/src/components/foodCard/FoodCard.jsx
+</span>
+</td>
+</tr>
+</table>
+</div>
+<h3 style="margin-top: 20px">Most Connected Contributors</h2>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th></th>
+<th>Contributor</th>
+<th># connections</th>
+<th># commits</th>
+<tr>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>2</td>
+<td>75</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>2</td>
+<td>1</td>
+</tr>
+</table>
+</div>
+<p style="margin-bottom: 0; margin-top: 10px;">C-median: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 20px">A half of the contributors has more than 2.0 connections, and a half has less than this number.</p>
+<p style="margin-bottom: 0;">C-mean: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 20px">An average number of connections a contributor has with other contributors.</p>
+<p style="margin-bottom: 0;">C-index: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 40px">There are 2.0 contributors with 2.0 or more connections.</p>
+</div>
+<div id="365_days" class="tabcontent" style="display: none">
+<br/>
+<p><b>3</b> contributors (<b>81</b> commits):</p>
+<div style='background-color: #75ADD2; display: inline-block; height: 20px; width: 556px' title='2155162@cmontmorency.qc.ca
+75 commits (93%)'>&nbsp;</div><div style='background-color: #584982; display: inline-block; height: 20px; width: 37px' title='prospectdydy01@hotmail.com
+5 commits (6%)
+top 2contributors together (66% of contributors) = 98% of all commits'>&nbsp;</div><div style='background-color: #FFFD98; display: inline-block; height: 20px; width: 7px' title='1985613@cmontmorency.qc.ca
+1 commits (1%)
+top 3contributors together (100% of contributors) = 100% of all commits'>&nbsp;</div>
+<br/>
+<br/>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th>#</th>
+<th>Contributor<br></th>
+<th>First<br>Commit</th>
+<th>Latest<br>Commit</th>
+<th>Commits<br>Count</th>
+<tr style=''>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>2025-09-19</td>
+<td>2025-12-13</td>
+<td>75 (92%)</td>
+</tr>
+<tr style='color: grey'>
+<td>2.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>2025-10-15</td>
+<td>2025-10-29</td>
+<td>5 (6%)</td>
+</tr>
+<tr style='color: grey'>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>2025-09-25</td>
+<td>2025-09-25</td>
+<td>1 (1%)</td>
+</tr>
+</table>
+</div>
+<h2 style="margin-top: 40px; margin-bottom: 0;">Contributor Dependencies</h2>
+<p style="color: grey; font-size: 80%; margin-bottom: 12px;">A contributor dependency is detected if two contributors have changed the same files in the past 365 days.</p>
+<h3 style="margin-top: 20px">Contributor Dependencies via Shared Files</h2>
+ <a href="javascript:showHide('showMoreBlock_13');")> - show contributor dependencies 2D graph</a><span id="showMoreBlock_13" style="display: none;">
+<p style="color: grey">The number on lines shows the number of same files that both persons changed in past <b>365</b> days.</p>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<br/>
+<br/>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_365_5.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_365_5.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+</span>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_365_5_force_2d.html'>- open 2D force graph</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_365_5_force_3d.html'>- open 3D force graph</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_365_6_force_2d.html'>- open 2D force graph (including all files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_365_6_force_2d_only_shared_file.html'>- open 2D force graph (including only shared files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_365_6_force_3d.html'>- open 3D force graph (including all files)</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/people_dependencies_via_files_365_6_force_3d_only_shared_file.html'>- open 3D force graph (including only shared files)</a>
+<br/>
+<br/>
+<br/>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th></th>
+<th>Contributor 1</th>
+<th>Contributor 2</th>
+<th># shared files</th>
+<tr>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_14');")>8 shared files</a><span id="showMoreBlock_14" style="display: none;">
+<br>frontend/src/components/mealPlan/DailyPlan.css
+<br>frontend/src/components/App.jsx
+<br>frontend/src/components/foodCard/FoodCard.jsx
+<br>frontend/src/containers/Roots.jsx
+<br>frontend/src/components/mealPlan/DailyPlan.jsx
+<br>frontend/src/components/header/NavLinks.jsx
+<br>frontend/src/components/cart/Cart.jsx
+<br>frontend/src/components/header/MainNavigation.jsx
+</span>
+</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_15');")>3 shared files</a><span id="showMoreBlock_15" style="display: none;">
+<br>frontend/src/components/foodCard/FoodCard.jsx
+<br>frontend/src/components/catalogue/Catalogue.jsx
+<br>frontend/src/components/catalogue/Catalogue.css
+</span>
+</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>
+ <a href="javascript:showHide('showMoreBlock_16');")>1 shared file</a><span id="showMoreBlock_16" style="display: none;">
+<br>frontend/src/components/foodCard/FoodCard.jsx
+</span>
+</td>
+</tr>
+</table>
+</div>
+<h3 style="margin-top: 20px">Most Connected Contributors</h2>
+<div style="max-height: 600px; overflow-y: scroll; overflow-x: hidden;">
+<table>
+<th></th>
+<th>Contributor</th>
+<th># connections</th>
+<th># commits</th>
+<tr>
+<td>1.</td>
+<td>Hugo Kittikhoun <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;2155162@cmontmorency.qc.ca&gt;</div></td>
+<td>2</td>
+<td>75</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;prospectdydy01@hotmail.com&gt;</div></td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Dylan Gabriel Valdiviezo Ubillus <div style='color: grey; font-size: 80%; margin-bottom: 6px;'>&lt;1985613@cmontmorency.qc.ca&gt;</div></td>
+<td>2</td>
+<td>1</td>
+</tr>
+</table>
+</div>
+<p style="margin-bottom: 0; margin-top: 10px;">C-median: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 20px">A half of the contributors has more than 2.0 connections, and a half has less than this number.</p>
+<p style="margin-bottom: 0;">C-mean: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 20px">An average number of connections a contributor has with other contributors.</p>
+<p style="margin-bottom: 0;">C-index: 2.0</p>
+<p style="color: grey; font-size: 80%; margin-bottom: 40px">There are 2.0 contributors with 2.0 or more connections.</p>
+</div>
+<div id="data" class="tabcontent" style="display: none">
+<ul>
+<li>
+<a style='text-decoration: none' target='_blank' href='../data/text/contributors.txt'>Contributors' details...</a>
+</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

@@ -15,6 +15,15 @@
     "stripe": "^13.11.0"
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^24.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "cypress": "^15.7.1",
     "nodemon": "^3.1.10"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": [
+      "cypress/e2e/step_definitions/*.js"
+    ]
   }
 }

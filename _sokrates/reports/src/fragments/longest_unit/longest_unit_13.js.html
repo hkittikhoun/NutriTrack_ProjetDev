@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>export function prefillFromCartToIngredients()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function prefillFromCartToIngredients()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/hooks/useCartPrefill.js [17:27]</i></p>
+<ul>
+    <li><b>11</b> lines of code</li>
+    <li><b>3</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function prefillFromCartToIngredients(cartFoods) {
+  if (!cartFoods || cartFoods.length === 0) return null;
+  return cartFoods.map((c, idx) =&gt; ({
+    id: Date.now() + idx,
+    foodId: String(c.foodId),
+    ingredientName: c.name,
+    quantity: c.cartQuantity,
+    unit: &quot;g&quot;,
+    preparation: &quot;&quot;,
+  }));
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

@@ -1,0 +1,152 @@
+<html>
+<head>
+    <title>frontend/src/components/monthlyJournal/monthlyJournal.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/monthlyJournal/monthlyJournal.jsx (<b>119</b> lines of code) (<a href="monthlyJournal.jsx">raw</a>):</h3>
+<div id="editor">import &quot;./MonthlyJournal.css&quot;;
+
+export default function MonthlyJournal() {
+  return (
+    &lt;section&gt;
+      &lt;h1&gt;Monthly Journal: October&lt;/h1&gt;
+      &lt;article style={{ marginBottom: &quot;2rem&quot; }}&gt;
+        &lt;h2&gt;Nutrition Tip: Embrace Fall Flavors&lt;/h2&gt;
+        &lt;p&gt;
+          October brings cooler weather and harvest season! It&amp;apos;s time to
+          incorporate warming, nutrient-rich foods. Focus on seasonal vegetables
+          like pumpkin, sweet potatoes, Brussels sprouts, and mushrooms. These
+          are packed with vitamins A and C, perfect for boosting your immune
+          system as winter approaches. Don&amp;apos;t forget to add warming spices
+          like cinnamon, ginger, and nutmeg to your meals!
+        &lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article&gt;
+        &lt;div
+          style={{
+            display: &quot;flex&quot;,
+            alignItems: &quot;flex-start&quot;,
+            gap: &quot;2rem&quot;,
+            marginBottom: &quot;1rem&quot;,
+            flexWrap: &quot;wrap&quot;,
+          }}
+        &gt;
+          &lt;a
+            href=&quot;https://www.salutbonjour.ca/cuisine/recettes/puree-de-citrouille-facile-et-rapide&quot;
+            target=&quot;_blank&quot;
+            rel=&quot;noopener noreferrer&quot;
+            style={{ flexShrink: 0 }}
+          &gt;
+            &lt;img
+              srcSet=&quot;https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&amp;x=0&amp;y=0&amp;w=0&amp;h=0&amp;width=480 1x, https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&amp;x=0&amp;y=0&amp;w=0&amp;h=0&amp;width=960 2x&quot;
+              src=&quot;https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&amp;x=0&amp;y=0&amp;w=0&amp;h=0&amp;width=925&quot;
+              alt=&quot;Easy and quick homemade pumpkin puree&quot;
+              style={{
+                width: &quot;100%&quot;,
+                maxWidth: &quot;350px&quot;,
+                borderRadius: &quot;10px&quot;,
+                boxShadow: &quot;0 2px 8px rgba(176,0,32,0.10)&quot;,
+              }}
+            /&gt;
+          &lt;/a&gt;
+          &lt;div style={{ flex: 1, minWidth: &quot;250px&quot; }}&gt;
+            &lt;h2 style={{ marginTop: 0 }}&gt;
+              Easy and Quick Homemade Pumpkin Puree
+            &lt;/h2&gt;
+            &lt;p style={{ color: &quot;#666&quot;, fontSize: &quot;0.95rem&quot; }}&gt;
+              Perfect for pies or as a base for soups, this pumpkin puree recipe
+              is as easy as it is quick to prepare. An essential fall recipe to
+              use however you like!
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div style={{ marginBottom: &quot;1rem&quot; }}&gt;
+          &lt;strong&gt;Prep time:&lt;/strong&gt; 25 min | &lt;strong&gt;Cook time:&lt;/strong&gt; 2h
+        &lt;/div&gt;
+
+        &lt;h3 style={{ color: &quot;#b00020&quot;, marginTop: &quot;1.5rem&quot; }}&gt;Ingredients&lt;/h3&gt;
+        &lt;ul&gt;
+          &lt;li&gt;2 pumpkins, 3.5 lbs (1.75 kg) each&lt;/li&gt;
+          &lt;li&gt;Canola oil for cooking&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;h3 style={{ color: &quot;#b00020&quot;, marginTop: &quot;1.5rem&quot; }}&gt;Preparation&lt;/h3&gt;
+        &lt;ol style={{ lineHeight: &quot;1.8&quot; }}&gt;
+          &lt;li&gt;Preheat oven to 300&deg;F (150&deg;C).&lt;/li&gt;
+          &lt;li&gt;Cut around the stem. Remove and discard the flesh.&lt;/li&gt;
+          &lt;li&gt;Cut the pumpkins into six or eight equal sections.&lt;/li&gt;
+          &lt;li&gt;
+            Remove the inner flesh. Reserve the seeds to roast them, if desired.
+          &lt;/li&gt;
+          &lt;li&gt;
+            Cut the pumpkin quarters in the middle to obtain triangular pieces
+            of identical size.
+          &lt;/li&gt;
+          &lt;li&gt;
+            Place the pumpkin pieces in a baking dish. Drizzle with a little oil
+            and bake in the center of the oven for 2 hours or until a knife tip
+            inserted into the flesh comes out easily.
+          &lt;/li&gt;
+          &lt;li&gt;
+            After 2 hours of cooking, the pumpkin will be soft and have a
+            beautiful orange color.
+          &lt;/li&gt;
+          &lt;li&gt;Cut the ends of each piece of pumpkin. Detach the flesh.&lt;/li&gt;
+          &lt;li&gt;
+            Cut into quarters and place in a large bowl. The pumpkin flesh will
+            be tender and easy to cut.
+          &lt;/li&gt;
+          &lt;li&gt;Using a hand mixer or food processor, puree until smooth.&lt;/li&gt;
+          &lt;li&gt;Season to taste and follow the desired recipe.&lt;/li&gt;
+        &lt;/ol&gt;
+
+        &lt;div
+          style={{
+            background: &quot;#fff8f8&quot;,
+            padding: &quot;1rem&quot;,
+            borderRadius: &quot;8px&quot;,
+            marginTop: &quot;1.5rem&quot;,
+            borderLeft: &quot;4px solid #b00020&quot;,
+          }}
+        &gt;
+          &lt;strong&gt;Good to know:&lt;/strong&gt; Use this puree in your fall pumpkin
+          latte, cookie, pie and muffin recipes.
+        &lt;/div&gt;
+
+        &lt;p style={{ fontSize: &quot;0.95rem&quot;, color: &quot;#888&quot;, marginTop: &quot;1.5rem&quot; }}&gt;
+          Source:{&quot; &quot;}
+          &lt;a
+            href=&quot;https://www.salutbonjour.ca/cuisine/recettes/puree-de-citrouille-facile-et-rapide&quot;
+            target=&quot;_blank&quot;
+            rel=&quot;noopener noreferrer&quot;
+            style={{ color: &quot;#b00020&quot; }}
+          &gt;
+            salutbonjour.ca
+          &lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/article&gt;
+    &lt;/section&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

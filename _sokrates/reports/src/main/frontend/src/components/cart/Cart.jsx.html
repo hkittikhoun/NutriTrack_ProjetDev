@@ -1,0 +1,332 @@
+<html>
+<head>
+    <title>frontend/src/components/cart/Cart.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/cart/Cart.jsx (<b>273</b> lines of code) (<a href="Cart.jsx">raw</a>):</h3>
+<div id="editor">import { useEffect, useMemo, useState } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import &quot;./Cart.css&quot;;
+
+export default function Cart({ isOpen, onClose, refreshTrigger }) {
+  const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [notice, setNotice] = useState(null);
+  const navigate = useNavigate();
+
+  const totalKcal = useMemo(
+    () =&gt;
+      cart
+        .reduce(
+          (acc, item) =&gt;
+            acc + Number(item.quantity || 0) * Number(item.kcal || 0),
+          0
+        )
+        .toFixed(0),
+    [cart]
+  );
+
+  const fetchCart = async () =&gt; {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const { data: authData, error: authErr } = await supabase.auth.getUser();
+      if (authErr) {
+        setError(&quot;Failed to get user: &quot; + authErr.message);
+        setCart([]);
+        return;
+      }
+      const userId = authData?.user?.id;
+      if (!userId) {
+        setCart([]);
+        return;
+      }
+
+      const { data: rows, error: cartErr } = await supabase
+        .from(&quot;cart_items&quot;)
+        .select(
+          `
+          id,
+          quantity,
+          food:food_id(FoodID, FoodDescription)
+        `
+        )
+        .eq(&quot;user_id&quot;, userId)
+        .order(&quot;id&quot;, { ascending: true });
+
+      if (cartErr) {
+        setError(&quot;Failed to load cart: &quot; + cartErr.message);
+        setCart([]);
+        return;
+      }
+
+      const items = rows || [];
+      const foodIds = items.map((r) =&gt; r.food?.FoodID).filter(Boolean);
+
+      if (foodIds.length === 0) {
+        setCart([]);
+        return;
+      }
+
+      const { data: energies, error: energyErr } = await supabase
+        .from(&quot;nutrient_amount&quot;)
+        .select(
+          `
+          FoodID,
+          NutrientValue,
+          nutrient_name!inner(NutrientCode)
+        `
+        )
+        .in(&quot;FoodID&quot;, foodIds)
+        .eq(&quot;nutrient_name.NutrientCode&quot;, 208);
+
+      if (energyErr) {
+        setError(&quot;Failed to load calorie values: &quot; + energyErr.message);
+        setCart([]);
+        return;
+      }
+
+      const energyByFoodId = new Map();
+      (energies || []).forEach((e) =&gt; {
+        energyByFoodId.set(e.FoodID, e.NutrientValue);
+      });
+
+      const normalized = items.map((r) =&gt; ({
+        id: r.id,
+        foodId: r.food?.FoodID,
+        name: r.food?.FoodDescription,
+        quantity: r.quantity,
+        kcal: energyByFoodId.get(r.food?.FoodID) ?? null,
+      }));
+
+      setCart(normalized);
+    } catch (e) {
+      console.error(e);
+      setError(&quot;An unexpected error occurred&quot;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() =&gt; {
+    fetchCart();
+  }, []);
+
+  useEffect(() =&gt; {
+    if (isOpen) fetchCart();
+  }, [isOpen]);
+
+  useEffect(() =&gt; {
+    if (refreshTrigger &gt; 0) {
+      fetchCart();
+    }
+  }, [refreshTrigger]);
+
+  const clearCart = async () =&gt; {
+    const ok = window.confirm(&quot;Clear your cart?&quot;);
+    if (!ok) return;
+    try {
+      setLoading(true);
+      setError(null);
+
+      const { data: authData, error: authErr } = await supabase.auth.getUser();
+      if (authErr) {
+        setError(&quot;Failed to get user: &quot; + authErr.message);
+        return;
+      }
+      const userId = authData?.user?.id;
+      if (!userId) return;
+
+      const { error: delErr } = await supabase
+        .from(&quot;cart_items&quot;)
+        .delete()
+        .eq(&quot;user_id&quot;, userId);
+
+      if (delErr) {
+        setError(&quot;Failed to clear cart: &quot; + delErr.message);
+        return;
+      }
+
+      setCart([]);
+      setNotice(&quot;Cart cleared.&quot;);
+      setTimeout(() =&gt; setNotice(null), 2000);
+    } catch (e) {
+      console.error(e);
+      setError(&quot;An unexpected error occurred while clearing cart&quot;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeItem = async (id, askConfirm = true) =&gt; {
+    try {
+      setLoading(true);
+      setError(null);
+
+      if (askConfirm) {
+        const ok = window.confirm(&quot;Remove this item from cart?&quot;);
+        if (!ok) {
+          return;
+        }
+      }
+
+      const { error: delErr } = await supabase
+        .from(&quot;cart_items&quot;)
+        .delete()
+        .eq(&quot;id&quot;, id);
+
+      if (delErr) {
+        setError(&quot;Failed to remove item: &quot; + delErr.message);
+        return;
+      }
+
+      setCart((prev) =&gt; prev.filter((i) =&gt; i.id !== id));
+      setNotice(&quot;Item removed from cart.&quot;);
+      setTimeout(() =&gt; setNotice(null), 2000);
+    } catch (e) {
+      console.error(e);
+      setError(&quot;An unexpected error occurred while removing item&quot;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateQuantity = async (id, delta) =&gt; {
+    const item = cart.find((i) =&gt; i.id === id);
+    if (!item) return;
+
+    const nextQty = Number(item.quantity) + Number(delta);
+    if (!Number.isFinite(nextQty)) return;
+
+    if (nextQty &lt;= 0) {
+      await removeItem(id, false);
+      return;
+    }
+
+    setCart((prev) =&gt;
+      prev.map((i) =&gt; (i.id === id ? { ...i, quantity: nextQty } : i))
+    );
+    try {
+      setError(null);
+      const { error: updErr } = await supabase
+        .from(&quot;cart_items&quot;)
+        .update({ quantity: nextQty })
+        .eq(&quot;id&quot;, id);
+      if (updErr) {
+        setError(&quot;Failed to update quantity: &quot; + updErr.message);
+        fetchCart();
+      }
+    } catch (e) {
+      console.error(e);
+      setError(&quot;An unexpected error occurred while updating quantity&quot;);
+      fetchCart();
+    }
+  };
+
+  return isOpen ? (
+    &lt;div className=&quot;lmj-cart&quot;&gt;
+      &lt;button
+        className=&quot;lmj-cart-toggle-button&quot;
+        onClick={onClose}
+        disabled={loading}
+      &gt;
+        Close
+      &lt;/button&gt;
+
+      {error &amp;&amp; &lt;p className=&quot;error-message&quot;&gt;{error}&lt;/p&gt;}
+      {loading &amp;&amp; &lt;p className=&quot;loading-message&quot;&gt;Loading...&lt;/p&gt;}
+
+      {!loading &amp;&amp; cart.length &gt; 0 ? (
+        &lt;div&gt;
+          &lt;h2&gt;Cart&lt;/h2&gt;
+          {notice &amp;&amp; &lt;div className=&quot;cart-notice success&quot;&gt;{notice}&lt;/div&gt;}
+          &lt;ul&gt;
+            {cart.map(({ id, name, quantity, kcal }) =&gt; (
+              &lt;li key={id} className=&quot;cart-item&quot;&gt;
+                &lt;div className=&quot;cart-item-main&quot;&gt;
+                  &lt;p className=&quot;cart-item-name&quot;&gt;{name}&lt;/p&gt;
+                  &lt;p className=&quot;cart-item-meta&quot;&gt;
+                    {kcal !== null ? `${kcal} kcal` : &quot;&mdash;&quot;}
+                  &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div className=&quot;cart-item-controls&quot;&gt;
+                  &lt;button
+                    className=&quot;qty-btn&quot;
+                    onClick={() =&gt; updateQuantity(id, -1)}
+                    disabled={loading}
+                    aria-label=&quot;Decrease quantity&quot;
+                    title=&quot;Decrease&quot;
+                  &gt;
+                    &minus;
+                  &lt;/button&gt;
+                  &lt;span className=&quot;qty-value&quot;&gt;{quantity}&lt;/span&gt;
+                  &lt;button
+                    className=&quot;qty-btn&quot;
+                    onClick={() =&gt; updateQuantity(id, +1)}
+                    disabled={loading}
+                    aria-label=&quot;Increase quantity&quot;
+                    title=&quot;Increase&quot;
+                  &gt;
+                    +
+                  &lt;/button&gt;
+                  &lt;button
+                    className=&quot;remove-btn&quot;
+                    onClick={() =&gt; removeItem(id)}
+                    disabled={loading}
+                    aria-label=&quot;Remove item&quot;
+                    title=&quot;Remove&quot;
+                  &gt;
+                    &lt;span className=&quot;icon&quot; aria-hidden=&quot;true&quot;&gt;
+                      🗑️
+                    &lt;/span&gt;
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+          &lt;h3&gt;Total: {totalKcal} kcal&lt;/h3&gt;
+          &lt;button
+            onClick={() =&gt; navigate(&quot;/mealplan?tab=create&quot;)}
+            disabled={loading || cart.length === 0}
+          &gt;
+            Create your meal plan
+          &lt;/button&gt;
+          &lt;button
+            onClick={() =&gt; navigate(&quot;/recipe?tab=create&quot;)}
+            disabled={loading || cart.length === 0}
+          &gt;
+            Create a recipe
+          &lt;/button&gt;
+          &lt;button onClick={clearCart} disabled={loading}&gt;
+            Clear cart
+          &lt;/button&gt;
+        &lt;/div&gt;
+      ) : (
+        !loading &amp;&amp; &lt;div&gt;Your cart is empty&lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  ) : null;
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

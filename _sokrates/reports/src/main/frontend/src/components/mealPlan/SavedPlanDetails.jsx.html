@@ -1,0 +1,401 @@
+<html>
+<head>
+    <title>frontend/src/components/mealPlan/SavedPlanDetails.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/mealPlan/SavedPlanDetails.jsx (<b>342</b> lines of code) (<a href="SavedPlanDetails.jsx">raw</a>):</h3>
+<div id="editor">import { useEffect, useState, useContext } from &quot;react&quot;;
+import { useParams, useNavigate, useSearchParams } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import { useCartFoods } from &quot;../shared/hooks/useCartFoods&quot;;
+import { prefillFromCartToMealPlans } from &quot;../shared/hooks/useCartPrefill&quot;;
+import &quot;../shared/MealPlan.css&quot;;
+import { MealPlanEditor } from &quot;../shared/mealPlan/MealPlanEditor&quot;;
+import { mapItemsToEditMealPlans } from &quot;../shared/mealPlan/mapUtils&quot;;
+
+export default function SavedPlanDetails() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+  const [searchParams] = useSearchParams();
+
+  const [plan, setPlan] = useState(null);
+  const [items, setItems] = useState([]);
+  const [foods, setFoods] = useState([]);
+  const [isEditing, setIsEditing] = useState(
+    searchParams.get(&quot;edit&quot;) === &quot;true&quot;
+  );
+
+  const [editTitle, setEditTitle] = useState(&quot;&quot;);
+  const [editAuthor, setEditAuthor] = useState(&quot;&quot;);
+  const [editMealPlans, setEditMealPlans] = useState({
+    morning: [],
+    lunch: [],
+    dinner: [],
+  });
+
+  const [notice, setNotice] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const { cartFoods, loadingCart, cartError } = useCartFoods();
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      try {
+        setLoading(true);
+
+        const { data: planData, error: pErr } = await supabase
+          .from(&quot;meal_plans&quot;)
+          .select(&quot;id, title, author, total_kcal, status, created_at, user_id&quot;)
+          .eq(&quot;id&quot;, id)
+          .single();
+        if (pErr) {
+          setError(pErr.message || &quot;Failed to load plan&quot;);
+          return;
+        }
+        setPlan(planData);
+
+        const { data: itemRows, error: itemsErr } = await supabase
+          .from(&quot;meal_plan_items&quot;)
+          .select(
+            &quot;id, food_id, quantity, meal_type, food:food_id(FoodID, FoodDescription)&quot;
+          )
+          .eq(&quot;meal_plan_id&quot;, id)
+          .order(&quot;id&quot;, { ascending: true });
+        if (itemsErr) {
+          setError(itemsErr.message || &quot;Failed to load items&quot;);
+          return;
+        }
+        setItems(itemRows || []);
+
+        if (
+          searchParams.get(&quot;edit&quot;) === &quot;true&quot; &amp;&amp;
+          (!auth?.userId || planData.user_id !== auth.userId)
+        ) {
+          setIsEditing(false);
+          setNotice(&quot;You can only edit your own plans.&quot;);
+          setTimeout(() =&gt; setNotice(null), 3000);
+        }
+
+        if (
+          itemRows?.length &amp;&amp;
+          (itemRows[0].food == null || itemRows[0].food === undefined)
+        ) {
+          try {
+            const foodIds = Array.from(
+              new Set((itemRows || []).map((it) =&gt; it.food_id).filter(Boolean))
+            );
+            if (foodIds.length &gt; 0) {
+              const { data: foodsById, error: foodFetchErr } = await supabase
+                .from(&quot;food_name&quot;)
+                .select(&quot;FoodID, FoodDescription&quot;)
+                .in(&quot;FoodID&quot;, foodIds);
+              if (!foodFetchErr) {
+                const map = {};
+                (foodsById || []).forEach((f) =&gt; (map[String(f.FoodID)] = f));
+                const merged = (itemRows || []).map((it) =&gt; ({
+                  ...it,
+                  food: map[String(it.food_id)] || null,
+                }));
+                setItems(merged);
+              }
+            }
+          } catch (e) {
+            console.debug(&quot;Fallback food-merge failed&quot;, e);
+          }
+        }
+
+        if (planData.user_id === auth?.userId) {
+          setEditTitle(planData?.title || &quot;&quot;);
+          setEditAuthor(planData?.author || &quot;&quot;);
+          setEditMealPlans(mapItemsToEditMealPlans(itemRows || []));
+
+          const { data: foodsData, error: fErr } = await supabase
+            .from(&quot;food_name&quot;)
+            .select(&quot;FoodID, FoodDescription&quot;)
+            .order(&quot;FoodDescription&quot;, { ascending: true });
+          if (!fErr) setFoods(foodsData || []);
+        }
+      } catch (e) {
+        console.error(e);
+        setError(&quot;Failed to load plan&quot;);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id, auth?.userId, searchParams]);
+
+  const isOwner = () =&gt; auth?.userId &amp;&amp; plan?.user_id === auth.userId;
+
+  const startEdit = () =&gt; {
+    if (!isOwner()) {
+      setNotice(&quot;You can only edit your own plans.&quot;);
+      setTimeout(() =&gt; setNotice(null), 3000);
+      return;
+    }
+    setIsEditing(true);
+  };
+
+  const cancelEdit = () =&gt; {
+    setEditTitle(plan?.title || &quot;&quot;);
+    setEditAuthor(plan?.author || &quot;&quot;);
+    setEditMealPlans(mapItemsToEditMealPlans(items));
+    setIsEditing(false);
+  };
+
+  const getAllEditItems = () =&gt; [
+    ...editMealPlans.morning,
+    ...editMealPlans.lunch,
+    ...editMealPlans.dinner,
+  ];
+
+  const prefillFromCart = () =&gt; {
+    if (!isOwner()) return;
+    const mapped = prefillFromCartToMealPlans(cartFoods);
+    if (!mapped) {
+      setNotice(&quot;No items in cart to prefill.&quot;);
+      setTimeout(() =&gt; setNotice(null), 2000);
+      return;
+    }
+    setEditMealPlans(mapped);
+    setNotice(`Prefilled with ${cartFoods.length} items from cart.`);
+    setTimeout(() =&gt; setNotice(null), 2500);
+  };
+
+  const addItemToMeal = (mealType) =&gt; {
+    if (!isOwner()) return;
+    setEditMealPlans((prev) =&gt; ({
+      ...prev,
+      [mealType]: [
+        ...prev[mealType],
+        { id: Date.now() + Math.random(), foodId: &quot;&quot;, quantity: 1, mealType },
+      ],
+    }));
+  };
+  const removeItemFromMeal = (mealType, itemId) =&gt; {
+    if (!isOwner()) return;
+    setEditMealPlans((prev) =&gt; ({
+      ...prev,
+      [mealType]: prev[mealType].filter((item) =&gt; item.id !== itemId),
+    }));
+  };
+  const updateMealItem = (mealType, itemId, field, value) =&gt; {
+    if (!isOwner()) return;
+    setEditMealPlans((prev) =&gt; ({
+      ...prev,
+      [mealType]: prev[mealType].map((item) =&gt;
+        item.id === itemId ? { ...item, [field]: value } : item
+      ),
+    }));
+  };
+
+  const saveEdits = async () =&gt; {
+    if (!isOwner()) {
+      setError(&quot;You can only modify your own plans.&quot;);
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const { error: upErr } = await supabase
+        .from(&quot;meal_plans&quot;)
+        .update({ title: editTitle || null, author: editAuthor || null })
+        .eq(&quot;id&quot;, id)
+        .eq(&quot;user_id&quot;, auth.userId);
+      if (upErr) {
+        setError(upErr.message || &quot;Failed to update plan&quot;);
+        return;
+      }
+
+      const { error: delErr } = await supabase
+        .from(&quot;meal_plan_items&quot;)
+        .delete()
+        .eq(&quot;meal_plan_id&quot;, id);
+      if (delErr) {
+        setError(delErr.message || &quot;Failed to replace items&quot;);
+        return;
+      }
+
+      const allEditItems = getAllEditItems();
+      const toInsert = allEditItems
+        .filter((it) =&gt; it.foodId)
+        .map((it) =&gt; ({
+          meal_plan_id: id,
+          food_id: Number(it.foodId),
+          quantity: Number(it.quantity) || 1,
+          meal_type: it.mealType,
+        }));
+
+      if (toInsert.length &gt; 0) {
+        const { error: insErr } = await supabase
+          .from(&quot;meal_plan_items&quot;)
+          .insert(toInsert);
+        if (insErr) {
+          setError(insErr.message || &quot;Failed to insert items&quot;);
+          return;
+        }
+      }
+
+      const { data: planData } = await supabase
+        .from(&quot;meal_plans&quot;)
+        .select(&quot;id, title, author, total_kcal, status, created_at, user_id&quot;)
+        .eq(&quot;id&quot;, id)
+        .single();
+      setPlan(planData || plan);
+
+      const { data: itemRows } = await supabase
+        .from(&quot;meal_plan_items&quot;)
+        .select(
+          &quot;id, food_id, quantity, meal_type, food:food_id(FoodID, FoodDescription)&quot;
+        )
+        .eq(&quot;meal_plan_id&quot;, id)
+        .order(&quot;id&quot;, { ascending: true });
+      setItems(itemRows || []);
+
+      setIsEditing(false);
+      setNotice(&quot;Plan updated.&quot;);
+      setTimeout(() =&gt; setNotice(null), 2500);
+    } catch (e) {
+      console.error(e);
+      setError(&quot;Unexpected error while saving&quot;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const totalEditItems =
+    (editMealPlans.morning?.length || 0) +
+    (editMealPlans.lunch?.length || 0) +
+    (editMealPlans.dinner?.length || 0);
+
+  return (
+    &lt;div className=&quot;saved-plans&quot;&gt;
+      &lt;h1&gt;Plan Details&lt;/h1&gt;
+      {notice &amp;&amp; &lt;div className=&quot;notice success&quot;&gt;{notice}&lt;/div&gt;}
+      {loading &amp;&amp; &lt;div&gt;Loading...&lt;/div&gt;}
+      {error &amp;&amp; &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;}
+      {cartError &amp;&amp; &lt;div className=&quot;error&quot;&gt;{cartError}&lt;/div&gt;}
+
+      {plan &amp;&amp; (
+        &lt;div className=&quot;plan-details&quot;&gt;
+          {!isEditing ? (
+            &lt;&gt;
+              &lt;div className=&quot;plan-header-info&quot;&gt;
+                &lt;h2&gt;{plan.title || &quot;(Untitled)&quot;}&lt;/h2&gt;
+                {isOwner() &amp;&amp; &lt;span className=&quot;owner-badge&quot;&gt;Your plan&lt;/span&gt;}
+              &lt;/div&gt;
+              &lt;div className=&quot;plan-meta&quot;&gt;
+                &lt;span&gt;
+                  &lt;strong&gt;Author:&lt;/strong&gt; {plan.author || &quot;&mdash;&quot;}
+                &lt;/span&gt;
+                &lt;span&gt;
+                  &lt;strong&gt;Calories:&lt;/strong&gt; {plan.total_kcal ?? &quot;&mdash;&quot;} kcal
+                &lt;/span&gt;
+                &lt;span&gt;
+                  &lt;strong&gt;Created:&lt;/strong&gt;{&quot; &quot;}
+                  {plan.created_at
+                    ? new Date(plan.created_at).toLocaleString()
+                    : &quot;&quot;}
+                &lt;/span&gt;
+              &lt;/div&gt;
+
+              &lt;h3&gt;Foods by meal&lt;/h3&gt;
+              &lt;div className=&quot;meals-display&quot;&gt;
+                {[&quot;morning&quot;, &quot;lunch&quot;, &quot;dinner&quot;].map((mealType) =&gt; {
+                  const titles = {
+                    morning: &quot;🌅 Morning&quot;,
+                    lunch: &quot;🌞 Lunch&quot;,
+                    dinner: &quot;🌙 Dinner&quot;,
+                  };
+                  const mealItems = (items || []).filter(
+                    (it) =&gt; it.meal_type === mealType
+                  );
+                  return (
+                    &lt;div key={mealType} className=&quot;meal-display-section&quot;&gt;
+                      &lt;h4&gt;{titles[mealType]}&lt;/h4&gt;
+                      {mealItems.length === 0 ? (
+                        &lt;p className=&quot;no-items-text&quot;&gt;No items&lt;/p&gt;
+                      ) : (
+                        &lt;ul className=&quot;meal-items-display&quot;&gt;
+                          {mealItems.map((item) =&gt; (
+                            &lt;li key={item.id}&gt;
+                              &lt;strong&gt;
+                                {item.food?.FoodDescription ||
+                                  String(item.food_id)}
+                              &lt;/strong&gt;
+                              &lt;span&gt; &mdash; {item.quantity}g&lt;/span&gt;
+                            &lt;/li&gt;
+                          ))}
+                        &lt;/ul&gt;
+                      )}
+                    &lt;/div&gt;
+                  );
+                })}
+              &lt;/div&gt;
+
+              &lt;div className=&quot;action-buttons&quot;&gt;
+                {isOwner() &amp;&amp; (
+                  &lt;button onClick={startEdit} className=&quot;edit-btn&quot;&gt;
+                    Edit
+                  &lt;/button&gt;
+                )}
+                &lt;button onClick={() =&gt; navigate(-1)} className=&quot;back-btn&quot;&gt;
+                  Back
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/&gt;
+          ) : (
+            &lt;MealPlanEditor
+              isOwner={isOwner()}
+              loading={loading}
+              loadingCart={loadingCart}
+              cartFoods={cartFoods}
+              foods={foods}
+              mealPlans={editMealPlans}
+              addItemToMeal={addItemToMeal}
+              removeItemFromMeal={removeItemFromMeal}
+              updateMealItem={updateMealItem}
+              onPrefillFromCart={prefillFromCart}
+              titleProps={{
+                title: editTitle,
+                setTitle: setEditTitle,
+                author: editAuthor,
+                setAuthor: setEditAuthor,
+              }}
+              saveProps={{
+                onSave: saveEdits,
+                saveDisabledLabel: totalEditItems,
+              }}
+              onCancel={cancelEdit}
+            /&gt;
+          )}
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

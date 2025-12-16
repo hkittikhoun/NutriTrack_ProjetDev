@@ -1,0 +1,64 @@
+[ {
+  "relativePath" : "backend/package-lock.json",
+  "extension" : "json",
+  "linesOfCode" : 1417,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "backend/package.json",
+  "extension" : "json",
+  "linesOfCode" : 20,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "backend/vercel.json",
+  "extension" : "json",
+  "linesOfCode" : 18,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/package-lock.json",
+  "extension" : "json",
+  "linesOfCode" : 4954,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/package.json",
+  "extension" : "json",
+  "linesOfCode" : 31,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/README.md",
+  "extension" : "md",
+  "linesOfCode" : 7,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/vercel.json",
+  "extension" : "json",
+  "linesOfCode" : 8,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "README.md",
+  "extension" : "md",
+  "linesOfCode" : 16,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "test.txt",
+  "extension" : "txt",
+  "linesOfCode" : 3,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+} ]

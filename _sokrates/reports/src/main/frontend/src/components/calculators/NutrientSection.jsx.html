@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>frontend/src/components/calculators/NutrientSection.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/calculators/NutrientSection.jsx (<b>29</b> lines of code) (<a href="NutrientSection.jsx">raw</a>):</h3>
+<div id="editor">import React from &quot;react&quot;;
+
+export function NutrientSection({
+  title,
+  className,
+  nutrients,
+  quantity,
+  calculate,
+}) {
+  if (!nutrients || nutrients.length === 0) return null;
+  const cardClass = className.replace(&quot;-group&quot;, &quot;&quot;);
+  return (
+    &lt;div className={`nutrient-group ${className}`}&gt;
+      &lt;h4&gt;{title}&lt;/h4&gt;
+      &lt;div className=&quot;nutrients-grid&quot;&gt;
+        {nutrients.map((nutrient, index) =&gt; (
+          &lt;div key={index} className={`nutrient-card ${cardClass}`}&gt;
+            &lt;span className=&quot;nutrient-name&quot;&gt;
+              {nutrient.nutrient_name.NutrientSymbol}
+            &lt;/span&gt;
+            &lt;span className=&quot;nutrient-value&quot;&gt;
+              {calculate(nutrient.NutrientValue, quantity)}{&quot; &quot;}
+              {nutrient.nutrient_name.NutrientUnit}
+            &lt;/span&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

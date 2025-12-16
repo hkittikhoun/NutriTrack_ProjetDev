@@ -1,0 +1,173 @@
+<html>
+<head>
+    <title>frontend/src/components/mealPlan/SavedPlans.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/mealPlan/SavedPlans.jsx (<b>135</b> lines of code) (<a href="SavedPlans.jsx">raw</a>):</h3>
+<div id="editor">import { useEffect, useState, useContext } from &quot;react&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import { useLocation, useNavigate } from &quot;react-router-dom&quot;;
+import &quot;./SavedPlans.css&quot;;
+
+export default function SavedPlans() {
+  const auth = useContext(AuthContext);
+  const [plans, setPlans] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const [notice, setNotice] = useState(location?.state?.notice || null);
+  const navigate = useNavigate();
+  const [viewMode, setViewMode] = useState(&quot;all&quot;);
+
+  useEffect(() =&gt; {
+    const fetchPlans = async () =&gt; {
+      try {
+        setLoading(true);
+
+        let query = supabase
+          .from(&quot;meal_plans&quot;)
+          .select(&quot;id, title, author, total_kcal, status, created_at, user_id&quot;)
+          .order(&quot;created_at&quot;, { ascending: false });
+
+        if (viewMode === &quot;mine&quot; &amp;&amp; auth?.userId) {
+          query = query.eq(&quot;user_id&quot;, auth.userId);
+        }
+
+        const { data, error } = await query;
+
+        if (error) {
+          setError(error.message || &quot;Failed to load plans&quot;);
+          return;
+        }
+        setPlans(data || []);
+      } catch (e) {
+        console.error(e);
+        setError(&quot;Unexpected error&quot;);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlans();
+  }, [auth?.userId, viewMode]);
+
+  const isOwner = (plan) =&gt; {
+    return auth?.userId &amp;&amp; plan.user_id === auth.userId;
+  };
+
+  return (
+    &lt;div className=&quot;saved-plans&quot;&gt;
+      {notice &amp;&amp; &lt;div className=&quot;notice success&quot;&gt;{notice}&lt;/div&gt;}
+      {loading &amp;&amp; &lt;div&gt;Loading...&lt;/div&gt;}
+      {error &amp;&amp; &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;}
+
+      &lt;div className=&quot;view-filters&quot;&gt;
+        &lt;button
+          className={`filter-btn ${viewMode === &quot;all&quot; ? &quot;active&quot; : &quot;&quot;}`}
+          onClick={() =&gt; setViewMode(&quot;all&quot;)}
+        &gt;
+          All plans ({plans.length})
+        &lt;/button&gt;
+        {auth?.userId &amp;&amp; (
+          &lt;button
+            className={`filter-btn ${viewMode === &quot;mine&quot; ? &quot;active&quot; : &quot;&quot;}`}
+            onClick={() =&gt; setViewMode(&quot;mine&quot;)}
+          &gt;
+            My plans
+          &lt;/button&gt;
+        )}
+      &lt;/div&gt;
+
+      {!loading &amp;&amp; !error &amp;&amp; plans.length === 0 &amp;&amp; (
+        &lt;div className=&quot;no-plans-message&quot;&gt;
+          {viewMode === &quot;mine&quot;
+            ? &quot;You haven't created any plans yet.&quot;
+            : &quot;No plans available at the moment.&quot;}
+        &lt;/div&gt;
+      )}
+
+      &lt;ul className=&quot;plans-list&quot;&gt;
+        {plans.map((p) =&gt; (
+          &lt;li key={p.id} className=&quot;plan-item&quot;&gt;
+            &lt;div className=&quot;plan-header&quot;&gt;
+              &lt;div className=&quot;plan-title&quot;&gt;{p.title || &quot;(Untitled)&quot;}&lt;/div&gt;
+              {isOwner(p) &amp;&amp; &lt;span className=&quot;owner-badge&quot;&gt;Your plan&lt;/span&gt;}
+            &lt;/div&gt;
+            &lt;div className=&quot;plan-meta&quot;&gt;
+              &lt;span className=&quot;plan-author&quot;&gt;By: {p.author || &quot;Anonymous&quot;}&lt;/span&gt;
+              &lt;span className=&quot;plan-date&quot;&gt;
+                {p.created_at ? new Date(p.created_at).toLocaleString() : &quot;&quot;}
+              &lt;/span&gt;
+              &lt;span className=&quot;plan-kcal&quot;&gt;{p.total_kcal ?? &quot;&mdash;&quot;} kcal&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div className=&quot;plan-actions&quot;&gt;
+              &lt;button
+                onClick={() =&gt; navigate(`/mealplan/${p.id}`)}
+                className=&quot;view-btn&quot;
+              &gt;
+                View
+              &lt;/button&gt;
+              {isOwner(p) &amp;&amp; (
+                &lt;&gt;
+                  &lt;button
+                    onClick={() =&gt; navigate(`/mealplan/${p.id}?edit=true`)}
+                    className=&quot;edit-btn&quot;
+                  &gt;
+                    Edit
+                  &lt;/button&gt;
+                  &lt;button
+                    onClick={async () =&gt; {
+                      const ok = window.confirm(&quot;Delete this plan?&quot;);
+                      if (!ok) return;
+                      try {
+                        const { error } = await supabase
+                          .from(&quot;meal_plans&quot;)
+                          .delete()
+                          .eq(&quot;id&quot;, p.id)
+                          .eq(&quot;user_id&quot;, auth.userId);
+                        if (error) {
+                          alert(&quot;Unable to delete plan: &quot; + error.message);
+                          return;
+                        }
+                        setPlans((prev) =&gt; prev.filter((x) =&gt; x.id !== p.id));
+                        setNotice(&quot;Plan deleted.&quot;);
+                        setTimeout(() =&gt; setNotice(null), 2000);
+                      } catch (e) {
+                        console.error(e);
+                        alert(&quot;Error while deleting&quot;);
+                      }
+                    }}
+                    className=&quot;delete-btn&quot;
+                  &gt;
+                    Delete
+                  &lt;/button&gt;
+                &lt;/&gt;
+              )}
+            &lt;/div&gt;
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

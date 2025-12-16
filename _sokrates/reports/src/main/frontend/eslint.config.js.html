@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>frontend/eslint.config.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/eslint.config.js (<b>43</b> lines of code) (<a href="eslint.config.js">raw</a>):</h3>
+<div id="editor">import js from &quot;@eslint/js&quot;;
+import globals from &quot;globals&quot;;
+import react from &quot;eslint-plugin-react&quot;;
+import reactHooks from &quot;eslint-plugin-react-hooks&quot;;
+import reactRefresh from &quot;eslint-plugin-react-refresh&quot;;
+
+export default [
+  {
+    ignores: [&quot;dist&quot;],
+  },
+  {
+    files: [&quot;**/*.{js,jsx}&quot;],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: &quot;latest&quot;,
+        ecmaFeatures: { jsx: true },
+        sourceType: &quot;module&quot;,
+      },
+    },
+    settings: {
+      react: { version: &quot;18.2&quot; },
+    },
+    plugins: {
+      react,
+      &quot;react-hooks&quot;: reactHooks,
+      &quot;react-refresh&quot;: reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...react.configs.recommended.rules,
+      ...react.configs[&quot;jsx-runtime&quot;].rules,
+      ...reactHooks.configs.recommended.rules,
+      &quot;react/jsx-no-target-blank&quot;: &quot;off&quot;,
+      &quot;react/prop-types&quot;: &quot;off&quot;,
+      &quot;react-refresh/only-export-components&quot;: [
+        &quot;warn&quot;,
+        { allowConstantExport: true },
+      ],
+      &quot;no-unused-vars&quot;: [&quot;error&quot;, { varsIgnorePattern: &quot;^[A-Z_]&quot; }],
+    },
+  },
+];
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

@@ -1,0 +1,290 @@
+<html>
+<head>
+    <title>backend/routes/payement.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">backend/routes/payement.js (<b>208</b> lines of code) (<a href="payement.js">raw</a>):</h3>
+<div id="editor">// Charger les variables d'environnement EN PREMIER
+require(&quot;dotenv&quot;).config();
+
+const express = require(&quot;express&quot;);
+const stripe = require(&quot;stripe&quot;)(process.env.STRIPE_SECRET_KEY);
+const { createClient } = require(&quot;@supabase/supabase-js&quot;);
+const crypto = require(&quot;crypto&quot;);
+
+const router = express.Router();
+
+// Debug pour v&eacute;rifier les variables d'environnement
+console.log(&quot;🔍 Environment variables check:&quot;);
+console.log(
+  &quot;STRIPE_SECRET_KEY:&quot;,
+  process.env.STRIPE_SECRET_KEY ? &quot;✅ Loaded&quot; : &quot;❌ Missing&quot;
+);
+console.log(
+  &quot;SUPABASE_URL:&quot;,
+  process.env.SUPABASE_URL ? &quot;✅ Loaded&quot; : &quot;❌ Missing&quot;
+);
+console.log(
+  &quot;SUPABASE_SERVICE_ROLE_KEY:&quot;,
+  process.env.SUPABASE_SERVICE_ROLE_KEY ? &quot;✅ Loaded&quot; : &quot;❌ Missing&quot;
+);
+
+// Initialiser Supabase avec la cl&eacute; service role
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  }
+);
+
+// Cr&eacute;er une session de checkout Stripe
+router.post(&quot;/create-checkout-session&quot;, async (req, res) =&gt; {
+  try {
+    const {
+      email,
+      amount = 500, // 5.00 CAD en centimes
+      currency = &quot;cad&quot;,
+      product_name = &quot;NutriTrack Account Creation&quot;,
+    } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ error: &quot;Email is required&quot; });
+    }
+
+    // V&eacute;rifier si l'email existe d&eacute;j&agrave; - M&eacute;thode corrig&eacute;e
+    const { data: existingUsers, error: getUserError } = await supabase
+      .from(&quot;auth.users&quot;)
+      .select(&quot;email&quot;)
+      .eq(&quot;email&quot;, email)
+      .limit(1);
+
+    // Si on ne peut pas acc&eacute;der &agrave; auth.users, on skip cette v&eacute;rification
+    if (getUserError) {
+      console.log(&quot;Note: Could not check for existing users, proceeding...&quot;);
+    } else if (existingUsers &amp;&amp; existingUsers.length &gt; 0) {
+      return res
+        .status(400)
+        .json({ error: &quot;An account with this email already exists&quot; });
+    }
+
+    // Cr&eacute;er ou r&eacute;cup&eacute;rer le customer Stripe
+    let customer;
+    const existingCustomers = await stripe.customers.list({
+      email: email,
+      limit: 1,
+    });
+
+    if (existingCustomers.data.length &gt; 0) {
+      customer = existingCustomers.data[0];
+    } else {
+      customer = await stripe.customers.create({
+        email: email,
+        metadata: {
+          purpose: &quot;nutritrack_registration&quot;,
+          preferred_locale: &quot;en&quot;,
+        },
+      });
+    }
+
+    // Cr&eacute;er la session de checkout
+    const session = await stripe.checkout.sessions.create({
+      customer: customer.id,
+      payment_method_types: [&quot;card&quot;],
+      line_items: [
+        {
+          price_data: {
+            currency: currency,
+            product_data: {
+              name: product_name,
+              description: &quot;One-time payment for lifetime access to NutriTrack&quot;,
+            },
+            unit_amount: amount, // Montant en centimes (500 = 5.00 CAD)
+          },
+          quantity: 1,
+        },
+      ],
+      mode: &quot;payment&quot;,
+      success_url: `${process.env.FRONTEND_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL}/signup?canceled=true`,
+      metadata: {
+        customer_email: email,
+        product_type: &quot;account_registration&quot;,
+        locale: &quot;en&quot;,
+      },
+
+      // Forcer l'interface en anglais
+      locale: &quot;en&quot;,
+
+      // Configuration pour collecter l'adresse (requis au Canada)
+      billing_address_collection: &quot;auto&quot;,
+
+      // Texte personnalis&eacute; en anglais
+      custom_text: {
+        submit: {
+          message: &quot;Your payment will be processed securely by Stripe.&quot;,
+        },
+      },
+
+      // Donn&eacute;es du payment intent
+      payment_intent_data: {
+        metadata: {
+          locale: &quot;en&quot;,
+          country: &quot;CA&quot;,
+          product: &quot;nutritrack_account&quot;,
+        },
+      },
+    });
+
+    console.log(`Checkout session created for ${email}: ${session.id}`);
+
+    res.json({
+      sessionId: session.id,
+      url: session.url,
+    });
+  } catch (error) {
+    console.error(&quot;Error creating checkout session:&quot;, error);
+    res.status(500).json({
+      error: &quot;Failed to create checkout session&quot;,
+      message: error.message,
+    });
+  }
+});
+
+// V&eacute;rifier le paiement
+router.post(&quot;/verify-payment&quot;, async (req, res) =&gt; {
+  try {
+    const { sessionId } = req.body;
+
+    if (!sessionId) {
+      return res.status(400).json({ error: &quot;Session ID is required&quot; });
+    }
+
+    // R&eacute;cup&eacute;rer la session Stripe
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    if (session.payment_status !== &quot;paid&quot;) {
+      return res.status(400).json({
+        error: &quot;Payment not completed&quot;,
+        payment_status: session.payment_status,
+      });
+    }
+
+    // R&eacute;cup&eacute;rer les d&eacute;tails du customer
+    const customer = await stripe.customers.retrieve(session.customer);
+
+    console.log(`Payment verified for ${customer.email}`);
+
+    res.json({
+      success: true,
+      customerEmail: customer.email,
+      customerId: customer.id,
+      paymentStatus: session.payment_status,
+      amountPaid: session.amount_total / 100, // Convertir en dollars canadiens
+      currency: session.currency,
+    });
+  } catch (error) {
+    console.error(&quot;Error verifying payment:&quot;, error);
+    res.status(500).json({
+      error: &quot;Failed to verify payment&quot;,
+      message: error.message,
+    });
+  }
+});
+
+// Webhook pour les &eacute;v&eacute;nements Stripe
+router.post(&quot;/webhook&quot;, async (req, res) =&gt; {
+  const sig = req.headers[&quot;stripe-signature&quot;];
+  let event;
+
+  // V&eacute;rifier si on a une cl&eacute; webhook configur&eacute;e
+  if (!process.env.STRIPE_WEBHOOK_SECRET) {
+    console.log(&quot;No webhook secret configured - skipping verification&quot;);
+    return res.json({ received: true });
+  }
+
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.error(&quot;Webhook signature verification failed:&quot;, err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // G&eacute;rer les &eacute;v&eacute;nements
+  switch (event.type) {
+    case &quot;checkout.session.completed&quot;:
+      const session = event.data.object;
+      console.log(`Payment successful for session: ${session.id}`);
+      break;
+
+    case &quot;payment_intent.succeeded&quot;:
+      const paymentIntent = event.data.object;
+      console.log(`Payment intent succeeded: ${paymentIntent.id}`);
+      break;
+
+    case &quot;payment_intent.payment_failed&quot;:
+      const failedPayment = event.data.object;
+      console.log(`Payment failed: ${failedPayment.id}`);
+      break;
+
+    default:
+      console.log(`ℹUnhandled event type: ${event.type}`);
+  }
+
+  res.json({ received: true });
+});
+
+// Route pour r&eacute;cup&eacute;rer les d&eacute;tails d'un paiement
+router.get(&quot;/payment-details/:sessionId&quot;, async (req, res) =&gt; {
+  try {
+    const { sessionId } = req.params;
+
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: [&quot;customer&quot;, &quot;payment_intent&quot;],
+    });
+
+    res.json({
+      id: session.id,
+      payment_status: session.payment_status,
+      customer_email: session.customer_details?.email,
+      amount_total: session.amount_total,
+      currency: session.currency,
+      created: session.created,
+    });
+  } catch (error) {
+    console.error(&quot;Error fetching payment details:&quot;, error);
+    res.status(500).json({
+      error: &quot;Failed to fetch payment details&quot;,
+      message: error.message,
+    });
+  }
+});
+
+module.exports = router;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

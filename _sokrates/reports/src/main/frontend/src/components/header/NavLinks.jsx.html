@@ -1,0 +1,117 @@
+<html>
+<head>
+    <title>frontend/src/components/header/NavLinks.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/header/NavLinks.jsx (<b>78</b> lines of code) (<a href="NavLinks.jsx">raw</a>):</h3>
+<div id="editor">import { NavLink, useNavigate, useLocation } from &quot;react-router-dom&quot;;
+import { useContext } from &quot;react&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import &quot;./NavLinks.css&quot;;
+
+const NavLinks = ({ onClose, onOpenCart, cartIsOpen }) =&gt; {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogout = () =&gt; {
+    auth.logout();
+    navigate(&quot;/&quot;);
+    if (onClose) onClose();
+  };
+
+  const handleLinkClick = () =&gt; {
+    if (onClose) onClose();
+  };
+
+  const handleCartClick = () =&gt; {
+    if (onOpenCart) onOpenCart();
+    if (onClose) onClose();
+  };
+
+  const showCartOnRoutes = [&quot;/catalogue&quot;, &quot;/mealplan&quot;, &quot;/recipe&quot;];
+  const shouldShowCart = showCartOnRoutes.some(
+    (route) =&gt;
+      location.pathname === route || location.pathname.startsWith(route + &quot;/&quot;)
+  );
+
+  return (
+    &lt;ul className=&quot;nav-links&quot;&gt;
+      {auth.isLoggedIn &amp;&amp; (
+        &lt;li className=&quot;catalogue-link&quot;&gt;
+          &lt;NavLink to=&quot;/catalogue&quot; onClick={handleLinkClick}&gt;
+            CATALOGUE
+          &lt;/NavLink&gt;
+        &lt;/li&gt;
+      )}
+
+      {auth.isLoggedIn &amp;&amp; (
+        &lt;li className=&quot;calculatrice-link&quot;&gt;
+          &lt;NavLink to=&quot;/calculatrice&quot; onClick={handleLinkClick}&gt;
+            CALCULATRICE
+          &lt;/NavLink&gt;
+        &lt;/li&gt;
+      )}
+
+      {auth.isLoggedIn &amp;&amp; (
+        &lt;li className=&quot;saved-plans-link&quot;&gt;
+          &lt;NavLink to=&quot;/mealplan&quot; onClick={handleLinkClick}&gt;
+            PLANS
+          &lt;/NavLink&gt;
+        &lt;/li&gt;
+      )}
+
+      {auth.isLoggedIn &amp;&amp; (
+        &lt;li className=&quot;recipe-link&quot;&gt;
+          &lt;NavLink to=&quot;/recipe&quot; onClick={handleLinkClick}&gt;
+            RECIPES
+          &lt;/NavLink&gt;
+        &lt;/li&gt;
+      )}
+
+      {!auth.isLoggedIn &amp;&amp; (
+        &lt;li className=&quot;login-link&quot;&gt;
+          &lt;NavLink to=&quot;/login&quot; onClick={handleLinkClick}&gt;
+            LOGIN
+          &lt;/NavLink&gt;
+        &lt;/li&gt;
+      )}
+
+      {auth.isLoggedIn &amp;&amp; shouldShowCart &amp;&amp; (
+        &lt;li className=&quot;cart-link&quot;&gt;
+          &lt;button onClick={handleCartClick}&gt;
+            {cartIsOpen ? &quot;CART ✕&quot; : &quot;CART 🛒&quot;}
+          &lt;/button&gt;
+        &lt;/li&gt;
+      )}
+
+      {auth.isLoggedIn &amp;&amp; (
+        &lt;li className=&quot;logout-link&quot;&gt;
+          &lt;button onClick={handleLogout}&gt;LOGOUT&lt;/button&gt;
+        &lt;/li&gt;
+      )}
+    &lt;/ul&gt;
+  );
+};
+
+export default NavLinks;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

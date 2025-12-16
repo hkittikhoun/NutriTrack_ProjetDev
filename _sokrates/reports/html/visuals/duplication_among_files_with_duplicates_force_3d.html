@@ -1,0 +1,599 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph"></script>
+</head>
+
+<body>
+<div id="3d-graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "[frontend/src/components/cart/Cart.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/buttons.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/calculators/Calculators.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/Recipe.css]",
+    "size" : 2
+  }, {
+    "id" : "duplicate11",
+    "size" : 2
+  }, {
+    "id" : "duplicate10",
+    "size" : 2
+  }, {
+    "id" : "duplicate13",
+    "size" : 2
+  }, {
+    "id" : "duplicate12",
+    "size" : 2
+  }, {
+    "id" : "duplicate15",
+    "size" : 2
+  }, {
+    "id" : "duplicate14",
+    "size" : 2
+  }, {
+    "id" : "duplicate17",
+    "size" : 2
+  }, {
+    "id" : "duplicate16",
+    "size" : 2
+  }, {
+    "id" : "duplicate19",
+    "size" : 2
+  }, {
+    "id" : "duplicate18",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/shared/Tabs.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "size" : 1
+  }, {
+    "id" : "duplicate20",
+    "size" : 2
+  }, {
+    "id" : "duplicate22",
+    "size" : 2
+  }, {
+    "id" : "duplicate21",
+    "size" : 2
+  }, {
+    "id" : "duplicate24",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/MealPlan.css]",
+    "size" : 2
+  }, {
+    "id" : "duplicate23",
+    "size" : 2
+  }, {
+    "id" : "duplicate26",
+    "size" : 2
+  }, {
+    "id" : "duplicate25",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "size" : 6
+  }, {
+    "id" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "size" : 3
+  }, {
+    "id" : "duplicate4",
+    "size" : 2
+  }, {
+    "id" : "duplicate3",
+    "size" : 2
+  }, {
+    "id" : "duplicate6",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "size" : 1
+  }, {
+    "id" : "duplicate5",
+    "size" : 2
+  }, {
+    "id" : "duplicate8",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "size" : 2
+  }, {
+    "id" : "duplicate7",
+    "size" : 2
+  }, {
+    "id" : "duplicate9",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "size" : 2
+  }, {
+    "id" : "duplicate2",
+    "size" : 2
+  }, {
+    "id" : "duplicate1",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/payement/StripePayement.css]",
+    "size" : 1
+  } ],
+  "links" : [ {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "duplicate1",
+    "count" : 1
+  }, {
+    "source" : "duplicate1",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "duplicate1",
+    "count" : 1
+  }, {
+    "source" : "duplicate1",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "duplicate2",
+    "count" : 1
+  }, {
+    "source" : "duplicate2",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "duplicate2",
+    "count" : 1
+  }, {
+    "source" : "duplicate2",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "target" : "duplicate3",
+    "count" : 1
+  }, {
+    "source" : "duplicate3",
+    "target" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/payement/StripePayement.css]",
+    "target" : "duplicate3",
+    "count" : 1
+  }, {
+    "source" : "duplicate3",
+    "target" : "[frontend/src/components/payement/StripePayement.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate4",
+    "count" : 1
+  }, {
+    "source" : "duplicate4",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "duplicate4",
+    "count" : 1
+  }, {
+    "source" : "duplicate4",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "target" : "duplicate5",
+    "count" : 1
+  }, {
+    "source" : "duplicate5",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "duplicate5",
+    "count" : 1
+  }, {
+    "source" : "duplicate5",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate6",
+    "count" : 1
+  }, {
+    "source" : "duplicate6",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "duplicate6",
+    "count" : 1
+  }, {
+    "source" : "duplicate6",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "target" : "duplicate7",
+    "count" : 1
+  }, {
+    "source" : "duplicate7",
+    "target" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "target" : "duplicate7",
+    "count" : 1
+  }, {
+    "source" : "duplicate7",
+    "target" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "duplicate8",
+    "count" : 1
+  }, {
+    "source" : "duplicate8",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate8",
+    "count" : 1
+  }, {
+    "source" : "duplicate8",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "target" : "duplicate9",
+    "count" : 1
+  }, {
+    "source" : "duplicate9",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "duplicate9",
+    "count" : 1
+  }, {
+    "source" : "duplicate9",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate10",
+    "count" : 1
+  }, {
+    "source" : "duplicate10",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "duplicate10",
+    "count" : 1
+  }, {
+    "source" : "duplicate10",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "duplicate11",
+    "count" : 1
+  }, {
+    "source" : "duplicate11",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "duplicate11",
+    "count" : 1
+  }, {
+    "source" : "duplicate11",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "duplicate12",
+    "count" : 1
+  }, {
+    "source" : "duplicate12",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate12",
+    "count" : 1
+  }, {
+    "source" : "duplicate12",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "target" : "duplicate13",
+    "count" : 1
+  }, {
+    "source" : "duplicate13",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "target" : "duplicate13",
+    "count" : 1
+  }, {
+    "source" : "duplicate13",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate14",
+    "count" : 1
+  }, {
+    "source" : "duplicate14",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate14",
+    "count" : 1
+  }, {
+    "source" : "duplicate14",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/Calculators.css]",
+    "target" : "duplicate15",
+    "count" : 1
+  }, {
+    "source" : "duplicate15",
+    "target" : "[frontend/src/components/calculators/Calculators.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Tabs.css]",
+    "target" : "duplicate15",
+    "count" : 1
+  }, {
+    "source" : "duplicate15",
+    "target" : "[frontend/src/components/shared/Tabs.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "duplicate16",
+    "count" : 1
+  }, {
+    "source" : "duplicate16",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "duplicate16",
+    "count" : 1
+  }, {
+    "source" : "duplicate16",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "duplicate17",
+    "count" : 1
+  }, {
+    "source" : "duplicate17",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "duplicate17",
+    "count" : 1
+  }, {
+    "source" : "duplicate17",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "duplicate18",
+    "count" : 1
+  }, {
+    "source" : "duplicate18",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "duplicate18",
+    "count" : 1
+  }, {
+    "source" : "duplicate18",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "duplicate19",
+    "count" : 1
+  }, {
+    "source" : "duplicate19",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "duplicate19",
+    "count" : 1
+  }, {
+    "source" : "duplicate19",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "target" : "duplicate20",
+    "count" : 1
+  }, {
+    "source" : "duplicate20",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "duplicate20",
+    "count" : 1
+  }, {
+    "source" : "duplicate20",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "duplicate21",
+    "count" : 1
+  }, {
+    "source" : "duplicate21",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "target" : "duplicate21",
+    "count" : 1
+  }, {
+    "source" : "duplicate21",
+    "target" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "duplicate22",
+    "count" : 1
+  }, {
+    "source" : "duplicate22",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "target" : "duplicate22",
+    "count" : 1
+  }, {
+    "source" : "duplicate22",
+    "target" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "duplicate23",
+    "count" : 1
+  }, {
+    "source" : "duplicate23",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "duplicate23",
+    "count" : 1
+  }, {
+    "source" : "duplicate23",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "target" : "duplicate24",
+    "count" : 1
+  }, {
+    "source" : "duplicate24",
+    "target" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "target" : "duplicate24",
+    "count" : 1
+  }, {
+    "source" : "duplicate24",
+    "target" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "duplicate25",
+    "count" : 1
+  }, {
+    "source" : "duplicate25",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "target" : "duplicate25",
+    "count" : 1
+  }, {
+    "source" : "duplicate25",
+    "target" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "duplicate26",
+    "count" : 1
+  }, {
+    "source" : "duplicate26",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "duplicate26",
+    "count" : 1
+  }, {
+    "source" : "duplicate26",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => { return {source: l.target, target: l.source, count: l.count} });
+
+    const Graph = ForceGraph3D()
+    (document.getElementById('3d-graph'))
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => n.id.startsWith("[") ? "skyblue" : "")
+        .linkDirectionalParticles(6)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

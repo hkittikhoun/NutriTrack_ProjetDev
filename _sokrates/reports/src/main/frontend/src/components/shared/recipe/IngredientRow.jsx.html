@@ -1,0 +1,129 @@
+<html>
+<head>
+    <title>frontend/src/components/shared/recipe/IngredientRow.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/shared/recipe/IngredientRow.jsx (<b>97</b> lines of code) (<a href="IngredientRow.jsx">raw</a>):</h3>
+<div id="editor">import React from &quot;react&quot;;
+
+export function IngredientRow({
+  ingredient,
+  cartFoods = [],
+  onFoodChange,
+  onUpdate,
+  onRemove,
+  disableRemove,
+}) {
+  return (
+    &lt;div className=&quot;ingredient-row&quot;&gt;
+      &lt;div className=&quot;ingredient-dropdown&quot;&gt;
+        &lt;div className=&quot;form-field&quot;&gt;
+          &lt;label&gt;Ingredient *&lt;/label&gt;
+          &lt;select
+            value={ingredient.foodId}
+            onChange={(e) =&gt; onFoodChange(ingredient.id, e.target.value)}
+          &gt;
+            &lt;option value=&quot;&quot;&gt;-- Choose from cart or enter manually --&lt;/option&gt;
+            {cartFoods.map((food) =&gt; (
+              &lt;option key={food.foodId} value={String(food.foodId)}&gt;
+                {food.name}
+              &lt;/option&gt;
+            ))}
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;ingredient-name-row&quot;&gt;
+        &lt;div className=&quot;form-field&quot;&gt;
+          &lt;label&gt;Name (if not from cart)&lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            value={ingredient.ingredientName}
+            onChange={(e) =&gt;
+              onUpdate(ingredient.id, &quot;ingredientName&quot;, e.target.value)
+            }
+            placeholder=&quot;e.g., Flour&quot;
+          /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;ingredient-quantity-row&quot;&gt;
+        &lt;div className=&quot;form-field&quot;&gt;
+          &lt;label&gt;Quantity&lt;/label&gt;
+          &lt;input
+            type=&quot;number&quot;
+            value={ingredient.quantity}
+            onChange={(e) =&gt;
+              onUpdate(ingredient.id, &quot;quantity&quot;, e.target.value)
+            }
+            placeholder=&quot;100&quot;
+            min=&quot;0&quot;
+            step=&quot;0.1&quot;
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;form-field&quot;&gt;
+          &lt;label&gt;Unit&lt;/label&gt;
+          &lt;select
+            value={ingredient.unit}
+            onChange={(e) =&gt; onUpdate(ingredient.id, &quot;unit&quot;, e.target.value)}
+          &gt;
+            &lt;option value=&quot;g&quot;&gt;grams (g)&lt;/option&gt;
+            &lt;option value=&quot;kg&quot;&gt;kilograms (kg)&lt;/option&gt;
+            &lt;option value=&quot;ml&quot;&gt;milliliters (ml)&lt;/option&gt;
+            &lt;option value=&quot;l&quot;&gt;liters (l)&lt;/option&gt;
+            &lt;option value=&quot;cups&quot;&gt;cups&lt;/option&gt;
+            &lt;option value=&quot;tbsp&quot;&gt;tablespoons&lt;/option&gt;
+            &lt;option value=&quot;tsp&quot;&gt;teaspoons&lt;/option&gt;
+            &lt;option value=&quot;pieces&quot;&gt;pieces&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;ingredient-prep-row&quot;&gt;
+        &lt;div className=&quot;form-field&quot;&gt;
+          &lt;label&gt;Preparation&lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            value={ingredient.preparation}
+            onChange={(e) =&gt;
+              onUpdate(ingredient.id, &quot;preparation&quot;, e.target.value)
+            }
+            placeholder=&quot;e.g., chopped, diced&quot;
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;form-actions&quot;&gt;
+          &lt;button
+            type=&quot;button&quot;
+            onClick={() =&gt; onRemove(ingredient.id)}
+            className=&quot;remove-btn&quot;
+            disabled={disableRemove}
+          &gt;
+            Remove
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

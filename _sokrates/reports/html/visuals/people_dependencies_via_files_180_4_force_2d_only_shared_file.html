@@ -1,0 +1,249 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/force-graph"></script>
+</head>
+
+<body>
+<div id="graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/foodCard/FoodCard.jsx]",
+    "size" : 3
+  }, {
+    "id" : "prospectdydy01@hotmail.com",
+    "size" : 12
+  }, {
+    "id" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/mealPlan/DailyPlan.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/containers/Roots.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/App.jsx]",
+    "size" : 2
+  }, {
+    "id" : "1985613@cmontmorency.qc.ca",
+    "size" : 3
+  }, {
+    "id" : "2155162@cmontmorency.qc.ca",
+    "size" : 631
+  }, {
+    "id" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/cart/Cart.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/header/NavLinks.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/header/MainNavigation.jsx]",
+    "size" : 2
+  } ],
+  "links" : [ {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/header/NavLinks.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[frontend/src/components/header/NavLinks.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 14
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/App.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[frontend/src/components/App.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 14
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/header/MainNavigation.jsx]",
+    "count" : 10
+  }, {
+    "source" : "[frontend/src/components/header/MainNavigation.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 10
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 7
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/foodCard/FoodCard.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[frontend/src/components/foodCard/FoodCard.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 7
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 6
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 6
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 5
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 4
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/containers/Roots.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/containers/Roots.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "1985613@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "1985613@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "1985613@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "target" : "1985613@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 2
+  }, {
+    "source" : "1985613@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/foodCard/FoodCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/foodCard/FoodCard.jsx]",
+    "target" : "1985613@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/components/foodCard/FoodCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/foodCard/FoodCard.jsx]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 2
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/components/header/MainNavigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/header/MainNavigation.jsx]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 2
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/components/header/NavLinks.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/header/NavLinks.jsx]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 2
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/containers/Roots.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/containers/Roots.jsx]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 2
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/components/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/App.jsx]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 2
+  }, {
+    "source" : "2155162@cmontmorency.qc.ca",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.css]",
+    "target" : "2155162@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "prospectdydy01@hotmail.com",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.css]",
+    "target" : "prospectdydy01@hotmail.com",
+    "count" : 2
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => {
+        return {source: l.target, target: l.source, count: l.count}
+    });
+    const colorOf = (node) => {
+        if (!node.id.startsWith("[")) return "rgba(135, 206, 235, 0.6)";
+        return "rgba(100,100,100,0.6)";
+    }
+
+    const elem = document.getElementById('graph');
+    const Graph = ForceGraph()(elem)
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => colorOf(n))
+        .linkDirectionalParticles(1)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

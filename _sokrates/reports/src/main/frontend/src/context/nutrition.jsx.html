@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>frontend/src/context/nutrition.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/context/nutrition.jsx (<b>9</b> lines of code) (<a href="nutrition.jsx">raw</a>):</h3>
+<div id="editor">import { useContext } from &quot;react&quot;;
+import { NutritionContext } from &quot;./nutrition-context.js&quot;;
+
+export const useNutrition = () =&gt; {
+  const context = useContext(NutritionContext);
+  if (!context) {
+    throw new Error(&quot;useNutrition must be used within a NutritionProvider&quot;);
+  }
+  return context;
+};
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

@@ -1,0 +1,239 @@
+<html>
+<head>
+    <title>frontend/src/components/calculators/NutritionCalculator.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/calculators/NutritionCalculator.jsx (<b>200</b> lines of code) (<a href="NutritionCalculator.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useEffect } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { useNutrition } from &quot;../../context/nutrition&quot;;
+import { NutrientSection } from &quot;./NutrientSection&quot;;
+import &quot;./NutritionCalculator.css&quot;;
+
+export default function NutritionCalculator() {
+  const { selectedFood, clearSelectedFood } = useNutrition();
+  const navigate = useNavigate();
+  const [quantity, setQuantity] = useState(100);
+  const [allNutrients, setAllNutrients] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(&quot;&quot;);
+
+  useEffect(() =&gt; {
+    const fetchAllNutrients = async () =&gt; {
+      if (!selectedFood?.FoodID) return;
+      try {
+        setLoading(true);
+        setError(&quot;&quot;);
+        const { data: nutrients, error: nutrientsError } = await supabase
+          .from(&quot;nutrient_amount&quot;)
+          .select(
+            `
+            NutrientValue,
+            nutrient_name!inner(
+              NutrientSymbol,
+              NutrientUnit,
+              NutrientName,
+              NutrientCode
+            )
+          `
+          )
+          .eq(&quot;FoodID&quot;, selectedFood.FoodID);
+        if (nutrientsError) {
+          setError(&quot;Failed to load nutrients: &quot; + nutrientsError.message);
+          return;
+        }
+        const sorted = (nutrients || []).sort(
+          (a, b) =&gt; a.nutrient_name.NutrientCode - b.nutrient_name.NutrientCode
+        );
+        setAllNutrients(sorted);
+      } catch (err) {
+        setError(&quot;An unexpected error occurred&quot;);
+        console.error(&quot;Error:&quot;, err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (selectedFood) fetchAllNutrients();
+  }, [selectedFood]);
+
+  const handleGoToCatalogue = () =&gt; navigate(&quot;/catalogue&quot;);
+  const handleClearFood = () =&gt; {
+    clearSelectedFood();
+    setAllNutrients([]);
+    setQuantity(100);
+  };
+
+  const calculateNutrientValue = (baseValue, qty) =&gt;
+    ((baseValue * qty) / 100).toFixed(2);
+
+  const groupNutrients = (nutrients) =&gt; {
+    const groups = {
+      energy: [],
+      macronutrients: [],
+      vitamins: [],
+      minerals: [],
+      other: [],
+    };
+    nutrients.forEach((n) =&gt; {
+      const code = n.nutrient_name.NutrientCode;
+      const name = n.nutrient_name.NutrientName?.toLowerCase() || &quot;&quot;;
+      const symbol = n.nutrient_name.NutrientSymbol?.toLowerCase() || &quot;&quot;;
+      if (code === 208) {
+        groups.energy.push(n);
+      } else if ([203, 204, 205, 291, 269].includes(code)) {
+        groups.macronutrients.push(n);
+      } else if (
+        name.includes(&quot;vitamin&quot;) ||
+        symbol.includes(&quot;vit&quot;) ||
+        [401, 404, 405, 406, 410, 415, 418].includes(code)
+      ) {
+        groups.vitamins.push(n);
+      } else if ([301, 303, 304, 305, 306, 307, 309, 312, 315].includes(code)) {
+        groups.minerals.push(n);
+      } else {
+        groups.other.push(n);
+      }
+    });
+    return groups;
+  };
+
+  const grouped = groupNutrients(allNutrients);
+
+  return (
+    &lt;div className=&quot;nutrition-calculator-container&quot;&gt;
+      &lt;h1&gt;Nutrition Calculator&lt;/h1&gt;
+      &lt;p className=&quot;calculator-description&quot;&gt;
+        Select a food from the catalogue and calculate its nutritional values
+        for a specific quantity
+      &lt;/p&gt;
+
+      {!selectedFood ? (
+        &lt;div className=&quot;no-food-selected&quot;&gt;
+          &lt;div className=&quot;selection-card&quot;&gt;
+            &lt;h3&gt;No Food Selected&lt;/h3&gt;
+            &lt;p&gt;
+              Please select a food from the catalogue to calculate its
+              nutritional values.
+            &lt;/p&gt;
+            &lt;button onClick={handleGoToCatalogue} className=&quot;catalogue-btn&quot;&gt;
+              Go to Catalogue
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;div className=&quot;calculator-content&quot;&gt;
+          &lt;div className=&quot;selected-food-section&quot;&gt;
+            &lt;h3&gt;Selected Food&lt;/h3&gt;
+            &lt;div className=&quot;selected-food-card&quot;&gt;
+              &lt;h4&gt;{selectedFood.FoodDescription}&lt;/h4&gt;
+              &lt;div className=&quot;food-actions&quot;&gt;
+                &lt;button
+                  onClick={handleGoToCatalogue}
+                  className=&quot;change-food-btn&quot;
+                &gt;
+                  Change Food
+                &lt;/button&gt;
+                &lt;button onClick={handleClearFood} className=&quot;clear-food-btn&quot;&gt;
+                  Clear
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;quantity-section&quot;&gt;
+            &lt;h3&gt;Quantity&lt;/h3&gt;
+            &lt;div className=&quot;quantity-input-container&quot;&gt;
+              &lt;label htmlFor=&quot;quantity&quot;&gt;Quantity (grams):&lt;/label&gt;
+              &lt;input
+                type=&quot;number&quot;
+                id=&quot;quantity&quot;
+                value={quantity}
+                onChange={(e) =&gt;
+                  setQuantity(Math.max(0, parseFloat(e.target.value) || 0))
+                }
+                min=&quot;0&quot;
+                step=&quot;0.1&quot;
+                placeholder=&quot;Enter quantity in grams&quot;
+              /&gt;
+              &lt;span className=&quot;quantity-unit&quot;&gt;g&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          {loading &amp;&amp; (
+            &lt;p className=&quot;loading-message&quot;&gt;Loading nutritional data...&lt;/p&gt;
+          )}
+          {error &amp;&amp; &lt;p className=&quot;error-message&quot;&gt;{error}&lt;/p&gt;}
+
+          {!loading &amp;&amp; !error &amp;&amp; allNutrients.length &gt; 0 &amp;&amp; (
+            &lt;div className=&quot;nutrition-results&quot;&gt;
+              &lt;h3&gt;Nutritional Values for {quantity}g&lt;/h3&gt;
+
+              &lt;NutrientSection
+                title=&quot;Energy&quot;
+                className=&quot;energy-group&quot;
+                nutrients={grouped.energy}
+                quantity={quantity}
+                calculate={calculateNutrientValue}
+              /&gt;
+              &lt;NutrientSection
+                title=&quot;Macronutrients&quot;
+                className=&quot;macros-group&quot;
+                nutrients={grouped.macronutrients}
+                quantity={quantity}
+                calculate={calculateNutrientValue}
+              /&gt;
+              &lt;NutrientSection
+                title=&quot;Vitamins&quot;
+                className=&quot;vitamins-group&quot;
+                nutrients={grouped.vitamins}
+                quantity={quantity}
+                calculate={calculateNutrientValue}
+              /&gt;
+              &lt;NutrientSection
+                title=&quot;Minerals&quot;
+                className=&quot;minerals-group&quot;
+                nutrients={grouped.minerals}
+                quantity={quantity}
+                calculate={calculateNutrientValue}
+              /&gt;
+              &lt;NutrientSection
+                title=&quot;Other Nutrients&quot;
+                className=&quot;other-group&quot;
+                nutrients={grouped.other}
+                quantity={quantity}
+                calculate={calculateNutrientValue}
+              /&gt;
+            &lt;/div&gt;
+          )}
+
+          {!loading &amp;&amp; !error &amp;&amp; allNutrients.length === 0 &amp;&amp; selectedFood &amp;&amp; (
+            &lt;p className=&quot;no-data-message&quot;&gt;
+              No nutritional data available for this food.
+            &lt;/p&gt;
+          )}
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

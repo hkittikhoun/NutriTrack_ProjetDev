@@ -1,0 +1,710 @@
+<head>
+    <style>
+        body {
+            font-family: Sans-serif;
+            font-size: 11px;
+        }
+
+        .slice {
+            cursor: pointer;
+        }
+
+        .slice .main-arc {
+            stroke: #fff;
+            stroke-width: 1px;
+        }
+
+        .slice .hidden-arc {
+            fill: none;
+        }
+
+        .slice text {
+            pointer-events: none;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+    </style>
+
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+</head>
+<body>
+<script>
+    const width = window.innerWidth,
+        height = window.innerHeight,
+        maxRadius = (Math.min(width, height) / 2) - 5;
+
+    const formatNumber = d3.format(',d');
+
+    const x = d3.scaleLinear()
+        .range([0, 2 * Math.PI])
+        .clamp(true);
+
+    const y = d3.scaleSqrt()
+        .range([maxRadius * .1, maxRadius]);
+
+    const color = d3.scaleOrdinal(d3.schemeCategory20);
+
+    const partition = d3.partition();
+
+    const arc = d3.arc()
+        .startAngle(d => x(d.x0))
+        .endAngle(d => x(d.x1))
+        .innerRadius(d => Math.max(0, y(d.y0)))
+        .outerRadius(d => Math.max(0, y(d.y1)));
+
+    const middleArcLine = d => {
+        const halfPi = Math.PI / 2;
+        const angles = [x(d.x0) - halfPi, x(d.x1) - halfPi];
+        const r = Math.max(0, (y(d.y0) + y(d.y1)) / 2);
+
+        const middleAngle = (angles[1] + angles[0]) / 2;
+        const invertDirection = middleAngle > 0 && middleAngle < Math.PI; // On lower quadrants write text ccw
+        if (invertDirection) {
+            angles.reverse();
+        }
+
+        const path = d3.path();
+        path.arc(0, 0, r, angles[0], angles[1], invertDirection);
+        return path.toString();
+    };
+
+    const textFits = d => {
+        const CHAR_SPACE = 6;
+
+        const deltaAngle = x(d.x1) - x(d.x0);
+        const r = Math.max(0, (y(d.y0) + y(d.y1)) / 2);
+        const perimeter = r * deltaAngle;
+
+        return d.data.name.length * CHAR_SPACE < perimeter;
+    };
+
+    const svg = d3.select('body').append('svg')
+        .style('width', '100vw')
+        .style('height', '100vh')
+        .attr('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
+        .on('click', () => focusOn()); // Reset zoom on canvas click
+
+    var rootData = {
+        "name": "",
+        "children": [ {
+  "name" : "backend",
+  "color" : "",
+  "size" : 0,
+  "children" : [ {
+    "name" : "routes",
+    "color" : "",
+    "size" : 0,
+    "children" : [ {
+      "name" : "payement.js",
+      "color" : "",
+      "size" : 208,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "server.js",
+    "color" : "",
+    "size" : 40,
+    "children" : [ ]
+  } ]
+}, {
+  "name" : "frontend",
+  "color" : "",
+  "size" : 0,
+  "children" : [ {
+    "name" : "eslint.config.js",
+    "color" : "",
+    "size" : 43,
+    "children" : [ ]
+  }, {
+    "name" : "index.html",
+    "color" : "",
+    "size" : 15,
+    "children" : [ ]
+  }, {
+    "name" : "src",
+    "color" : "",
+    "size" : 0,
+    "children" : [ {
+      "name" : "components",
+      "color" : "",
+      "size" : 0,
+      "children" : [ {
+        "name" : "App.jsx",
+        "color" : "",
+        "size" : 70,
+        "children" : [ ]
+      }, {
+        "name" : "calculators",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Calculators.css",
+          "color" : "",
+          "size" : 58,
+          "children" : [ ]
+        }, {
+          "name" : "Calculators.jsx",
+          "color" : "",
+          "size" : 48,
+          "children" : [ ]
+        }, {
+          "name" : "CaloriesCalculator.css",
+          "color" : "",
+          "size" : 50,
+          "children" : [ ]
+        }, {
+          "name" : "CaloriesCalculator.jsx",
+          "color" : "",
+          "size" : 222,
+          "children" : [ ]
+        }, {
+          "name" : "NutrientSection.jsx",
+          "color" : "",
+          "size" : 29,
+          "children" : [ ]
+        }, {
+          "name" : "NutritionCalculator.css",
+          "color" : "",
+          "size" : 236,
+          "children" : [ ]
+        }, {
+          "name" : "NutritionCalculator.jsx",
+          "color" : "",
+          "size" : 200,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "cart",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Cart.css",
+          "color" : "",
+          "size" : 190,
+          "children" : [ ]
+        }, {
+          "name" : "Cart.jsx",
+          "color" : "",
+          "size" : 273,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "catalogue",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Catalogue.css",
+          "color" : "",
+          "size" : 124,
+          "children" : [ ]
+        }, {
+          "name" : "Catalogue.jsx",
+          "color" : "",
+          "size" : 118,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "foodCard",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "FoodCard.css",
+          "color" : "",
+          "size" : 130,
+          "children" : [ ]
+        }, {
+          "name" : "FoodCard.jsx",
+          "color" : "",
+          "size" : 98,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "header",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Backdrop.css",
+          "color" : "",
+          "size" : 9,
+          "children" : [ ]
+        }, {
+          "name" : "Backdrop.jsx",
+          "color" : "",
+          "size" : 9,
+          "children" : [ ]
+        }, {
+          "name" : "MainNavigation.css",
+          "color" : "",
+          "size" : 108,
+          "children" : [ ]
+        }, {
+          "name" : "MainNavigation.jsx",
+          "color" : "",
+          "size" : 99,
+          "children" : [ ]
+        }, {
+          "name" : "NavLinks.css",
+          "color" : "",
+          "size" : 88,
+          "children" : [ ]
+        }, {
+          "name" : "NavLinks.jsx",
+          "color" : "",
+          "size" : 78,
+          "children" : [ ]
+        }, {
+          "name" : "SideDrawer.css",
+          "color" : "",
+          "size" : 10,
+          "children" : [ ]
+        }, {
+          "name" : "SideDrawer.jsx",
+          "color" : "",
+          "size" : 11,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "loginForm",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "loginForm.jsx",
+          "color" : "",
+          "size" : 78,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "mealPlan",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "DailyPlan.jsx",
+          "color" : "",
+          "size" : 199,
+          "children" : [ ]
+        }, {
+          "name" : "MealPlans.jsx",
+          "color" : "",
+          "size" : 32,
+          "children" : [ ]
+        }, {
+          "name" : "SavedPlanDetails.jsx",
+          "color" : "",
+          "size" : 342,
+          "children" : [ ]
+        }, {
+          "name" : "SavedPlans.css",
+          "color" : "",
+          "size" : 109,
+          "children" : [ ]
+        }, {
+          "name" : "SavedPlans.jsx",
+          "color" : "",
+          "size" : 135,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "monthlyJournal",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "monthlyJournal.css",
+          "color" : "",
+          "size" : 76,
+          "children" : [ ]
+        }, {
+          "name" : "monthlyJournal.jsx",
+          "color" : "",
+          "size" : 119,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "payement",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "PayementSuccess.css",
+          "color" : "",
+          "size" : 304,
+          "children" : [ ]
+        }, {
+          "name" : "PayementSuccess.jsx",
+          "color" : "",
+          "size" : 194,
+          "children" : [ ]
+        }, {
+          "name" : "StripePayement.css",
+          "color" : "",
+          "size" : 148,
+          "children" : [ ]
+        }, {
+          "name" : "StripePayement.jsx",
+          "color" : "",
+          "size" : 94,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "recipe",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "CreateRecipe.jsx",
+          "color" : "",
+          "size" : 199,
+          "children" : [ ]
+        }, {
+          "name" : "Recipe.jsx",
+          "color" : "",
+          "size" : 32,
+          "children" : [ ]
+        }, {
+          "name" : "RecipeForm.jsx",
+          "color" : "",
+          "size" : 208,
+          "children" : [ ]
+        }, {
+          "name" : "SavedRecipe.jsx",
+          "color" : "",
+          "size" : 200,
+          "children" : [ ]
+        }, {
+          "name" : "SavedRecipeDetails.jsx",
+          "color" : "",
+          "size" : 425,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "shared",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "animation.css",
+          "color" : "",
+          "size" : 10,
+          "children" : [ ]
+        }, {
+          "name" : "buttons.css",
+          "color" : "",
+          "size" : 38,
+          "children" : [ ]
+        }, {
+          "name" : "CalculatorsBase.css",
+          "color" : "",
+          "size" : 172,
+          "children" : [ ]
+        }, {
+          "name" : "CatalogueBase.css",
+          "color" : "",
+          "size" : 19,
+          "children" : [ ]
+        }, {
+          "name" : "form.css",
+          "color" : "",
+          "size" : 155,
+          "children" : [ ]
+        }, {
+          "name" : "hooks",
+          "color" : "",
+          "size" : 0,
+          "children" : [ {
+            "name" : "useCartFoods.js",
+            "color" : "",
+            "size" : 54,
+            "children" : [ ]
+          }, {
+            "name" : "useCartPrefill.js",
+            "color" : "",
+            "size" : 26,
+            "children" : [ ]
+          }, {
+            "name" : "usePrefillAuthors.js",
+            "color" : "",
+            "size" : 28,
+            "children" : [ ]
+          }, {
+            "name" : "useRecipeForm.js",
+            "color" : "",
+            "size" : 26,
+            "children" : [ ]
+          }, {
+            "name" : "useUrlTabs.js",
+            "color" : "",
+            "size" : 23,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "mealPlan",
+          "color" : "",
+          "size" : 0,
+          "children" : [ {
+            "name" : "mapUtils.js",
+            "color" : "",
+            "size" : 28,
+            "children" : [ ]
+          }, {
+            "name" : "MealPlanEditor.jsx",
+            "color" : "",
+            "size" : 171,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "MealPlan.css",
+          "color" : "",
+          "size" : 381,
+          "children" : [ ]
+        }, {
+          "name" : "recipe",
+          "color" : "",
+          "size" : 0,
+          "children" : [ {
+            "name" : "IngredientRow.jsx",
+            "color" : "",
+            "size" : 97,
+            "children" : [ ]
+          }, {
+            "name" : "InstructionRow.jsx",
+            "color" : "",
+            "size" : 33,
+            "children" : [ ]
+          }, {
+            "name" : "utils.js",
+            "color" : "",
+            "size" : 69,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "Recipe.css",
+          "color" : "",
+          "size" : 564,
+          "children" : [ ]
+        }, {
+          "name" : "status.css",
+          "color" : "",
+          "size" : 22,
+          "children" : [ ]
+        }, {
+          "name" : "Tabs.css",
+          "color" : "",
+          "size" : 80,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "signupForm",
+        "color" : "",
+        "size" : 0,
+        "children" : [ {
+          "name" : "signupForm.jsx",
+          "color" : "",
+          "size" : 170,
+          "children" : [ ]
+        } ]
+      } ]
+    }, {
+      "name" : "config",
+      "color" : "",
+      "size" : 0,
+      "children" : [ {
+        "name" : "api.js",
+        "color" : "",
+        "size" : 2,
+        "children" : [ ]
+      }, {
+        "name" : "stripe.js",
+        "color" : "",
+        "size" : 3,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "containers",
+      "color" : "",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Calculatrices.jsx",
+        "color" : "",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Catalogue.jsx",
+        "color" : "",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "ErrorPage.jsx",
+        "color" : "",
+        "size" : 13,
+        "children" : [ ]
+      }, {
+        "name" : "Home.jsx",
+        "color" : "",
+        "size" : 4,
+        "children" : [ ]
+      }, {
+        "name" : "Login.jsx",
+        "color" : "",
+        "size" : 4,
+        "children" : [ ]
+      }, {
+        "name" : "Plans.jsx",
+        "color" : "",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Recipes.jsx",
+        "color" : "",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Roots.jsx",
+        "color" : "",
+        "size" : 41,
+        "children" : [ ]
+      }, {
+        "name" : "SavedPlan.jsx",
+        "color" : "",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "SavedRecipes.jsx",
+        "color" : "",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Signup.jsx",
+        "color" : "",
+        "size" : 4,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "context",
+      "color" : "",
+      "size" : 0,
+      "children" : [ {
+        "name" : "auth-context.js",
+        "color" : "",
+        "size" : 8,
+        "children" : [ ]
+      }, {
+        "name" : "cart-context.js",
+        "color" : "",
+        "size" : 4,
+        "children" : [ ]
+      }, {
+        "name" : "nutrition-context.js",
+        "color" : "",
+        "size" : 6,
+        "children" : [ ]
+      }, {
+        "name" : "nutrition.jsx",
+        "color" : "",
+        "size" : 9,
+        "children" : [ ]
+      }, {
+        "name" : "NutritionProvider.jsx",
+        "color" : "",
+        "size" : 19,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "main.jsx",
+      "color" : "",
+      "size" : 8,
+      "children" : [ ]
+    }, {
+      "name" : "supabaseClient.js",
+      "color" : "",
+      "size" : 4,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "vite.config.js",
+    "color" : "",
+    "size" : 5,
+    "children" : [ ]
+  } ]
+} ]
+    }
+
+
+    root = d3.hierarchy(rootData);
+    root.sum(d => d.size);
+
+    const slice = svg.selectAll('g.slice')
+        .data(partition(root).descendants());
+
+    slice.exit().remove();
+
+    const newSlice = slice.enter()
+        .append('g').attr('class', 'slice')
+        .on('click', d => {
+            d3.event.stopPropagation();
+            focusOn(d);
+        });
+
+    newSlice.append('title')
+        .text(d => d.data.name + '\n' + formatNumber(d.value));
+
+    newSlice.append('path')
+        .attr('class', 'main-arc')
+        .style('fill', d => color((d.children ? d : d.parent).data.name))
+        .attr('d', arc);
+
+    newSlice.append('path')
+        .attr('class', 'hidden-arc')
+        .attr('id', (_, i) => `hiddenArc${i}`)
+        .attr('d', middleArcLine);
+
+    const text = newSlice.append('text')
+        .attr('display', d => textFits(d) ? null : 'none');
+
+    // Add white contour
+    text.append('textPath')
+        .attr('startOffset', '50%')
+        .attr('xlink:href', (_, i) => `#hiddenArc${i}`)
+        .text(d => d.data.name)
+        .style('fill', 'none')
+        .style('stroke', '#fff')
+        .style('stroke-width', 5)
+        .style('stroke-linejoin', 'round');
+
+    text.append('textPath')
+        .attr('startOffset', '50%')
+        .attr('xlink:href', (_, i) => `#hiddenArc${i}`)
+        .text(d => d.data.name);
+
+    function focusOn(d = {x0: 0, x1: 1, y0: 0, y1: 1}) {
+        const transition = svg.transition()
+            .duration(750)
+            .tween('scale', () => {
+                const xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
+                    yd = d3.interpolate(y.domain(), [d.y0, 1]);
+                return t => {
+                    x.domain(xd(t));
+                    y.domain(yd(t));
+                };
+            });
+
+        transition.selectAll('path.main-arc')
+            .attrTween('d', d => () => arc(d));
+
+        transition.selectAll('path.hidden-arc')
+            .attrTween('d', d => () => middleArcLine(d));
+
+        transition.selectAll('text')
+            .attrTween('display', d => () => textFits(d) ? null : 'none');
+
+        moveStackToFront(d);
+
+        //
+
+        function moveStackToFront(elD) {
+            svg.selectAll('.slice').filter(d => d === elD)
+                .each(function (d) {
+                    this.parentNode.appendChild(this);
+                    if (d.parent) {
+                        moveStackToFront(d.parent);
+                    }
+                })
+        }
+    }
+</script>
+</body>

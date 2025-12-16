@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>preparation: String()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">preparation: String()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/recipe/utils.js [58:66]</i></p>
+<ul>
+    <li><b>7</b> lines of code</li>
+    <li><b>4</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+      preparation: String(ing.preparation || &quot;&quot;).trim() || null,
+      order_index: index + 1,
+    }));
+}
+
+export function buildInstructionsData(instructions, recipeId) {
+  // accepte tableau de strings ou d&rsquo;objets { instruction }
+  return (instructions || [])
+    .filter((inst) =&gt; {
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

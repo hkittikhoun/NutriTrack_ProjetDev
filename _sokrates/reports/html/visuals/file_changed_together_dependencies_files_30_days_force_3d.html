@@ -1,0 +1,737 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph"></script>
+</head>
+
+<body>
+<div id="3d-graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/buttons.css]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "size" : 5
+  }, {
+    "id" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/MealPlan.css]",
+    "size" : 5
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "size" : 5
+  }, {
+    "id" : "[frontend/src/components/calculators/NutritionCalculator.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/calculators/NutrientSection.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "size" : 12
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "size" : 5
+  }, {
+    "id" : "[frontend/src/components/shared/form.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/status.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "size" : 7
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/header/NavLinks.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "size" : 5
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/utils.js]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/shared/Recipe.css]",
+    "size" : 6
+  }, {
+    "id" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/animation.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/Tabs.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/header/MainNavigation.css]",
+    "size" : 1
+  } ],
+  "links" : [ {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "target" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "target" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/utils.js]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/utils.js]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/utils.js]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/utils.js]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "target" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "target" : "[frontend/src/components/shared/form.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/form.css]",
+    "target" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "target" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "target" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "target" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "target" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "target" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/utils.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/utils.js]",
+    "target" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Tabs.css]",
+    "target" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "target" : "[frontend/src/components/shared/Tabs.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/utils.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/utils.js]",
+    "target" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "target" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "target" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "target" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/status.css]",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "target" : "[frontend/src/components/shared/status.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Tabs.css]",
+    "target" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "target" : "[frontend/src/components/shared/Tabs.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "target" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "target" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "target" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "target" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "target" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.jsx]",
+    "target" : "[frontend/src/components/calculators/NutrientSection.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutrientSection.jsx]",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/form.css]",
+    "target" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "target" : "[frontend/src/components/shared/form.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/animation.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "[frontend/src/components/shared/animation.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "target" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/animation.css]",
+    "target" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "target" : "[frontend/src/components/shared/animation.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "target" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "target" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/header/NavLinks.css]",
+    "target" : "[frontend/src/components/header/MainNavigation.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/header/MainNavigation.css]",
+    "target" : "[frontend/src/components/header/NavLinks.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "target" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/status.css]",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "[frontend/src/components/shared/status.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "target" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "count" : 1
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => { return {source: l.target, target: l.source, count: l.count} });
+
+    const Graph = ForceGraph3D()
+    (document.getElementById('3d-graph'))
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => n.id.startsWith("[") ? "skyblue" : "")
+        .linkDirectionalParticles(6)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

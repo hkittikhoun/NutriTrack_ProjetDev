@@ -1,0 +1,55 @@
+Start of analysis
+Found 11552 files
+84 are in the main's scope  (7824 lines of code)
+  *.jsx: 43 files, (4151 lines of code)
+  *.css: 23 files, (3081 lines of code)
+  *.js: 17 files, (577 lines of code)
+  *.html: 1 files, (15 lines of code)
+0 are in the test's scope  (0 lines of code)
+2 are in the generated's scope  (6371 lines of code)
+  *.json: 2 files, (6371 lines of code)
+0 are in the build and deployment's scope  (0 lines of code)
+9 are in the other's scope  (6474 lines of code)
+  *.json: 6 files, (6448 lines of code)
+  *.md: 2 files, (23 lines of code)
+  *.txt: 1 files, (3 lines of code)
+Excluded from analyses 11459 files
+Analysing dependencies...
+2 are in the DECOMPOSITION_primary\backend's scope  (248 lines of code)
+  *.js: 2 files, (248 lines of code)
+82 are in the DECOMPOSITION_primary\frontend's scope  (7576 lines of code)
+  *.jsx: 43 files, (4151 lines of code)
+  *.css: 23 files, (3081 lines of code)
+  *.js: 15 files, (329 lines of code)
+  *.html: 1 files, (15 lines of code)
+  - "primary", found 0 dependencies (0 component dependencies)
+0 are in the CONCERN_general\TODOs's scope  (0 lines of code)
+84 are in the CONCERN_general\Unclassified's scope  (7824 lines of code)
+  *.jsx: 43 files, (4151 lines of code)
+  *.css: 23 files, (3081 lines of code)
+  *.js: 17 files, (577 lines of code)
+  *.html: 1 files, (15 lines of code)
+Analysing units...
+Basic unit metrics...
+  - found 18 units (276 lines of code in units)
+Unit size 32 / 123 / 69 / 52 / 0
+Unit size per component:
+Unit Size Component frontend: 32 / 123 / 69 / 52 / 0
+Unit size per extension:
+Unit Size Extension js: 32 / 123 / 69 / 52 / 0
+Conditional complexity: 110 / 107 / 59 / 0 / 0
+Conditional complexity per component:
+Conditional Complexity Component frontend 110 / 107 / 59 / 0 / 0
+Conditional complexity per extension:
+Conditional Complexity Component js: 110 / 107 / 59 / 0 / 0
+Analysing duplication...
+  - found 26 duplicates (329 duplicated lines vs. 7404 cleaned lines) in 23 files
+  - per component:primary
+     - "frontend": 329 duplicated lines vs. 7169 total lines
+     - "backend": 0 duplicated lines vs. 235 total lines
+  - per extension:
+     - "jsx": 240 duplicated lines vs. 3795 total lines
+     - "css": 82 duplicated lines vs. 3081 total lines
+     - "js": 7 duplicated lines vs. 516 total lines
+Total analysis time: 2.83s
+

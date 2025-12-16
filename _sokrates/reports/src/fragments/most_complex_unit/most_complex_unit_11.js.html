@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>export function buildInstructionsData()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function buildInstructionsData()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/recipe/utils.js [63:75]</i></p>
+<ul>
+    <li><b>12</b> lines of code</li>
+    <li><b>5</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function buildInstructionsData(instructions, recipeId) {
+  // accepte tableau de strings ou d&rsquo;objets { instruction }
+  return (instructions || [])
+    .filter((inst) =&gt; {
+      const s = typeof inst === &quot;string&quot; ? inst : inst?.instruction;
+      return String(s || &quot;&quot;).trim();
+    })
+    .map((inst, index) =&gt; ({
+      recipe_id: recipeId,
+      step_number: index + 1,
+      instruction: (typeof inst === &quot;string&quot; ? inst : inst.instruction).trim(),
+    }));
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Files Explorer</title>
+    <style>
+        body {
+            font-family: Vollkorn, Ubuntu, Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+        }
+
+        .group {
+            display: inline-block;
+            border: 1px solid lightgrey;
+            border-radius: 6px;
+            margin: 8px 18px 8px 8px;
+            padding: 5px;
+            background-color: #f8f8f8;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .icon {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 26px;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+        }
+
+        body {
+            margin: 40px;
+        }
+
+        ::placeholder {
+            color: lightgrey;
+            opacity: 1;
+        }
+
+        :-ms-input-placeholder {
+            color: lightgrey;
+        }
+
+        ::-ms-input-placeholder {
+            color: lightgrey;
+        }
+
+        td {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" target="_blank" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <link rel="stylesheet" target="_blank" href="https://fonts.googleapis.com/css?family=Lato">
+</head>
+<body style="margin: 12px">
+
+<div style="margin: 0; color: grey">
+    <div>
+        <div style="padding: 0px; margin-bottom: 26px; white-space: nowrap">
+            Scope: &nbsp;
+            <label><input type="checkbox" id="main" checked onchange="update()"><span
+                    id="label_main">main</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="test" checked onchange="update()"><span
+                    id="label_test">test</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="generated" checked onchange="update()"><span id="label_generated">generated</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="build" checked onchange="update()"><span
+                    id="label_build">build</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="other" checked onchange="update()"><span
+                    id="label_other">other</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="scope-summary" style="background-color: #f8f8f8"></span>
+        </div>
+        <input id="filter" type="text" placeholder="search..."
+               style="font-size: 16px; height: 32px; width: 320px; margin-bottom: 10px"
+               onkeyup="update()">
+        <div id="search-summary" style="display: inline-block"></div>
+    </div>
+</div>
+
+<div id="content"></div>
+
+<script>
+    let importedFiles = [{"repository":"","path":"backend/routes/payement.js","scope":"main","linesOfCode":208},{"repository":"","path":"backend/server.js","scope":"main","linesOfCode":40},{"repository":"","path":"frontend/eslint.config.js","scope":"main","linesOfCode":43},{"repository":"","path":"frontend/index.html","scope":"main","linesOfCode":15},{"repository":"","path":"frontend/src/components/App.jsx","scope":"main","linesOfCode":70},{"repository":"","path":"frontend/src/components/calculators/Calculators.css","scope":"main","linesOfCode":58},{"repository":"","path":"frontend/src/components/calculators/Calculators.jsx","scope":"main","linesOfCode":48},{"repository":"","path":"frontend/src/components/calculators/CaloriesCalculator.css","scope":"main","linesOfCode":50},{"repository":"","path":"frontend/src/components/calculators/CaloriesCalculator.jsx","scope":"main","linesOfCode":222},{"repository":"","path":"frontend/src/components/calculators/NutrientSection.jsx","scope":"main","linesOfCode":29},{"repository":"","path":"frontend/src/components/calculators/NutritionCalculator.css","scope":"main","linesOfCode":236},{"repository":"","path":"frontend/src/components/calculators/NutritionCalculator.jsx","scope":"main","linesOfCode":200},{"repository":"","path":"frontend/src/components/cart/Cart.css","scope":"main","linesOfCode":190},{"repository":"","path":"frontend/src/components/cart/Cart.jsx","scope":"main","linesOfCode":273},{"repository":"","path":"frontend/src/components/catalogue/Catalogue.css","scope":"main","linesOfCode":124},{"repository":"","path":"frontend/src/components/catalogue/Catalogue.jsx","scope":"main","linesOfCode":118},{"repository":"","path":"frontend/src/components/foodCard/FoodCard.css","scope":"main","linesOfCode":130},{"repository":"","path":"frontend/src/components/foodCard/FoodCard.jsx","scope":"main","linesOfCode":98},{"repository":"","path":"frontend/src/components/header/Backdrop.css","scope":"main","linesOfCode":9},{"repository":"","path":"frontend/src/components/header/Backdrop.jsx","scope":"main","linesOfCode":9},{"repository":"","path":"frontend/src/components/header/MainNavigation.css","scope":"main","linesOfCode":108},{"repository":"","path":"frontend/src/components/header/MainNavigation.jsx","scope":"main","linesOfCode":99},{"repository":"","path":"frontend/src/components/header/NavLinks.css","scope":"main","linesOfCode":88},{"repository":"","path":"frontend/src/components/header/NavLinks.jsx","scope":"main","linesOfCode":78},{"repository":"","path":"frontend/src/components/header/SideDrawer.css","scope":"main","linesOfCode":10},{"repository":"","path":"frontend/src/components/header/SideDrawer.jsx","scope":"main","linesOfCode":11},{"repository":"","path":"frontend/src/components/loginForm/loginForm.jsx","scope":"main","linesOfCode":78},{"repository":"","path":"frontend/src/components/mealPlan/DailyPlan.jsx","scope":"main","linesOfCode":199},{"repository":"","path":"frontend/src/components/mealPlan/MealPlans.jsx","scope":"main","linesOfCode":32},{"repository":"","path":"frontend/src/components/mealPlan/SavedPlanDetails.jsx","scope":"main","linesOfCode":342},{"repository":"","path":"frontend/src/components/mealPlan/SavedPlans.css","scope":"main","linesOfCode":109},{"repository":"","path":"frontend/src/components/mealPlan/SavedPlans.jsx","scope":"main","linesOfCode":135},{"repository":"","path":"frontend/src/components/monthlyJournal/monthlyJournal.css","scope":"main","linesOfCode":76},{"repository":"","path":"frontend/src/components/monthlyJournal/monthlyJournal.jsx","scope":"main","linesOfCode":119},{"repository":"","path":"frontend/src/components/payement/PayementSuccess.css","scope":"main","linesOfCode":304},{"repository":"","path":"frontend/src/components/payement/PayementSuccess.jsx","scope":"main","linesOfCode":194},{"repository":"","path":"frontend/src/components/payement/StripePayement.css","scope":"main","linesOfCode":148},{"repository":"","path":"frontend/src/components/payement/StripePayement.jsx","scope":"main","linesOfCode":94},{"repository":"","path":"frontend/src/components/recipe/CreateRecipe.jsx","scope":"main","linesOfCode":199},{"repository":"","path":"frontend/src/components/recipe/Recipe.jsx","scope":"main","linesOfCode":32},{"repository":"","path":"frontend/src/components/recipe/RecipeForm.jsx","scope":"main","linesOfCode":208},{"repository":"","path":"frontend/src/components/recipe/SavedRecipe.jsx","scope":"main","linesOfCode":200},{"repository":"","path":"frontend/src/components/recipe/SavedRecipeDetails.jsx","scope":"main","linesOfCode":425},{"repository":"","path":"frontend/src/components/shared/animation.css","scope":"main","linesOfCode":10},{"repository":"","path":"frontend/src/components/shared/buttons.css","scope":"main","linesOfCode":38},{"repository":"","path":"frontend/src/components/shared/CalculatorsBase.css","scope":"main","linesOfCode":172},{"repository":"","path":"frontend/src/components/shared/CatalogueBase.css","scope":"main","linesOfCode":19},{"repository":"","path":"frontend/src/components/shared/form.css","scope":"main","linesOfCode":155},{"repository":"","path":"frontend/src/components/shared/hooks/useCartFoods.js","scope":"main","linesOfCode":54},{"repository":"","path":"frontend/src/components/shared/hooks/useCartPrefill.js","scope":"main","linesOfCode":26},{"repository":"","path":"frontend/src/components/shared/hooks/usePrefillAuthors.js","scope":"main","linesOfCode":28},{"repository":"","path":"frontend/src/components/shared/hooks/useRecipeForm.js","scope":"main","linesOfCode":26},{"repository":"","path":"frontend/src/components/shared/hooks/useUrlTabs.js","scope":"main","linesOfCode":23},{"repository":"","path":"frontend/src/components/shared/mealPlan/mapUtils.js","scope":"main","linesOfCode":28},{"repository":"","path":"frontend/src/components/shared/mealPlan/MealPlanEditor.jsx","scope":"main","linesOfCode":171},{"repository":"","path":"frontend/src/components/shared/MealPlan.css","scope":"main","linesOfCode":381},{"repository":"","path":"frontend/src/components/shared/recipe/IngredientRow.jsx","scope":"main","linesOfCode":97},{"repository":"","path":"frontend/src/components/shared/recipe/InstructionRow.jsx","scope":"main","linesOfCode":33},{"repository":"","path":"frontend/src/components/shared/recipe/utils.js","scope":"main","linesOfCode":69},{"repository":"","path":"frontend/src/components/shared/Recipe.css","scope":"main","linesOfCode":564},{"repository":"","path":"frontend/src/components/shared/status.css","scope":"main","linesOfCode":22},{"repository":"","path":"frontend/src/components/shared/Tabs.css","scope":"main","linesOfCode":80},{"repository":"","path":"frontend/src/components/signupForm/signupForm.jsx","scope":"main","linesOfCode":170},{"repository":"","path":"frontend/src/config/api.js","scope":"main","linesOfCode":2},{"repository":"","path":"frontend/src/config/stripe.js","scope":"main","linesOfCode":3},{"repository":"","path":"frontend/src/containers/Calculatrices.jsx","scope":"main","linesOfCode":11},{"repository":"","path":"frontend/src/containers/Catalogue.jsx","scope":"main","linesOfCode":11},{"repository":"","path":"frontend/src/containers/ErrorPage.jsx","scope":"main","linesOfCode":13},{"repository":"","path":"frontend/src/containers/Home.jsx","scope":"main","linesOfCode":4},{"repository":"","path":"frontend/src/containers/Login.jsx","scope":"main","linesOfCode":4},{"repository":"","path":"frontend/src/containers/Plans.jsx","scope":"main","linesOfCode":11},{"repository":"","path":"frontend/src/containers/Recipes.jsx","scope":"main","linesOfCode":11},{"repository":"","path":"frontend/src/containers/Roots.jsx","scope":"main","linesOfCode":41},{"repository":"","path":"frontend/src/containers/SavedPlan.jsx","scope":"main","linesOfCode":11},{"repository":"","path":"frontend/src/containers/SavedRecipes.jsx","scope":"main","linesOfCode":11},{"repository":"","path":"frontend/src/containers/Signup.jsx","scope":"main","linesOfCode":4},{"repository":"","path":"frontend/src/context/auth-context.js","scope":"main","linesOfCode":8},{"repository":"","path":"frontend/src/context/cart-context.js","scope":"main","linesOfCode":4},{"repository":"","path":"frontend/src/context/nutrition-context.js","scope":"main","linesOfCode":6},{"repository":"","path":"frontend/src/context/nutrition.jsx","scope":"main","linesOfCode":9},{"repository":"","path":"frontend/src/context/NutritionProvider.jsx","scope":"main","linesOfCode":19},{"repository":"","path":"frontend/src/main.jsx","scope":"main","linesOfCode":8},{"repository":"","path":"frontend/src/supabaseClient.js","scope":"main","linesOfCode":4},{"repository":"","path":"frontend/vite.config.js","scope":"main","linesOfCode":5},{"repository":"","path":"backend/package-lock.json","scope":"generated","linesOfCode":1417},{"repository":"","path":"frontend/package-lock.json","scope":"generated","linesOfCode":4954},{"repository":"","path":"backend/package-lock.json","scope":"other","linesOfCode":1417},{"repository":"","path":"backend/package.json","scope":"other","linesOfCode":20},{"repository":"","path":"backend/vercel.json","scope":"other","linesOfCode":18},{"repository":"","path":"frontend/package-lock.json","scope":"other","linesOfCode":4954},{"repository":"","path":"frontend/package.json","scope":"other","linesOfCode":31},{"repository":"","path":"frontend/README.md","scope":"other","linesOfCode":7},{"repository":"","path":"frontend/vercel.json","scope":"other","linesOfCode":8},{"repository":"","path":"README.md","scope":"other","linesOfCode":16},{"repository":"","path":"test.txt","scope":"other","linesOfCode":3}];
+
+    importedFiles.forEach(file => {
+        let key = file.scope.replace('.txt', '').replace('aspect_', '').trim().toLowerCase();
+        if (key == 'build_and_deployment') {
+            key = 'build';
+        }
+        if (!document.getElementById(key)) {
+            key = 'other';
+        }
+        file.scope = key;
+    });
+
+
+    const importedFileMap = {};
+
+    let files = [];
+
+    importedFiles.forEach(file => {
+        const key = file.repository + '/' + file.path;
+        if (!importedFileMap[key]) {
+            importedFileMap[key] = true;
+            files.push(file);
+        }
+    });
+
+    function getScopes(files) {
+        const scopeMap = {};
+        const scopes = [];
+        files.forEach(file => {
+            const key = file.scope;
+            if (!scopeMap[key]) {
+                scopeMap[key] = {scope: key, filesCount: 0};
+                scopes.push(scopeMap[key]);
+            }
+
+            scopeMap[key].filesCount += 1;
+        });
+
+        scopes.sort((a, b) => b.filesCount - a.filesCount);
+        return scopes;
+    }
+
+
+    files = files.sort((a, b) => b.linesOfCode - a.linesOfCode);
+
+    function getReposCount(files) {
+        const allReposMap = {};
+        let reposCount = 0;
+
+        files.forEach(file => {
+            if (file.repository && !allReposMap[file.repository]) {
+                allReposMap[file.repository] = true;
+                reposCount++;
+            }
+        });
+
+        return reposCount;
+    }
+
+    function getLoc(files) {
+        return files.map(item => item.linesOfCode).reduce((a, b) => a + b, 0);
+    }
+
+    let lastSort = 'loc';
+
+    function update(sortBy) {
+        if (!sortBy) sortBy = lastSort || 'loc';
+        lastSort = sortBy;
+        files = files.sort((a, b) => {
+            if (sortBy === 'name') {
+                return (a.repository + '/' + a.path).localeCompare(b.repository + '/' + b.path);
+            } else {
+                return b.linesOfCode - a.linesOfCode;
+            }
+        });
+        const filter = document.getElementById('filter').value.toLowerCase().trim();
+        let html = '';
+
+        const scopedData = files
+            .filter(item => document.getElementById(item.scope).checked);
+
+        let scopedCount = scopedData.length;
+        let scopedLoc = scopedData.map(item => item.linesOfCode).reduce((a, b) => a + b, 0);
+        const scopedReposCount = getReposCount(scopedData)
+
+        const scopedRepoInfo = scopedReposCount ? ', ' + scopedReposCount + ' repositories' : '';
+        let totalReposCount = getReposCount(files);
+        const totalRepoInfo = totalReposCount ? ', ' + totalReposCount + ' repositories' : '';
+        document.getElementById('scope-summary').innerHTML = '[' + scopedCount.toLocaleString('en-US') + ' ' + (scopedCount === 1 ? 'file' : 'files') + '; ' + scopedLoc.toLocaleString('en-US') + ' LOC' + scopedRepoInfo + '] of ' + '[' + files.length.toLocaleString('en-US') + ' ' + (files.length === 1 ? 'file' : 'files') + '; ' + getLoc(files).toLocaleString('en-US') + ' LOC' + totalRepoInfo + ']';
+
+        const filteredData = scopedData
+            .filter(item => item.path && (!filter || (item.repository + ' ' + item.path).toLowerCase().includes(filter)));
+
+        let maxLoc = 1;
+        filteredData.forEach(item => maxLoc = Math.max(maxLoc, item.linesOfCode));
+
+        let filteredCount = filteredData.length;
+        let filteredLoc = filteredData.map(item => item.linesOfCode).reduce((a, b) => a + b, 0);
+        const filteredReposCount = getReposCount(filteredData)
+
+        const repoInfo = filteredReposCount ? ', ' + filteredReposCount + ' repositories' : '';
+
+        document.getElementById('search-summary').innerHTML = ' = ' + filteredCount.toLocaleString('en-US') + ' ' + (filteredCount === 1 ? 'file' : 'files') + ' (' + filteredLoc.toLocaleString('en-US') + ' LOC' + repoInfo + ')';
+
+        if (scopedLoc > filteredLoc) {
+            html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+            const w1count = Math.round(100 * filteredCount / scopedCount);
+            const w2count = 100 - w1count;
+            html += '<div style="margin: 0; display: inline-block; width: ' + w1count + '%; background-color: #303030; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; width: ' + w2count + '%; background-color: #c0c0c0; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; font-size: 80%; width: 100px; color: grey; vertical-align: top">&nbsp;' + (filteredLoc == 0 || w1count > 0 ? w1count : '<1') + '% of scoped files</div>';
+            html += '</div>';
+            if (filteredReposCount) {
+                html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+                const w1repo = Math.round(100 * filteredReposCount / scopedReposCount);
+                const w2repo = 100 - w1repo;
+                html += '<div style="margin: 0; display: inline-block; width: ' + w1repo + '%; background-color: #303030; height: 12px"></div>';
+                html += '<div style="margin: 0; display: inline-block; width: ' + w2repo + '%; background-color: #c0c0c0; height: 12px"></div>';
+                html += '<div style="margin: 0; display: inline-block; font-size: 80%; width: 100px; color: grey; vertical-align: top">&nbsp;' + (filteredLoc == 0 || w1repo > 0 ? w1repo : '<1') + '% of scoped repositories</div>';
+                html += '</div>';
+            }
+            html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+            const w1loc = Math.round(100 * filteredLoc / scopedLoc);
+            const w2loc = 100 - w1loc;
+            html += '<div style="margin: 0; display: inline-block; width: ' + w1loc + '%; background-color: skyblue; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; width: ' + w2loc + '%; background-color: #c0c0c0; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; font-size: 80%; width: 100px; color: grey; vertical-align: top">&nbsp;' + (filteredLoc == 0 || w1loc > 0 ? w1loc : '<1') + '% of scoped LOC</div>';
+            html += '</div>';
+            html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+
+        }
+
+        html += '<table style="width: 100%">';
+
+        html += '<tr style="color: #777777; background-color: #f8f8f8">';
+        if (filteredReposCount) {
+            html += '<td style="text-align: left">repo</td>';
+        }
+        html += '<td style="text-align: left"><a href="#" onclick="update(\'name\');">file</a></td>';
+        html += '<td style="text-align: left"><a href="#" onclick="update(\'loc\');">&nbsp;LOC</a></td>';
+        html += '<td style="text-align: center">scope</td>';
+        html += '</tr>';
+
+        let displayCounter = 0;
+
+        filteredData.forEach(item => {
+            if (displayCounter > 1000) {
+                return;
+            }
+            displayCounter++;
+            html += '<tr>';
+            if (filteredReposCount) {
+                html += '<td>';
+                html += item.repository;
+                html += '</td>';
+            }
+            html += '<td>';
+            const paths = item.path.split('/');
+            const fileName = paths[paths.length - 1];
+            const folder = paths.slice(0, paths.length - 1).join('/');
+            html += '<span style="color: #afafaf">' + (folder + folder ? folder + '/' : '') + '</span>';
+            html += '<span style="color: black; font-weight: bold">' + fileName + '</span>';
+            html += '</td>';
+
+            let scope = item.scope;
+            html += '<td style="text-align: left; padding-right: 5px; padding-left: 5px">';
+            html += '<div style=" border-radius: 4px; padding 2px;">';
+            const w = maxLoc > 0 ? Math.round(50 * item.linesOfCode / maxLoc + 1) : 0;
+            if (scope === 'main') {
+                html += '<div style="vertical-align: top; display: inline-block; height: 16px; background-color: blue; width: ' + w + 'px"></div>';
+            } else {
+                html += '<div style="vertical-align: top; display: inline-block; height: 16px; background-color: lightgrey; width: ' + w + 'px"></div>';
+            }
+            html += '<div style="margin-left: 2px; vertical-align: top; display: inline-block; font-size: 80%">' + item.linesOfCode.toLocaleString("en-US") + '</div>';
+            html += '</div>';
+            html += '</td>';
+            html += '<td style="text-align: center; padding-right: 5px; padding-left: 5px;">';
+            if (scope === 'main') {
+                html += '<div style="border: 1px solid #d0d0d0; border-radius: 4px; padding 2px; color: blue">';
+            } else {
+                html += '<div style="border: 1px solid #d0d0d0; background-color: #f4f4f4; border-radius: 4px; padding 2px;">';
+            }
+            html += scope;
+            html += '</div>';
+            html += '</td>';
+            html += '<td style="text-align: left; padding-right: 5px; padding-left: 5px;">';
+            html += '</td>';
+            html += '</tr>';
+        });
+
+        html += '</table>';
+
+        document.getElementById('content').innerHTML = html;
+    }
+
+    update();
+</script>
+</body>
+</html>

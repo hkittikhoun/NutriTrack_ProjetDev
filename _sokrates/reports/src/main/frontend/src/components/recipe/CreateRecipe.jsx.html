@@ -1,0 +1,248 @@
+<html>
+<head>
+    <title>frontend/src/components/recipe/CreateRecipe.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/recipe/CreateRecipe.jsx (<b>199</b> lines of code) (<a href="CreateRecipe.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useContext } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import { usePrefillAuthor } from &quot;../shared/hooks/usePrefillAuthors&quot;;
+import { useCartFoods } from &quot;../shared/hooks/useCartFoods&quot;;
+import { prefillFromCartToIngredients } from &quot;../shared/hooks/useCartPrefill&quot;;
+import &quot;../shared/Recipe.css&quot;;
+import {
+  validateRecipe,
+  buildIngredientsData,
+  buildInstructionsData,
+} from &quot;../shared/recipe/utils&quot;;
+import { RecipeForm } from &quot;./RecipeForm&quot;;
+
+// helpers pour &eacute;viter les duplications
+const makeEmptyIngredient = () =&gt; ({
+  id: Date.now(),
+  foodId: &quot;&quot;,
+  ingredientName: &quot;&quot;,
+  quantity: &quot;&quot;,
+  unit: &quot;g&quot;,
+  preparation: &quot;&quot;,
+});
+const INITIAL_INGREDIENTS = [makeEmptyIngredient()];
+const INITIAL_INSTRUCTIONS = [&quot;&quot;];
+
+export default function CreateRecipe() {
+  const [title, setTitle] = useState(&quot;&quot;);
+  const [author, setAuthor] = useState(&quot;&quot;);
+  const [description, setDescription] = useState(&quot;&quot;);
+  const [servings, setServings] = useState(&quot;&quot;);
+  const [difficultyLevel, setDifficultyLevel] = useState(&quot;easy&quot;);
+  const [category, setCategory] = useState(&quot;&quot;);
+  const [cookingTime, setCookingTime] = useState(&quot;&quot;);
+  const [prepTime, setPrepTime] = useState(&quot;&quot;);
+
+  const [ingredients, setIngredients] = useState(INITIAL_INGREDIENTS);
+  const [instructions, setInstructions] = useState(INITIAL_INSTRUCTIONS);
+
+  const [notice, setNotice] = useState(null);
+  const [error, setError] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { cartFoods, loadingCart, cartError } = useCartFoods();
+  usePrefillAuthor(author, setAuthor, auth);
+
+  const resetForm = () =&gt; {
+    setTitle(&quot;&quot;);
+    setDescription(&quot;&quot;);
+    setServings(&quot;&quot;);
+    setCookingTime(&quot;&quot;);
+    setPrepTime(&quot;&quot;);
+    setCategory(&quot;&quot;);
+    setIngredients([makeEmptyIngredient()]);
+    setInstructions(INITIAL_INSTRUCTIONS);
+  };
+
+  const prefillFromCart = () =&gt; {
+    const mapped = prefillFromCartToIngredients(cartFoods);
+    if (!mapped) {
+      setNotice(&quot;Aucun item dans le panier pour pr&eacute;-remplir.&quot;);
+      setTimeout(() =&gt; setNotice(null), 2000);
+      return;
+    }
+    setIngredients(mapped);
+    setNotice(`Pr&eacute;-rempli avec ${cartFoods.length} ingr&eacute;dients du panier.`);
+    setTimeout(() =&gt; setNotice(null), 2500);
+  };
+
+  const handleSubmit = async (e) =&gt; {
+    e.preventDefault();
+
+    const errors = validateRecipe({
+      title,
+      author,
+      ingredients,
+      instructions,
+    });
+    if (errors.length &gt; 0) {
+      setError(errors.join(&quot;, &quot;));
+      return;
+    }
+
+    setSaving(true);
+    setError(null);
+
+    try {
+      const { data: authData, error: authErr } = await supabase.auth.getUser();
+      if (authErr) {
+        setError(&quot;Erreur d'authentification: &quot; + authErr.message);
+        return;
+      }
+      const userId = authData?.user?.id || auth.userId;
+      if (!userId) {
+        setError(&quot;Veuillez vous connecter pour cr&eacute;er une recette.&quot;);
+        return;
+      }
+
+      const recipeData = {
+        user_id: userId,
+        title: title.trim(),
+        author: author.trim(),
+        description: description.trim() || null,
+        servings: servings ? parseInt(servings) : null,
+        difficulty_level: difficultyLevel,
+        category: category.trim() || null,
+        cooking_time: cookingTime ? parseInt(cookingTime) : null,
+        prep_time: prepTime ? parseInt(prepTime) : null,
+      };
+
+      const { data: recipe, error: recipeErr } = await supabase
+        .from(&quot;recipes&quot;)
+        .insert(recipeData)
+        .select()
+        .single();
+
+      if (recipeErr) {
+        setError(&quot;Impossible de cr&eacute;er la recette: &quot; + recipeErr.message);
+        return;
+      }
+
+      const ingredientsData = buildIngredientsData(ingredients, recipe.id);
+      if (ingredientsData.length &gt; 0) {
+        const { error: ingredientsErr } = await supabase
+          .from(&quot;recipe_ingredients&quot;)
+          .insert(ingredientsData);
+        if (ingredientsErr) {
+          setError(
+            &quot;Impossible d'ajouter les ingr&eacute;dients: &quot; + ingredientsErr.message
+          );
+          return;
+        }
+      }
+
+      const instructionsData = buildInstructionsData(instructions, recipe.id);
+      if (instructionsData.length &gt; 0) {
+        const { error: instructionsErr } = await supabase
+          .from(&quot;recipe_instructions&quot;)
+          .insert(instructionsData);
+        if (instructionsErr) {
+          setError(
+            &quot;Impossible d'ajouter les instructions: &quot; + instructionsErr.message
+          );
+          return;
+        }
+      }
+
+      setNotice(&quot;Recette cr&eacute;&eacute;e avec succ&egrave;s!&quot;);
+      resetForm();
+
+      setTimeout(() =&gt; {
+        setNotice(null);
+        navigate(&quot;/recipe?tab=saved&quot;);
+      }, 2000);
+    } catch (e) {
+      console.error(e);
+      setError(&quot;Erreur lors de la cr&eacute;ation de la recette&quot;);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    &lt;div className=&quot;create-recipe&quot;&gt;
+      &lt;h2&gt;Create New Recipe&lt;/h2&gt;
+
+      {notice &amp;&amp; &lt;div className=&quot;notice success&quot;&gt;{notice}&lt;/div&gt;}
+      {error &amp;&amp; &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;}
+      {loadingCart &amp;&amp; &lt;div className=&quot;loading&quot;&gt;Loading...&lt;/div&gt;}
+      {cartError &amp;&amp; &lt;div className=&quot;error&quot;&gt;{cartError}&lt;/div&gt;}
+
+      &lt;RecipeForm
+        mode=&quot;create&quot;
+        fields={{
+          title,
+          author,
+          description,
+          servings,
+          difficultyLevel,
+          category,
+          cookingTime,
+          prepTime,
+        }}
+        setFields={{
+          setTitle,
+          setAuthor,
+          setDescription,
+          setServings,
+          setDifficultyLevel,
+          setCategory,
+          setCookingTime,
+          setPrepTime,
+        }}
+        ingredients={ingredients}
+        setIngredients={setIngredients}
+        instructions={instructions}
+        setInstructions={setInstructions}
+        cartFoods={cartFoods}
+        loading={saving}
+        onSave={handleSubmit}
+      /&gt;
+
+      {cartFoods &amp;&amp; cartFoods.length &gt; 0 &amp;&amp; (
+        &lt;div className=&quot;cart-section&quot;&gt;
+          &lt;h3&gt;Available ingredients from your cart ({cartFoods.length})&lt;/h3&gt;
+          &lt;button
+            type=&quot;button&quot;
+            onClick={prefillFromCart}
+            disabled={saving || loadingCart}
+            className=&quot;prefill-btn&quot;
+          &gt;
+            Prefill from cart
+          &lt;/button&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

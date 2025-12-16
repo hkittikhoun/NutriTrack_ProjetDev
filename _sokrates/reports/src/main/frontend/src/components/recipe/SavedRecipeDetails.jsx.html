@@ -1,0 +1,503 @@
+<html>
+<head>
+    <title>frontend/src/components/recipe/SavedRecipeDetails.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/recipe/SavedRecipeDetails.jsx (<b>425</b> lines of code) (<a href="SavedRecipeDetails.jsx">raw</a>):</h3>
+<div id="editor">import { useEffect, useState, useContext } from &quot;react&quot;;
+import { useParams, useNavigate, useSearchParams } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import &quot;../shared/Recipe.css&quot;;
+
+import {
+  validateRecipe,
+  getDifficultyColor,
+  getDifficultyLabel,
+  buildIngredientsData,
+  buildInstructionsData,
+} from &quot;../shared/recipe/utils&quot;;
+import { RecipeForm } from &quot;./RecipeForm&quot;;
+import {
+  mapDbIngredientsToEdit,
+  mapDbInstructionsToEdit,
+} from &quot;../shared/hooks/useRecipeForm&quot;;
+
+export default function SavedRecipeDetails() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+  const [searchParams] = useSearchParams();
+
+  const [recipe, setRecipe] = useState(null);
+  const [ingredients, setIngredients] = useState([]);
+  const [instructions, setInstructions] = useState([]);
+  const [cartFoods, setCartFoods] = useState([]);
+  const [isEditing, setIsEditing] = useState(
+    searchParams.get(&quot;edit&quot;) === &quot;true&quot;
+  );
+
+  const [editTitle, setEditTitle] = useState(&quot;&quot;);
+  const [editAuthor, setEditAuthor] = useState(&quot;&quot;);
+  const [editDescription, setEditDescription] = useState(&quot;&quot;);
+  const [editServings, setEditServings] = useState(&quot;&quot;);
+  const [editDifficultyLevel, setEditDifficultyLevel] = useState(&quot;easy&quot;);
+  const [editCategory, setEditCategory] = useState(&quot;&quot;);
+  const [editCookingTime, setEditCookingTime] = useState(&quot;&quot;);
+  const [editPrepTime, setEditPrepTime] = useState(&quot;&quot;);
+  const [editIngredients, setEditIngredients] = useState([]);
+  const [editInstructions, setEditInstructions] = useState([&quot;&quot;]);
+
+  const [notice, setNotice] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      try {
+        setLoading(true);
+
+        const { data: recipeData, error: rErr } = await supabase
+          .from(&quot;recipes&quot;)
+          .select(&quot;*&quot;)
+          .eq(&quot;id&quot;, id)
+          .single();
+
+        if (rErr) {
+          setError(rErr.message || &quot;Failed to load recipe&quot;);
+          setLoading(false);
+          return;
+        }
+        setRecipe(recipeData);
+
+        const { data: ingredientsData, error: iErr } = await supabase
+          .from(&quot;recipe_ingredients&quot;)
+          .select(&quot;*&quot;)
+          .eq(&quot;recipe_id&quot;, id)
+          .order(&quot;order_index&quot;, { ascending: true });
+
+        if (iErr) {
+          setError(iErr.message || &quot;Failed to load ingredients&quot;);
+          setLoading(false);
+          return;
+        }
+        setIngredients(ingredientsData || []);
+
+        const { data: instructionsData, error: insErr } = await supabase
+          .from(&quot;recipe_instructions&quot;)
+          .select(&quot;*&quot;)
+          .eq(&quot;recipe_id&quot;, id)
+          .order(&quot;step_number&quot;, { ascending: true });
+
+        if (insErr) {
+          setError(insErr.message || &quot;Failed to load instructions&quot;);
+          setLoading(false);
+          return;
+        }
+        setInstructions(instructionsData || []);
+
+        if (
+          searchParams.get(&quot;edit&quot;) === &quot;true&quot; &amp;&amp;
+          (!auth?.userId || recipeData.user_id !== auth.userId)
+        ) {
+          setIsEditing(false);
+          setNotice(&quot;You can only edit your own recipes.&quot;);
+          setTimeout(() =&gt; setNotice(null), 3000);
+        }
+
+        if (recipeData.user_id === auth?.userId) {
+          setEditTitle(recipeData.title || &quot;&quot;);
+          setEditAuthor(recipeData.author || &quot;&quot;);
+          setEditDescription(recipeData.description || &quot;&quot;);
+          setEditServings(recipeData.servings || &quot;&quot;);
+          setEditDifficultyLevel(recipeData.difficulty_level || &quot;easy&quot;);
+          setEditCategory(recipeData.category || &quot;&quot;);
+          setEditCookingTime(recipeData.cooking_time || &quot;&quot;);
+          setEditPrepTime(recipeData.prep_time || &quot;&quot;);
+
+          setEditIngredients(mapDbIngredientsToEdit(ingredientsData));
+          setEditInstructions(mapDbInstructionsToEdit(instructionsData));
+
+          const { data: authData, error: authErr } =
+            await supabase.auth.getUser();
+          if (!authErr &amp;&amp; authData?.user?.id) {
+            const { data: cartRows, error: cartErr } = await supabase
+              .from(&quot;cart_items&quot;)
+              .select(
+                `
+                id,
+                quantity,
+                food:food_id(FoodID, FoodDescription)
+              `
+              )
+              .eq(&quot;user_id&quot;, authData.user.id)
+              .order(&quot;id&quot;, { ascending: true });
+
+            if (!cartErr) {
+              const cartItems = (cartRows || [])
+                .filter((r) =&gt; r.food &amp;&amp; r.food.FoodID)
+                .map((r) =&gt; ({
+                  id: r.id,
+                  foodId: r.food.FoodID,
+                  name: r.food.FoodDescription,
+                  cartQuantity: r.quantity,
+                }));
+              setCartFoods(cartItems);
+            }
+          }
+        }
+      } catch (e) {
+        console.error(e);
+        setError(&quot;Failed to load recipe&quot;);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id, auth?.userId, searchParams]);
+
+  const isOwner = () =&gt; {
+    return auth?.userId &amp;&amp; recipe?.user_id === auth.userId;
+  };
+
+  const startEdit = () =&gt; {
+    if (!isOwner()) {
+      setNotice(&quot;You can only edit your own recipes.&quot;);
+      setTimeout(() =&gt; setNotice(null), 3000);
+      return;
+    }
+    setIsEditing(true);
+  };
+
+  const cancelEdit = () =&gt; {
+    setEditTitle(recipe?.title || &quot;&quot;);
+    setEditAuthor(recipe?.author || &quot;&quot;);
+    setEditDescription(recipe?.description || &quot;&quot;);
+    setEditServings(recipe?.servings || &quot;&quot;);
+    setEditDifficultyLevel(recipe?.difficulty_level || &quot;easy&quot;);
+    setEditCategory(recipe?.category || &quot;&quot;);
+    setEditCookingTime(recipe?.cooking_time || &quot;&quot;);
+    setEditPrepTime(recipe?.prep_time || &quot;&quot;);
+
+    setEditIngredients(mapDbIngredientsToEdit(ingredients));
+    setEditInstructions(mapDbInstructionsToEdit(instructions));
+
+    setIsEditing(false);
+  };
+
+  const saveEdits = async () =&gt; {
+    if (!isOwner()) {
+      setError(&quot;You can only edit your own recipes.&quot;);
+      return;
+    }
+
+    const errors = validateRecipe({
+      title: editTitle,
+      author: editAuthor,
+      ingredients: editIngredients,
+      instructions: editInstructions,
+    });
+    if (errors.length &gt; 0) {
+      setError(errors.join(&quot;, &quot;));
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const recipeData = {
+        title: editTitle.trim(),
+        author: editAuthor.trim(),
+        description: editDescription.trim() || null,
+        servings: editServings ? parseInt(editServings) : null,
+        difficulty_level: editDifficultyLevel,
+        category: editCategory.trim() || null,
+        cooking_time: editCookingTime ? parseInt(editCookingTime) : null,
+        prep_time: editPrepTime ? parseInt(editPrepTime) : null,
+      };
+
+      const { error: recipeErr } = await supabase
+        .from(&quot;recipes&quot;)
+        .update(recipeData)
+        .eq(&quot;id&quot;, id)
+        .eq(&quot;user_id&quot;, auth.userId);
+
+      if (recipeErr) {
+        setError(&quot;Failed to update recipe: &quot; + recipeErr.message);
+        return;
+      }
+
+      const { error: delIngredientsErr } = await supabase
+        .from(&quot;recipe_ingredients&quot;)
+        .delete()
+        .eq(&quot;recipe_id&quot;, id);
+
+      if (delIngredientsErr) {
+        setError(
+          &quot;Failed to delete old ingredients: &quot; + delIngredientsErr.message
+        );
+        return;
+      }
+
+      const ingredientsData = buildIngredientsData(editIngredients, id);
+      if (ingredientsData.length &gt; 0) {
+        const { error: ingredientsErr } = await supabase
+          .from(&quot;recipe_ingredients&quot;)
+          .insert(ingredientsData);
+
+        if (ingredientsErr) {
+          setError(&quot;Failed to add ingredients: &quot; + ingredientsErr.message);
+          return;
+        }
+      }
+
+      const { error: delInstructionsErr } = await supabase
+        .from(&quot;recipe_instructions&quot;)
+        .delete()
+        .eq(&quot;recipe_id&quot;, id);
+
+      if (delInstructionsErr) {
+        setError(
+          &quot;Failed to delete old instructions: &quot; + delInstructionsErr.message
+        );
+        return;
+      }
+
+      const instructionsData = buildInstructionsData(editInstructions, id);
+      if (instructionsData.length &gt; 0) {
+        const { error: instructionsErr } = await supabase
+          .from(&quot;recipe_instructions&quot;)
+          .insert(instructionsData);
+
+        if (instructionsErr) {
+          setError(&quot;Failed to add instructions: &quot; + instructionsErr.message);
+          return;
+        }
+      }
+
+      const updatedRecipe = { ...recipe, ...recipeData };
+      setRecipe(updatedRecipe);
+
+      setEditTitle(updatedRecipe.title || &quot;&quot;);
+      setEditAuthor(updatedRecipe.author || &quot;&quot;);
+      setEditDescription(updatedRecipe.description || &quot;&quot;);
+      setEditServings(updatedRecipe.servings || &quot;&quot;);
+      setEditDifficultyLevel(updatedRecipe.difficulty_level || &quot;easy&quot;);
+      setEditCategory(updatedRecipe.category || &quot;&quot;);
+      setEditCookingTime(updatedRecipe.cooking_time || &quot;&quot;);
+      setEditPrepTime(updatedRecipe.prep_time || &quot;&quot;);
+
+      const { data: newIngredients } = await supabase
+        .from(&quot;recipe_ingredients&quot;)
+        .select(&quot;*&quot;)
+        .eq(&quot;recipe_id&quot;, id)
+        .order(&quot;order_index&quot;, { ascending: true });
+      setIngredients(newIngredients || []);
+
+      const { data: newInstructions } = await supabase
+        .from(&quot;recipe_instructions&quot;)
+        .select(&quot;*&quot;)
+        .eq(&quot;recipe_id&quot;, id)
+        .order(&quot;step_number&quot;, { ascending: true });
+      setInstructions(newInstructions || []);
+
+      setIsEditing(false);
+      setNotice(&quot;Recipe updated successfully!&quot;);
+      setTimeout(() =&gt; setNotice(null), 3000);
+    } catch (e) {
+      console.error(e);
+      setError(&quot;Unexpected error while saving&quot;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading &amp;&amp; !recipe) {
+    return (
+      &lt;div className=&quot;recipe-details&quot;&gt;
+        &lt;div className=&quot;loading&quot;&gt;Loading recipe...&lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (error &amp;&amp; !recipe) {
+    return (
+      &lt;div className=&quot;recipe-details&quot;&gt;
+        &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;
+        &lt;button onClick={() =&gt; navigate(-1)} className=&quot;back-btn&quot;&gt;
+          Back
+        &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (!recipe) {
+    return (
+      &lt;div className=&quot;recipe-details&quot;&gt;
+        &lt;div className=&quot;error&quot;&gt;Recipe not found&lt;/div&gt;
+        &lt;button onClick={() =&gt; navigate(-1)} className=&quot;back-btn&quot;&gt;
+          Back
+        &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;recipe-details&quot;&gt;
+      &lt;h1&gt;Recipe Details&lt;/h1&gt;
+      {notice &amp;&amp; &lt;div className=&quot;notice success&quot;&gt;{notice}&lt;/div&gt;}
+      {error &amp;&amp; &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;}
+
+      {!isEditing ? (
+        &lt;div className=&quot;recipe-display&quot;&gt;
+          &lt;div className=&quot;recipe-header-info&quot;&gt;
+            &lt;h2&gt;{recipe.title}&lt;/h2&gt;
+            {isOwner() &amp;&amp; &lt;span className=&quot;owner-badge&quot;&gt;Your recipe&lt;/span&gt;}
+          &lt;/div&gt;
+
+          &lt;div className=&quot;recipe-meta&quot;&gt;
+            &lt;span&gt;
+              &lt;strong&gt;Author:&lt;/strong&gt; {recipe.author || &quot;Anonymous&quot;}
+            &lt;/span&gt;
+            &lt;span&gt;
+              &lt;strong&gt;Difficulty:&lt;/strong&gt;{&quot; &quot;}
+              &lt;span
+                style={{ color: getDifficultyColor(recipe.difficulty_level) }}
+              &gt;
+                {getDifficultyLabel(recipe.difficulty_level)}
+              &lt;/span&gt;
+            &lt;/span&gt;
+            {recipe.servings &amp;&amp; (
+              &lt;span&gt;
+                &lt;strong&gt;Servings:&lt;/strong&gt; {recipe.servings}
+              &lt;/span&gt;
+            )}
+            {recipe.category &amp;&amp; (
+              &lt;span&gt;
+                &lt;strong&gt;Category:&lt;/strong&gt; {recipe.category}
+              &lt;/span&gt;
+            )}
+            {recipe.prep_time &amp;&amp; (
+              &lt;span&gt;
+                &lt;strong&gt;Prep time:&lt;/strong&gt; {recipe.prep_time} min
+              &lt;/span&gt;
+            )}
+            {recipe.cooking_time &amp;&amp; (
+              &lt;span&gt;
+                &lt;strong&gt;Cook time:&lt;/strong&gt; {recipe.cooking_time} min
+              &lt;/span&gt;
+            )}
+          &lt;/div&gt;
+
+          {recipe.description &amp;&amp; (
+            &lt;div className=&quot;recipe-description&quot;&gt;
+              &lt;h3&gt;Description&lt;/h3&gt;
+              &lt;p&gt;{recipe.description}&lt;/p&gt;
+            &lt;/div&gt;
+          )}
+
+          &lt;div className=&quot;recipe-ingredients&quot;&gt;
+            &lt;h3&gt;Ingredients&lt;/h3&gt;
+            {ingredients.length === 0 ? (
+              &lt;p className=&quot;no-items&quot;&gt;No ingredients&lt;/p&gt;
+            ) : (
+              &lt;ul&gt;
+                {ingredients.map((ingredient) =&gt; (
+                  &lt;li key={ingredient.id}&gt;
+                    &lt;strong&gt;{ingredient.ingredient_name}&lt;/strong&gt;
+                    {ingredient.quantity &amp;&amp; (
+                      &lt;span&gt; &mdash; {ingredient.quantity}&lt;/span&gt;
+                    )}
+                    {ingredient.unit &amp;&amp; &lt;span&gt; {ingredient.unit}&lt;/span&gt;}
+                    {ingredient.preparation &amp;&amp; (
+                      &lt;span&gt; ({ingredient.preparation})&lt;/span&gt;
+                    )}
+                  &lt;/li&gt;
+                ))}
+              &lt;/ul&gt;
+            )}
+          &lt;/div&gt;
+
+          &lt;div className=&quot;recipe-instructions&quot;&gt;
+            &lt;h3&gt;Instructions&lt;/h3&gt;
+            {instructions.length === 0 ? (
+              &lt;p className=&quot;no-items&quot;&gt;No instructions&lt;/p&gt;
+            ) : (
+              &lt;ol&gt;
+                {instructions.map((instruction) =&gt; (
+                  &lt;li key={instruction.id}&gt;{instruction.instruction}&lt;/li&gt;
+                ))}
+              &lt;/ol&gt;
+            )}
+          &lt;/div&gt;
+
+          &lt;div className=&quot;action-buttons&quot;&gt;
+            {isOwner() &amp;&amp; (
+              &lt;button onClick={startEdit} className=&quot;edit-btn&quot;&gt;
+                Edit
+              &lt;/button&gt;
+            )}
+            &lt;button onClick={() =&gt; navigate(-1)} className=&quot;back-btn&quot;&gt;
+              Back
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;RecipeForm
+          mode=&quot;edit&quot;
+          fields={{
+            title: editTitle,
+            author: editAuthor,
+            description: editDescription,
+            servings: editServings,
+            difficultyLevel: editDifficultyLevel,
+            category: editCategory,
+            cookingTime: editCookingTime,
+            prepTime: editPrepTime,
+          }}
+          setFields={{
+            setTitle: setEditTitle,
+            setAuthor: setEditAuthor,
+            setDescription: setEditDescription,
+            setServings: setEditServings,
+            setDifficultyLevel: setEditDifficultyLevel,
+            setCategory: setEditCategory,
+            setCookingTime: setEditCookingTime,
+            setPrepTime: setEditPrepTime,
+          }}
+          ingredients={editIngredients}
+          setIngredients={setEditIngredients}
+          instructions={editInstructions}
+          setInstructions={setEditInstructions}
+          cartFoods={cartFoods}
+          loading={loading}
+          onSave={saveEdits}
+          onCancel={cancelEdit}
+        /&gt;
+      )}
+      {error &amp;&amp; &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;}
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

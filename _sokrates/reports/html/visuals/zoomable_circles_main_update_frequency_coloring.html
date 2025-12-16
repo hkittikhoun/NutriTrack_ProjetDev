@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .node {
+        cursor: pointer;
+    }
+
+    .node:hover {
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+
+    .node--leaf {
+        fill: white;
+    }
+
+    .label {
+        font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-anchor: middle;
+        text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+    }
+
+    .label,
+    .node--root,
+    .node--leaf {
+        pointer-events: none;
+    }
+
+</style>
+<svg width="960" height="960"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+    var svg = d3.select("svg"),
+        margin = 20,
+        diameter = +svg.attr("width"),
+        g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+    var color = d3.scaleLinear()
+        .domain([-1, 5])
+        .range(["hsl(152,80%,100%)", "hsl(228,30%,40%)"])
+        .interpolate(d3.interpolateHcl);
+
+    var pack = d3.pack()
+        .size([diameter - margin, diameter - margin])
+        .padding(2);
+
+
+    var root = {
+        "name": "cluster",
+        "children": [ {
+  "name" : "backend",
+  "color" : "#6192c3",
+  "size" : 0,
+  "children" : [ {
+    "name" : "routes",
+    "color" : "#6192c3",
+    "size" : 0,
+    "children" : [ {
+      "name" : "payement.js (1)",
+      "color" : "#6192c3",
+      "size" : 208,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "server.js (1)",
+    "color" : "#6192c3",
+    "size" : 40,
+    "children" : [ ]
+  } ]
+}, {
+  "name" : "frontend",
+  "color" : "#6192c3",
+  "size" : 0,
+  "children" : [ {
+    "name" : "eslint.config.js (2)",
+    "color" : "#6192c3",
+    "size" : 43,
+    "children" : [ ]
+  }, {
+    "name" : "index.html (3)",
+    "color" : "#6192c3",
+    "size" : 15,
+    "children" : [ ]
+  }, {
+    "name" : "src",
+    "color" : "#6192c3",
+    "size" : 0,
+    "children" : [ {
+      "name" : "components",
+      "color" : "#6192c3",
+      "size" : 0,
+      "children" : [ {
+        "name" : "App.jsx (9)",
+        "color" : "#b0d8e9",
+        "size" : 70,
+        "children" : [ ]
+      }, {
+        "name" : "calculators",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Calculators.css (1)",
+          "color" : "#6192c3",
+          "size" : 58,
+          "children" : [ ]
+        }, {
+          "name" : "Calculators.jsx (1)",
+          "color" : "#6192c3",
+          "size" : 48,
+          "children" : [ ]
+        }, {
+          "name" : "CaloriesCalculator.css (2)",
+          "color" : "#6192c3",
+          "size" : 50,
+          "children" : [ ]
+        }, {
+          "name" : "CaloriesCalculator.jsx (1)",
+          "color" : "#6192c3",
+          "size" : 222,
+          "children" : [ ]
+        }, {
+          "name" : "NutrientSection.jsx (1)",
+          "color" : "#6192c3",
+          "size" : 29,
+          "children" : [ ]
+        }, {
+          "name" : "NutritionCalculator.css (2)",
+          "color" : "#6192c3",
+          "size" : 236,
+          "children" : [ ]
+        }, {
+          "name" : "NutritionCalculator.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 200,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "cart",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Cart.css (2)",
+          "color" : "#6192c3",
+          "size" : 190,
+          "children" : [ ]
+        }, {
+          "name" : "Cart.jsx (4)",
+          "color" : "#6192c3",
+          "size" : 273,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "catalogue",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Catalogue.css (4)",
+          "color" : "#6192c3",
+          "size" : 124,
+          "children" : [ ]
+        }, {
+          "name" : "Catalogue.jsx (3)",
+          "color" : "#6192c3",
+          "size" : 118,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "foodCard",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "FoodCard.css (4)",
+          "color" : "#6192c3",
+          "size" : 130,
+          "children" : [ ]
+        }, {
+          "name" : "FoodCard.jsx (5)",
+          "color" : "#6192c3",
+          "size" : 98,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "header",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Backdrop.css (1)",
+          "color" : "#6192c3",
+          "size" : 9,
+          "children" : [ ]
+        }, {
+          "name" : "Backdrop.jsx (1)",
+          "color" : "#6192c3",
+          "size" : 9,
+          "children" : [ ]
+        }, {
+          "name" : "MainNavigation.css (5)",
+          "color" : "#6192c3",
+          "size" : 108,
+          "children" : [ ]
+        }, {
+          "name" : "MainNavigation.jsx (6)",
+          "color" : "#b0d8e9",
+          "size" : 99,
+          "children" : [ ]
+        }, {
+          "name" : "NavLinks.css (6)",
+          "color" : "#b0d8e9",
+          "size" : 88,
+          "children" : [ ]
+        }, {
+          "name" : "NavLinks.jsx (8)",
+          "color" : "#b0d8e9",
+          "size" : 78,
+          "children" : [ ]
+        }, {
+          "name" : "SideDrawer.css (1)",
+          "color" : "#6192c3",
+          "size" : 10,
+          "children" : [ ]
+        }, {
+          "name" : "SideDrawer.jsx (1)",
+          "color" : "#6192c3",
+          "size" : 11,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "loginForm",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "loginForm.jsx (4)",
+          "color" : "#6192c3",
+          "size" : 78,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "mealPlan",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "DailyPlan.jsx (3)",
+          "color" : "#6192c3",
+          "size" : 199,
+          "children" : [ ]
+        }, {
+          "name" : "MealPlans.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 32,
+          "children" : [ ]
+        }, {
+          "name" : "SavedPlanDetails.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 342,
+          "children" : [ ]
+        }, {
+          "name" : "SavedPlans.css (2)",
+          "color" : "#6192c3",
+          "size" : 109,
+          "children" : [ ]
+        }, {
+          "name" : "SavedPlans.jsx (1)",
+          "color" : "#6192c3",
+          "size" : 135,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "monthlyJournal",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "monthlyJournal.css (1)",
+          "color" : "#6192c3",
+          "size" : 76,
+          "children" : [ ]
+        }, {
+          "name" : "monthlyJournal.jsx (3)",
+          "color" : "#6192c3",
+          "size" : 119,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "payement",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "PayementSuccess.css (3)",
+          "color" : "#6192c3",
+          "size" : 304,
+          "children" : [ ]
+        }, {
+          "name" : "PayementSuccess.jsx (3)",
+          "color" : "#6192c3",
+          "size" : 194,
+          "children" : [ ]
+        }, {
+          "name" : "StripePayement.css (1)",
+          "color" : "#6192c3",
+          "size" : 148,
+          "children" : [ ]
+        }, {
+          "name" : "StripePayement.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 94,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "recipe",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "CreateRecipe.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 199,
+          "children" : [ ]
+        }, {
+          "name" : "Recipe.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 32,
+          "children" : [ ]
+        }, {
+          "name" : "RecipeForm.jsx (1)",
+          "color" : "#6192c3",
+          "size" : 208,
+          "children" : [ ]
+        }, {
+          "name" : "SavedRecipe.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 200,
+          "children" : [ ]
+        }, {
+          "name" : "SavedRecipeDetails.jsx (2)",
+          "color" : "#6192c3",
+          "size" : 425,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "shared",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "animation.css (1)",
+          "color" : "#6192c3",
+          "size" : 10,
+          "children" : [ ]
+        }, {
+          "name" : "buttons.css (1)",
+          "color" : "#6192c3",
+          "size" : 38,
+          "children" : [ ]
+        }, {
+          "name" : "CalculatorsBase.css (1)",
+          "color" : "#6192c3",
+          "size" : 172,
+          "children" : [ ]
+        }, {
+          "name" : "CatalogueBase.css (1)",
+          "color" : "#6192c3",
+          "size" : 19,
+          "children" : [ ]
+        }, {
+          "name" : "form.css (1)",
+          "color" : "#6192c3",
+          "size" : 155,
+          "children" : [ ]
+        }, {
+          "name" : "hooks",
+          "color" : "#6192c3",
+          "size" : 0,
+          "children" : [ {
+            "name" : "useCartFoods.js (1)",
+            "color" : "#6192c3",
+            "size" : 54,
+            "children" : [ ]
+          }, {
+            "name" : "useCartPrefill.js (1)",
+            "color" : "#6192c3",
+            "size" : 26,
+            "children" : [ ]
+          }, {
+            "name" : "usePrefillAuthors.js (1)",
+            "color" : "#6192c3",
+            "size" : 28,
+            "children" : [ ]
+          }, {
+            "name" : "useRecipeForm.js (1)",
+            "color" : "#6192c3",
+            "size" : 26,
+            "children" : [ ]
+          }, {
+            "name" : "useUrlTabs.js (1)",
+            "color" : "#6192c3",
+            "size" : 23,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "mealPlan",
+          "color" : "#6192c3",
+          "size" : 0,
+          "children" : [ {
+            "name" : "mapUtils.js (1)",
+            "color" : "#6192c3",
+            "size" : 28,
+            "children" : [ ]
+          }, {
+            "name" : "MealPlanEditor.jsx (1)",
+            "color" : "#6192c3",
+            "size" : 171,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "MealPlan.css (2)",
+          "color" : "#6192c3",
+          "size" : 381,
+          "children" : [ ]
+        }, {
+          "name" : "recipe",
+          "color" : "#6192c3",
+          "size" : 0,
+          "children" : [ {
+            "name" : "IngredientRow.jsx (1)",
+            "color" : "#6192c3",
+            "size" : 97,
+            "children" : [ ]
+          }, {
+            "name" : "InstructionRow.jsx (1)",
+            "color" : "#6192c3",
+            "size" : 33,
+            "children" : [ ]
+          }, {
+            "name" : "utils.js (1)",
+            "color" : "#6192c3",
+            "size" : 69,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "Recipe.css (2)",
+          "color" : "#6192c3",
+          "size" : 564,
+          "children" : [ ]
+        }, {
+          "name" : "status.css (1)",
+          "color" : "#6192c3",
+          "size" : 22,
+          "children" : [ ]
+        }, {
+          "name" : "Tabs.css (1)",
+          "color" : "#6192c3",
+          "size" : 80,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "signupForm",
+        "color" : "#6192c3",
+        "size" : 0,
+        "children" : [ {
+          "name" : "signupForm.jsx (6)",
+          "color" : "#b0d8e9",
+          "size" : 170,
+          "children" : [ ]
+        } ]
+      } ]
+    }, {
+      "name" : "config",
+      "color" : "#6192c3",
+      "size" : 0,
+      "children" : [ {
+        "name" : "api.js (1)",
+        "color" : "#6192c3",
+        "size" : 2,
+        "children" : [ ]
+      }, {
+        "name" : "stripe.js (1)",
+        "color" : "#6192c3",
+        "size" : 3,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "containers",
+      "color" : "#6192c3",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Calculatrices.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Catalogue.jsx (3)",
+        "color" : "#6192c3",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "ErrorPage.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 13,
+        "children" : [ ]
+      }, {
+        "name" : "Home.jsx (3)",
+        "color" : "#6192c3",
+        "size" : 4,
+        "children" : [ ]
+      }, {
+        "name" : "Login.jsx (2)",
+        "color" : "#6192c3",
+        "size" : 4,
+        "children" : [ ]
+      }, {
+        "name" : "Plans.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Recipes.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Roots.jsx (3)",
+        "color" : "#6192c3",
+        "size" : 41,
+        "children" : [ ]
+      }, {
+        "name" : "SavedPlan.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "SavedRecipes.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 11,
+        "children" : [ ]
+      }, {
+        "name" : "Signup.jsx (2)",
+        "color" : "#6192c3",
+        "size" : 4,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "context",
+      "color" : "#6192c3",
+      "size" : 0,
+      "children" : [ {
+        "name" : "auth-context.js (1)",
+        "color" : "#6192c3",
+        "size" : 8,
+        "children" : [ ]
+      }, {
+        "name" : "cart-context.js (1)",
+        "color" : "#6192c3",
+        "size" : 4,
+        "children" : [ ]
+      }, {
+        "name" : "nutrition-context.js (1)",
+        "color" : "#6192c3",
+        "size" : 6,
+        "children" : [ ]
+      }, {
+        "name" : "nutrition.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 9,
+        "children" : [ ]
+      }, {
+        "name" : "NutritionProvider.jsx (1)",
+        "color" : "#6192c3",
+        "size" : 19,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "main.jsx (2)",
+      "color" : "#6192c3",
+      "size" : 8,
+      "children" : [ ]
+    }, {
+      "name" : "supabaseClient.js (2)",
+      "color" : "#6192c3",
+      "size" : 4,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "vite.config.js (2)",
+    "color" : "#6192c3",
+    "size" : 5,
+    "children" : [ ]
+  } ]
+} ]
+    }
+
+    root = d3.hierarchy(root)
+        .sum(function (d) {
+            return d.size;
+        })
+        .sort(function (a, b) {
+            return b.value - a.value;
+        });
+
+    var focus = root,
+        nodes = pack(root).descendants(),
+        view;
+
+    var circle = g.selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("class", function (d) {
+            return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+        })
+        .style("fill", function (d) {
+            return d.children ? color(d.depth) : (d.data.color ? d.data.color : null);
+        })
+        .on("click", function (d) {
+            if (focus !== d) zoom(d), d3.event.stopPropagation();
+        });
+
+    var text = g.selectAll("text")
+        .data(nodes)
+        .enter().append("text")
+        .attr("class", "label")
+        .style("fill-opacity", function (d) {
+            return d.parent === root ? 1 : 0;
+        })
+        .style("display", function (d) {
+            return d.parent === root ? "inline" : "none";
+        })
+        .text(function (d) {
+            return d.data.name.length > 33 ? (d.data.name.substr(0, 14) + "..." + d.data.name.substr(d.data.name.length - 14))  : d.data.name;
+        });
+
+    var node = g.selectAll("circle,text");
+
+    svg
+        .style("background", color(-1))
+        .on("click", function () {
+            zoom(root);
+        });
+
+    zoomTo([root.x, root.y, root.r * 2 + margin]);
+
+    function zoom(d) {
+        var focus0 = focus;
+        focus = d;
+
+        var transition = d3.transition()
+            .duration(d3.event.altKey ? 7500 : 750)
+            .tween("zoom", function (d) {
+                var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
+                return function (t) {
+                    zoomTo(i(t));
+                };
+            });
+
+        transition.selectAll("text")
+            .filter(function (d) {
+                return d.parent === focus || this.style.display === "inline";
+            })
+            .style("fill-opacity", function (d) {
+                return d.parent === focus ? 1 : 0;
+            })
+            .on("start", function (d) {
+                if (d.parent === focus) this.style.display = "inline";
+            })
+            .on("end", function (d) {
+                if (d.parent !== focus) this.style.display = "none";
+            });
+    }
+
+    function zoomTo(v) {
+        var k = diameter / v[2];
+        view = v;
+        node.attr("transform", function (d) {
+            return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+        });
+        circle.attr("r", function (d) {
+            return d.r * k;
+        });
+    }
+
+</script>

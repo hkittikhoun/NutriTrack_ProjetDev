@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>export function usePrefillAuthor()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function usePrefillAuthor()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/hooks/usePrefillAuthors.js [5:30]</i></p>
+<ul>
+    <li><b>26</b> lines of code</li>
+    <li><b>17</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function usePrefillAuthor(author, setAuthor, auth) {
+  useEffect(() =&gt; {
+    let cancelled = false;
+    (async () =&gt; {
+      try {
+        if (author &amp;&amp; author.trim() !== &quot;&quot;) return;
+        const { data: authData, error: authErr } =
+          await supabase.auth.getUser();
+        if (authErr || !authData?.user) {
+          if (!cancelled &amp;&amp; auth?.userId) setAuthor(auth.userId);
+          return;
+        }
+        const user = authData.user;
+        const meta = user.user_metadata || {};
+        const name =
+          meta.full_name || meta.fullName || meta.name || user.email || user.id;
+        if (!cancelled &amp;&amp; name) setAuthor(name);
+      } catch {
+        if (!cancelled &amp;&amp; auth?.userId) setAuthor(auth.userId);
+      }
+    })();
+    return () =&gt; {
+      cancelled = true;
+    };
+  }, [author, auth]);
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

@@ -1,0 +1,133 @@
+<html>
+<head>
+    <title>frontend/src/components/payement/StripePayement.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/payement/StripePayement.jsx (<b>94</b> lines of code) (<a href="StripePayement.jsx">raw</a>):</h3>
+<div id="editor">import { useState } from &quot;react&quot;;
+import { API_BASE_URL } from &quot;../../config/api&quot;;
+import &quot;./StripePayement.css&quot;;
+
+export default function StripePayment({
+  onPaymentSuccess,
+  onPaymentCancel,
+  userEmail,
+}) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(&quot;&quot;);
+
+  const handlePayment = async () =&gt; {
+    try {
+      setLoading(true);
+      setError(&quot;&quot;);
+
+      const response = await fetch(
+        `${API_BASE_URL}/api/create-checkout-session`,
+        {
+          method: &quot;POST&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+          },
+          body: JSON.stringify({
+            email: userEmail,
+            amount: 500,
+            currency: &quot;cad&quot;,
+            product_name: &quot;NutriTrack Account Creation&quot;,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || &quot;Failed to create checkout session&quot;);
+      }
+
+      const session = await response.json();
+
+      if (session.url) {
+        window.location.href = session.url;
+      } else {
+        throw new Error(&quot;No checkout URL received&quot;);
+      }
+    } catch (err) {
+      console.error(&quot;Payment error:&quot;, err);
+      setError(&quot;Payment error: &quot; + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    &lt;div className=&quot;stripe-payment-container&quot;&gt;
+      &lt;div className=&quot;payment-card&quot;&gt;
+        &lt;h3&gt;Complete Your Registration&lt;/h3&gt;
+        &lt;div className=&quot;payment-details&quot;&gt;
+          &lt;p className=&quot;payment-description&quot;&gt;
+            To create your NutriTrack account, a one-time payment of{&quot; &quot;}
+            &lt;strong&gt;$5.00 CAD&lt;/strong&gt; is required.
+          &lt;/p&gt;
+
+          &lt;div className=&quot;features-list&quot;&gt;
+            &lt;h4&gt;What you get:&lt;/h4&gt;
+            &lt;ul&gt;
+              &lt;li&gt;✓ Access to complete food catalogue&lt;/li&gt;
+              &lt;li&gt;✓ Calorie and nutrition calculators&lt;/li&gt;
+              &lt;li&gt;✓ Personalized meal planning&lt;/li&gt;
+              &lt;li&gt;✓ Progress tracking&lt;/li&gt;
+              &lt;li&gt;✓ Expert nutrition tips&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;payment-amount&quot;&gt;
+            &lt;span className=&quot;amount&quot;&gt;$5.00 CAD&lt;/span&gt;
+            &lt;span className=&quot;one-time&quot;&gt;One-time payment&lt;/span&gt;
+          &lt;/div&gt;
+
+          {error &amp;&amp; &lt;div className=&quot;error-message&quot;&gt;{error}&lt;/div&gt;}
+
+          &lt;div className=&quot;payment-actions&quot;&gt;
+            &lt;button
+              onClick={handlePayment}
+              disabled={loading}
+              className=&quot;pay-button&quot;
+            &gt;
+              {loading ? &quot;Processing...&quot; : &quot;Pay with Stripe&quot;}
+            &lt;/button&gt;
+
+            &lt;button
+              onClick={onPaymentCancel}
+              disabled={loading}
+              className=&quot;cancel-button&quot;
+            &gt;
+              Cancel
+            &lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;security-info&quot;&gt;
+            &lt;p&gt;Secure payment powered by Stripe&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

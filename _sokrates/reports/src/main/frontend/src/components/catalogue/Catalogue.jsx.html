@@ -1,0 +1,154 @@
+<html>
+<head>
+    <title>frontend/src/components/catalogue/Catalogue.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/catalogue/Catalogue.jsx (<b>118</b> lines of code) (<a href="Catalogue.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useEffect } from &quot;react&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import FoodCard from &quot;../foodCard/FoodCard&quot;;
+import &quot;./Catalogue.css&quot;;
+
+export default function Catalogue() {
+  const [foodGroups, setFoodGroups] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState(&quot;&quot;);
+  const [foods, setFoods] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() =&gt; {
+    async function fetchFoodGroups() {
+      try {
+        setError(null);
+        const { data, error: fetchError } = await supabase
+          .from(&quot;food_group&quot;)
+          .select(&quot;FoodGroupID, FoodGroupName&quot;)
+          .order(&quot;FoodGroupName&quot;);
+        if (fetchError) {
+          setError(&quot;Failed to load food groups: &quot; + fetchError.message);
+          console.error(&quot;Supabase error:&quot;, fetchError);
+          return;
+        }
+        setFoodGroups(data || []);
+      } catch (err) {
+        setError(&quot;An unexpected error occurred&quot;);
+        console.error(&quot;Unexpected error:&quot;, err);
+      }
+    }
+    fetchFoodGroups();
+  }, []);
+
+  useEffect(() =&gt; {
+    if (!selectedGroup) {
+      setFoods([]);
+      return;
+    }
+    async function fetchFoods() {
+      try {
+        setLoading(true);
+        setError(null);
+        const { data: foodsWithNutrients, error: fetchError } = await supabase
+          .from(&quot;food_name&quot;)
+          .select(
+            `
+            FoodID,
+            FoodDescription,
+            nutrient_amount!inner(
+              NutrientValue,
+              nutrient_name!inner(NutrientSymbol, NutrientUnit, NutrientCode)
+            )
+          `
+          )
+          .eq(&quot;FoodGroupID&quot;, selectedGroup)
+          .in(&quot;nutrient_amount.nutrient_name.NutrientCode&quot;, [203, 204, 208]);
+        if (fetchError) {
+          setError(&quot;Failed to load foods: &quot; + fetchError.message);
+          setLoading(false);
+          return;
+        }
+
+        const foodsMap = new Map();
+        foodsWithNutrients?.forEach((item) =&gt; {
+          const foodId = item.FoodID;
+          if (!foodsMap.has(foodId)) {
+            foodsMap.set(foodId, {
+              FoodID: item.FoodID,
+              FoodDescription: item.FoodDescription,
+              nutrients: [],
+            });
+          }
+          item.nutrient_amount.forEach((nutrient) =&gt; {
+            foodsMap.get(foodId).nutrients.push({
+              NutrientSymbol: nutrient.nutrient_name.NutrientSymbol,
+              NutrientUnit: nutrient.nutrient_name.NutrientUnit,
+              NutrientValue: nutrient.NutrientValue,
+            });
+          });
+        });
+
+        setFoods(Array.from(foodsMap.values()));
+        setLoading(false);
+      } catch (err) {
+        setError(&quot;An unexpected error occurred while loading foods&quot;);
+        setLoading(false);
+        console.error(&quot;Unexpected error:&quot;, err);
+      }
+    }
+    fetchFoods();
+  }, [selectedGroup]);
+
+  return (
+    &lt;div className=&quot;catalogue-container&quot;&gt;
+      &lt;h1&gt;Food Catalogue&lt;/h1&gt;
+
+      &lt;div className=&quot;dropdown-container&quot;&gt;
+        &lt;label htmlFor=&quot;food-group-select&quot;&gt;Choose a food group:&lt;/label&gt;
+        &lt;select
+          id=&quot;food-group-select&quot;
+          value={selectedGroup}
+          onChange={(e) =&gt; setSelectedGroup(e.target.value)}
+        &gt;
+          &lt;option value=&quot;&quot;&gt;-- Select a group --&lt;/option&gt;
+          {foodGroups.map((group) =&gt; (
+            &lt;option key={group.FoodGroupID} value={group.FoodGroupID}&gt;
+              {group.FoodGroupName}
+            &lt;/option&gt;
+          ))}
+        &lt;/select&gt;
+      &lt;/div&gt;
+
+      {error &amp;&amp; &lt;p className=&quot;error-message&quot;&gt;{error}&lt;/p&gt;}
+      {loading &amp;&amp; &lt;p className=&quot;loading-message&quot;&gt;Loading foods...&lt;/p&gt;}
+
+      {!loading &amp;&amp; !error &amp;&amp; foods.length === 0 &amp;&amp; selectedGroup &amp;&amp; (
+        &lt;p className=&quot;no-data-message&quot;&gt;No foods found for this group.&lt;/p&gt;
+      )}
+
+      &lt;div className=&quot;foods-list&quot;&gt;
+        {foods.map((food) =&gt; (
+          &lt;FoodCard key={food.FoodID} food={food} /&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

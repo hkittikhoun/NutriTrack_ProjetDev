@@ -1,0 +1,80 @@
+graph G {
+    compound="true"
+    rankdir="TB"
+    bgcolor="white"
+    fontname="Tahoma"
+
+    node [
+        fixedsize="false"
+        fontname="Tahoma"
+        color="white"
+        fillcolor="deepskyblue2"
+        fontcolor="black"
+        shape="box"
+        style="filled"
+        penwidth="1.0"
+    ]
+    edge [
+        fontname="Arial"
+        color="#00688b"
+        fontcolor="black"
+        fontsize="12"
+        arrowsize="0.5"
+        penwidth="1.0"
+    ]
+
+
+
+
+    "[frontend/src/components/header/NavLinks.jsx]" -- "[frontend/src/components/header/MainNavigation.jsx]" [label=" 9 ", penwidth="9", color="#00688bED"];
+    "[frontend/src/components/App.jsx]" -- "[frontend/src/components/header/NavLinks.jsx]" [label=" 8 ", penwidth="8", color="#00688bDB"];
+    "[frontend/src/components/header/NavLinks.jsx]" -- "[frontend/src/components/header/NavLinks.css]" [label=" 6 ", penwidth="6", color="#00688bB7"];
+    "[frontend/src/components/recipe/SavedRecipeDetails.jsx]" -- "[frontend/src/components/recipe/CreateRecipe.jsx]" [label=" 5 ", penwidth="5", color="#00688bA5"];
+    "[frontend/src/components/App.jsx]" -- "[frontend/src/components/header/MainNavigation.jsx]" [label=" 5 ", penwidth="5", color="#00688bA5"];
+    "[frontend/src/components/header/MainNavigation.jsx]" -- "[frontend/src/components/header/NavLinks.css]" [label=" 5 ", penwidth="5", color="#00688bA5"];
+    "[frontend/src/components/header/MainNavigation.jsx]" -- "[frontend/src/components/header/MainNavigation.css]" [label=" 5 ", penwidth="5", color="#00688bA5"];
+    "[frontend/src/components/payement/PayementSuccess.jsx]" -- "[frontend/src/components/payement/PayementSuccess.css]" [label=" 4 ", penwidth="4", color="#00688b93"];
+    "[frontend/src/components/App.jsx]" -- "[frontend/src/components/loginForm/loginForm.jsx]" [label=" 4 ", penwidth="4", color="#00688b93"];
+    "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]" -- "[frontend/src/components/mealPlan/DailyPlan.jsx]" [label=" 4 ", penwidth="4", color="#00688b93"];
+    "[frontend/src/components/payement/StripePayement.jsx]" -- "[frontend/src/components/payement/PayementSuccess.jsx]" [label=" 4 ", penwidth="4", color="#00688b93"];
+    "[frontend/src/components/header/NavLinks.jsx]" -- "[frontend/src/components/header/MainNavigation.css]" [label=" 4 ", penwidth="4", color="#00688b93"];
+    "[frontend/src/components/header/NavLinks.css]" -- "[frontend/src/components/header/MainNavigation.css]" [label=" 4 ", penwidth="4", color="#00688b93"];
+    "[frontend/src/components/recipe/SavedRecipe.jsx]" -- "[frontend/src/components/recipe/SavedRecipeDetails.jsx]" [label=" 4 ", penwidth="4", color="#00688b93"];
+    "[frontend/src/components/header/NavLinks.jsx]" -- "[frontend/src/components/mealPlan/DailyPlan.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/containers/Signup.jsx]" -- "[frontend/src/components/App.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/components/header/MainNavigation.jsx]" -- "[frontend/src/components/mealPlan/DailyPlan.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/components/header/NavLinks.jsx]" -- "[frontend/src/components/loginForm/loginForm.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/components/signupForm/signupForm.jsx]" -- "[frontend/src/components/loginForm/loginForm.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/containers/Catalogue.jsx]" -- "[frontend/src/components/App.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/components/App.jsx]" -- "[frontend/src/components/header/NavLinks.css]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/containers/Home.jsx]" -- "[frontend/src/components/header/MainNavigation.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/components/foodCard/FoodCard.jsx]" -- "[frontend/src/components/foodCard/FoodCard.css]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/containers/Home.jsx]" -- "[frontend/src/components/header/MainNavigation.css]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/containers/Home.jsx]" -- "[frontend/src/components/header/NavLinks.css]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/components/payement/StripePayement.jsx]" -- "[frontend/src/components/payement/PayementSuccess.css]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/containers/Home.jsx]" -- "[frontend/src/components/header/NavLinks.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/containers/Login.jsx]" -- "[frontend/src/components/header/NavLinks.jsx]" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "[frontend/src/components/shared/recipe/utils.js]" -- "[frontend/src/components/recipe/SavedRecipeDetails.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/header/MainNavigation.jsx]" -- "[frontend/src/components/recipe/Recipe.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/shared/Recipe.css]" -- "[frontend/src/components/shared/MealPlan.css]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/containers/Roots.jsx]" -- "[frontend/src/components/header/NavLinks.css]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/containers/Roots.jsx]" -- "[frontend/src/components/cart/Cart.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/recipe/Recipe.jsx]" -- "[frontend/src/components/recipe/SavedRecipeDetails.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/payement/StripePayement.css]" -- "[frontend/src/components/payement/StripePayement.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/containers/Login.jsx]" -- "[frontend/src/components/loginForm/loginForm.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/header/MainNavigation.jsx]" -- "[frontend/src/components/recipe/SavedRecipeDetails.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/payement/StripePayement.jsx]" -- "[frontend/src/components/signupForm/signupForm.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/containers/Roots.jsx]" -- "[frontend/src/components/header/MainNavigation.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/header/NavLinks.jsx]" -- "[frontend/src/components/cart/Cart.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/mealPlan/SavedPlans.jsx]" -- "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/containers/Login.jsx]" -- "[frontend/index.html]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/header/NavLinks.jsx]" -- "[frontend/src/components/recipe/SavedRecipeDetails.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/App.jsx]" -- "[frontend/src/components/mealPlan/DailyPlan.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/context/nutrition-context.js]" -- "[frontend/src/components/calculators/NutritionCalculator.css]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/cart/Cart.css]" -- "[frontend/src/components/cart/Cart.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/calculators/NutritionCalculator.css]" -- "[frontend/src/components/calculators/NutritionCalculator.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/recipe/SavedRecipe.jsx]" -- "[frontend/src/components/recipe/CreateRecipe.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/containers/Roots.jsx]" -- "[frontend/src/components/foodCard/FoodCard.jsx]" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "[frontend/src/components/shared/buttons.css]" -- "[frontend/src/components/shared/Recipe.css]" [label=" 2 ", penwidth="2", color="#00688b70"];
+
+}

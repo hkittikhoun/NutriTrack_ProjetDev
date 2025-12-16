@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>export function validateRecipe()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function validateRecipe()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/recipe/utils.js [1:18]</i></p>
+<ul>
+    <li><b>18</b> lines of code</li>
+    <li><b>11</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function validateRecipe({ title, author, ingredients, instructions }) {
+  const errors = [];
+  if (!String(title || &quot;&quot;).trim()) errors.push(&quot;Le titre est requis&quot;);
+  if (!String(author || &quot;&quot;).trim()) errors.push(&quot;L'auteur est requis&quot;);
+  if (
+    ingredients.some(
+      (ing) =&gt; !String(ing.ingredientName || ing.ingredient_name || &quot;&quot;).trim()
+    )
+  ) {
+    errors.push(&quot;Tous les ingr&eacute;dients doivent avoir un nom&quot;);
+  }
+  if (
+    instructions.some((inst) =&gt; !String(inst || inst?.instruction || &quot;&quot;).trim())
+  ) {
+    errors.push(&quot;Toutes les instructions doivent &ecirc;tre remplies&quot;);
+  }
+  return errors;
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

@@ -1,0 +1,4 @@
+Contributor	#commits (all time)	#commits (30 days)	#commits (90 days)	#commits (180 days)	#commits (365 days)	first commit	last commit
+2155162@cmontmorency.qc.ca	75	26	75	75	75	2025-09-19	2025-12-13	92%
+prospectdydy01@hotmail.com	5	0	5	5	5	2025-10-15	2025-10-29	6%
+1985613@cmontmorency.qc.ca	1	0	1	1	1	2025-09-25	2025-09-25	1%

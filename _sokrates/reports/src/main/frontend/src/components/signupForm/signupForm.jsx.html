@@ -1,0 +1,215 @@
+<html>
+<head>
+    <title>frontend/src/components/signupForm/signupForm.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/signupForm/signupForm.jsx (<b>170</b> lines of code) (<a href="signupForm.jsx">raw</a>):</h3>
+<div id="editor">import { useState } from &quot;react&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+import StripePayment from &quot;../payement/StripePayement&quot;;
+import &quot;../shared/form.css&quot;;
+
+export default function Signup() {
+  const [formData, setFormData] = useState({
+    email: &quot;&quot;,
+    password: &quot;&quot;,
+    confirmPassword: &quot;&quot;,
+    firstName: &quot;&quot;,
+    lastName: &quot;&quot;,
+    terms: false,
+  });
+  const [showPayment, setShowPayment] = useState(false);
+  const [passwordAreNotEqual, setPasswordAreNotEqual] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleInputChange = (e) =&gt; {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) =&gt; ({
+      ...prev,
+      [name]: type === &quot;checkbox&quot; ? checked : value,
+    }));
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setError(null);
+    setPasswordAreNotEqual(false);
+
+    // Validation
+    if (formData.password !== formData.confirmPassword) {
+      setPasswordAreNotEqual(true);
+      return;
+    }
+
+    if (!formData.terms) {
+      setError(&quot;You must agree to the terms and conditions&quot;);
+      return;
+    }
+
+    if (
+      !formData.email ||
+      !formData.password ||
+      !formData.firstName ||
+      !formData.lastName
+    ) {
+      setError(&quot;Please fill in all fields&quot;);
+      return;
+    }
+
+    // Stocker les donn&eacute;es temporairement et afficher le paiement
+    sessionStorage.setItem(&quot;signupData&quot;, JSON.stringify(formData));
+    setShowPayment(true);
+  }
+
+  const handlePaymentSuccess = () =&gt; {
+    // La gestion du succ&egrave;s se fait dans PaymentSuccess.jsx
+    console.log(&quot;Payment successful, redirecting...&quot;);
+  };
+
+  const handlePaymentCancel = () =&gt; {
+    setShowPayment(false);
+    sessionStorage.removeItem(&quot;signupData&quot;);
+  };
+
+  if (showPayment) {
+    return (
+      &lt;StripePayment
+        userEmail={formData.email}
+        onPaymentSuccess={handlePaymentSuccess}
+        onPaymentCancel={handlePaymentCancel}
+      /&gt;
+    );
+  }
+
+  return (
+    &lt;form className=&quot;signup-form&quot; onSubmit={handleSubmit}&gt;
+      &lt;h2&gt;Welcome on board!&lt;/h2&gt;
+      &lt;p&gt;
+        We just need a little bit of information from you to get you started 🚀
+      &lt;/p&gt;
+      &lt;p className=&quot;payment-notice&quot;&gt;
+        &lt;strong&gt;Registration fee: $5.00 CAD&lt;/strong&gt; - One-time payment for
+        lifetime access
+      &lt;/p&gt;
+
+      {error &amp;&amp; (
+        &lt;div className=&quot;control-error&quot;&gt;
+          &lt;p&gt;{error}&lt;/p&gt;
+        &lt;/div&gt;
+      )}
+
+      &lt;div className=&quot;control&quot;&gt;
+        &lt;label htmlFor=&quot;email&quot;&gt;Email&lt;/label&gt;
+        &lt;input
+          id=&quot;email&quot;
+          type=&quot;email&quot;
+          name=&quot;email&quot;
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;control-row&quot;&gt;
+        &lt;div className=&quot;control&quot;&gt;
+          &lt;label htmlFor=&quot;password&quot;&gt;Password&lt;/label&gt;
+          &lt;input
+            id=&quot;password&quot;
+            type=&quot;password&quot;
+            name=&quot;password&quot;
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          /&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;control&quot;&gt;
+          &lt;label htmlFor=&quot;confirmPassword&quot;&gt;Confirm Password&lt;/label&gt;
+          &lt;input
+            id=&quot;confirmPassword&quot;
+            type=&quot;password&quot;
+            name=&quot;confirmPassword&quot;
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            required
+          /&gt;
+          {passwordAreNotEqual &amp;&amp; (
+            &lt;div className=&quot;control-error&quot;&gt;
+              &lt;p&gt;Passwords must match.&lt;/p&gt;
+            &lt;/div&gt;
+          )}
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;hr /&gt;
+
+      &lt;div className=&quot;control-row&quot;&gt;
+        &lt;div className=&quot;control&quot;&gt;
+          &lt;label htmlFor=&quot;firstName&quot;&gt;First Name&lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;firstName&quot;
+            name=&quot;firstName&quot;
+            value={formData.firstName}
+            onChange={handleInputChange}
+            required
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;control&quot;&gt;
+          &lt;label htmlFor=&quot;lastName&quot;&gt;Last Name&lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;lastName&quot;
+            name=&quot;lastName&quot;
+            value={formData.lastName}
+            onChange={handleInputChange}
+            required
+          /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;control&quot;&gt;
+        &lt;label htmlFor=&quot;terms-and-conditions&quot;&gt;
+          &lt;input
+            type=&quot;checkbox&quot;
+            id=&quot;terms-and-conditions&quot;
+            name=&quot;terms&quot;
+            checked={formData.terms}
+            onChange={handleInputChange}
+            required
+          /&gt;{&quot; &quot;}
+          I agree to the terms and conditions and the $5.00 CAD registration fee
+        &lt;/label&gt;
+      &lt;/div&gt;
+
+      &lt;p className=&quot;form-actions&quot;&gt;
+        &lt;Link to=&quot;/login&quot; className=&quot;button button-flat&quot;&gt;
+          Login
+        &lt;/Link&gt;
+        &lt;button type=&quot;submit&quot; className=&quot;button button-payment&quot;&gt;
+          Continue to Payment
+        &lt;/button&gt;
+      &lt;/p&gt;
+    &lt;/form&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

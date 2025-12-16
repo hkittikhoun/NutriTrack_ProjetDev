@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>export function useUrlTabs()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function useUrlTabs()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/hooks/useUrlTabs.js [8:33]</i></p>
+<ul>
+    <li><b>21</b> lines of code</li>
+    <li><b>5</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function useUrlTabs(tabs = [], defaultTab = tabs[0] ?? &quot;default&quot;) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const activeTab = useMemo(() =&gt; {
+    const t = searchParams.get(&quot;tab&quot;);
+    return t &amp;&amp; tabs.includes(t) ? t : defaultTab;
+  }, [searchParams, tabs, defaultTab]);
+
+  useEffect(() =&gt; {
+    const current = searchParams.get(&quot;tab&quot;);
+    if (!current || !tabs.includes(current)) {
+      const sp = new URLSearchParams(searchParams);
+      sp.set(&quot;tab&quot;, activeTab);
+      setSearchParams(sp, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
+
+  const setActiveTab = (tabId) =&gt; {
+    const sp = new URLSearchParams(searchParams);
+    sp.set(&quot;tab&quot;, tabId);
+    setSearchParams(sp);
+  };
+
+  return { activeTab, setActiveTab, searchParams };
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

@@ -1,0 +1,249 @@
+<html>
+<head>
+    <title>frontend/src/components/recipe/RecipeForm.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/recipe/RecipeForm.jsx (<b>208</b> lines of code) (<a href="RecipeForm.jsx">raw</a>):</h3>
+<div id="editor">import React from &quot;react&quot;;
+import &quot;../Recipe.css&quot;;
+import { IngredientRow } from &quot;./IngredientRow&quot;;
+import { InstructionRow } from &quot;./InstructionRow&quot;;
+
+export function RecipeForm({
+  mode, // &quot;create&quot; | &quot;edit&quot;
+  fields, // { title, author, description, servings, difficultyLevel, category, cookingTime, prepTime }
+  setFields, // setters: { setTitle, setAuthor, setDescription, setServings, setDifficultyLevel, setCategory, setCookingTime, setPrepTime }
+  ingredients,
+  setIngredients,
+  instructions,
+  setInstructions,
+  cartFoods,
+  loading,
+  onSave,
+  onCancel,
+}) {
+  const addIngredient = () =&gt;
+    setIngredients((prev) =&gt; [
+      ...prev,
+      {
+        id: Date.now() + Math.random(),
+        foodId: &quot;&quot;,
+        ingredientName: &quot;&quot;,
+        quantity: &quot;&quot;,
+        unit: &quot;g&quot;,
+        preparation: &quot;&quot;,
+      },
+    ]);
+
+  const removeIngredient = (ingId) =&gt;
+    setIngredients((prev) =&gt;
+      prev.length &gt; 1 ? prev.filter((ing) =&gt; ing.id !== ingId) : prev
+    );
+
+  const updateIngredient = (ingId, field, value) =&gt;
+    setIngredients((prev) =&gt;
+      prev.map((ing) =&gt; (ing.id === ingId ? { ...ing, [field]: value } : ing))
+    );
+
+  const handleFoodChange = (ingId, foodId) =&gt; {
+    const selectedFood = cartFoods?.find(
+      (food) =&gt; String(food.foodId) === String(foodId)
+    );
+    setIngredients((prev) =&gt;
+      prev.map((ing) =&gt;
+        ing.id === ingId
+          ? {
+              ...ing,
+              foodId,
+              ingredientName: selectedFood ? selectedFood.name : &quot;&quot;,
+              quantity: selectedFood ? selectedFood.cartQuantity : &quot;&quot;,
+            }
+          : ing
+      )
+    );
+  };
+
+  const addInstruction = () =&gt; setInstructions((prev) =&gt; [...prev, &quot;&quot;]);
+  const removeInstruction = (index) =&gt;
+    setInstructions((prev) =&gt;
+      prev.length &gt; 1 ? prev.filter((_, i) =&gt; i !== index) : prev
+    );
+  const updateInstruction = (index, value) =&gt;
+    setInstructions((prev) =&gt;
+      prev.map((inst, i) =&gt; (i === index ? value : inst))
+    );
+
+  return (
+    &lt;div className=&quot;edit-recipe-form&quot;&gt;
+      &lt;h2&gt;{mode === &quot;create&quot; ? &quot;Create Recipe&quot; : &quot;Edit Recipe&quot;}&lt;/h2&gt;
+
+      &lt;div className=&quot;form-section&quot;&gt;
+        &lt;h3&gt;Basic information&lt;/h3&gt;
+
+        &lt;div className=&quot;field-row&quot;&gt;
+          &lt;div className=&quot;form-field&quot;&gt;
+            &lt;label htmlFor=&quot;title&quot;&gt;Title *&lt;/label&gt;
+            &lt;input
+              id=&quot;title&quot;
+              type=&quot;text&quot;
+              value={fields.title}
+              onChange={(e) =&gt; setFields.setTitle(e.target.value)}
+              placeholder=&quot;Recipe title&quot;
+              required
+            /&gt;
+          &lt;/div&gt;
+          &lt;div className=&quot;form-field&quot;&gt;
+            &lt;label htmlFor=&quot;author&quot;&gt;Author *&lt;/label&gt;
+            &lt;input
+              id=&quot;author&quot;
+              type=&quot;text&quot;
+              value={fields.author}
+              onChange={(e) =&gt; setFields.setAuthor(e.target.value)}
+              placeholder=&quot;Your name&quot;
+              required
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;form-field&quot;&gt;
+          &lt;label htmlFor=&quot;description&quot;&gt;Description&lt;/label&gt;
+          &lt;textarea
+            id=&quot;description&quot;
+            value={fields.description}
+            onChange={(e) =&gt; setFields.setDescription(e.target.value)}
+            placeholder=&quot;Description of your recipe&quot;
+            rows=&quot;3&quot;
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;field-row&quot;&gt;
+          &lt;div className=&quot;form-field&quot;&gt;
+            &lt;label htmlFor=&quot;servings&quot;&gt;Servings&lt;/label&gt;
+            &lt;input
+              id=&quot;servings&quot;
+              type=&quot;number&quot;
+              value={fields.servings}
+              onChange={(e) =&gt; setFields.setServings(e.target.value)}
+              placeholder=&quot;4&quot;
+              min=&quot;1&quot;
+            /&gt;
+          &lt;/div&gt;
+          &lt;div className=&quot;form-field&quot;&gt;
+            &lt;label htmlFor=&quot;difficulty&quot;&gt;Difficulty level&lt;/label&gt;
+            &lt;select
+              id=&quot;difficulty&quot;
+              value={fields.difficultyLevel}
+              onChange={(e) =&gt; setFields.setDifficultyLevel(e.target.value)}
+            &gt;
+              &lt;option value=&quot;easy&quot;&gt;Easy&lt;/option&gt;
+              &lt;option value=&quot;medium&quot;&gt;Medium&lt;/option&gt;
+              &lt;option value=&quot;hard&quot;&gt;Hard&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;field-row&quot;&gt;
+          &lt;div className=&quot;form-field&quot;&gt;
+            &lt;label htmlFor=&quot;category&quot;&gt;Category&lt;/label&gt;
+            &lt;input
+              id=&quot;category&quot;
+              type=&quot;text&quot;
+              value={fields.category}
+              onChange={(e) =&gt; setFields.setCategory(e.target.value)}
+              placeholder=&quot;e.g., Dessert, Main course&quot;
+            /&gt;
+          &lt;/div&gt;
+          &lt;div className=&quot;form-field&quot;&gt;
+            &lt;label htmlFor=&quot;prep-time&quot;&gt;Prep time (minutes)&lt;/label&gt;
+            &lt;input
+              id=&quot;prep-time&quot;
+              type=&quot;number&quot;
+              value={fields.prepTime}
+              onChange={(e) =&gt; setFields.setPrepTime(e.target.value)}
+              placeholder=&quot;15&quot;
+              min=&quot;1&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;form-field&quot;&gt;
+          &lt;label htmlFor=&quot;cook-time&quot;&gt;Cook time (minutes)&lt;/label&gt;
+          &lt;input
+            id=&quot;cook-time&quot;
+            type=&quot;number&quot;
+            value={fields.cookingTime}
+            onChange={(e) =&gt; setFields.setCookingTime(e.target.value)}
+            placeholder=&quot;30&quot;
+            min=&quot;1&quot;
+          /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;form-section&quot;&gt;
+        &lt;h3&gt;Ingredients&lt;/h3&gt;
+        {ingredients.map((ingredient) =&gt; (
+          &lt;IngredientRow
+            key={ingredient.id}
+            ingredient={ingredient}
+            cartFoods={cartFoods || []}
+            onFoodChange={handleFoodChange}
+            onUpdate={updateIngredient}
+            onRemove={removeIngredient}
+            disableRemove={ingredients.length === 1}
+          /&gt;
+        ))}
+        &lt;button type=&quot;button&quot; onClick={addIngredient} className=&quot;add-btn&quot;&gt;
+          Add ingredient
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;form-section&quot;&gt;
+        &lt;h3&gt;Instructions&lt;/h3&gt;
+        {instructions.map((instruction, index) =&gt; (
+          &lt;InstructionRow
+            key={index}
+            index={index}
+            value={instruction}
+            onUpdate={updateInstruction}
+            onRemove={removeInstruction}
+            disableRemove={instructions.length === 1}
+          /&gt;
+        ))}
+        &lt;button type=&quot;button&quot; onClick={addInstruction} className=&quot;add-btn&quot;&gt;
+          Add step
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;form-actions&quot;&gt;
+        &lt;button onClick={onSave} disabled={loading} className=&quot;save-btn&quot;&gt;
+          {loading ? &quot;Saving...&quot; : &quot;Save&quot;}
+        &lt;/button&gt;
+        {onCancel &amp;&amp; (
+          &lt;button onClick={onCancel} disabled={loading} className=&quot;cancel-btn&quot;&gt;
+            Cancel
+          &lt;/button&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

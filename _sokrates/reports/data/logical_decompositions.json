@@ -1,0 +1,125 @@
+[ {
+  "key" : "primary",
+  "components" : [ {
+    "name" : "backend",
+    "filesCount" : 2,
+    "linesOfCode" : 248,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.js",
+      "value" : 2,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.js",
+      "value" : 248,
+      "description" : [ ]
+    } ]
+  }, {
+    "name" : "frontend",
+    "filesCount" : 82,
+    "linesOfCode" : 7576,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.jsx",
+      "value" : 43,
+      "description" : [ ]
+    }, {
+      "name" : "  *.css",
+      "value" : 23,
+      "description" : [ ]
+    }, {
+      "name" : "  *.js",
+      "value" : 15,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 1,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.jsx",
+      "value" : 4151,
+      "description" : [ ]
+    }, {
+      "name" : "  *.css",
+      "value" : 3081,
+      "description" : [ ]
+    }, {
+      "name" : "  *.js",
+      "value" : 329,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 15,
+      "description" : [ ]
+    } ]
+  } ],
+  "componentDependencies" : [ ],
+  "componentDependenciesErrors" : [ ],
+  "logicalDecomposition" : {
+    "name" : "primary",
+    "scope" : "main",
+    "filters" : [ ],
+    "componentsFolderDepth" : 1,
+    "minComponentsCount" : 0,
+    "components" : [ {
+      "name" : "backend",
+      "sourceFileFilters" : [ {
+        "pathPattern" : "./backend/.*",
+        "contentPattern" : "",
+        "exception" : false,
+        "note" : ""
+      } ],
+      "files" : [ ]
+    }, {
+      "name" : "frontend",
+      "sourceFileFilters" : [ {
+        "pathPattern" : "./frontend/.*",
+        "contentPattern" : "",
+        "exception" : false,
+        "note" : ""
+      } ],
+      "files" : [ ]
+    } ],
+    "metaComponents" : [ ],
+    "groups" : [ ],
+    "includeRemainingFiles" : true,
+    "dependenciesFinder" : {
+      "useBuiltInDependencyFinders" : true,
+      "rules" : [ ],
+      "metaRules" : [ ]
+    },
+    "renderingOptions" : {
+      "orientation" : "TB",
+      "maxNumberOfDependencies" : 100,
+      "renderComponentsWithoutDependencies" : true,
+      "renderIndirectDependencies" : false,
+      "renderInternalIndirectDependencies" : false,
+      "reverseDirection" : false
+    },
+    "includeExternalComponents" : true,
+    "dependencyLinkThreshold" : 1,
+    "duplicationLinkThreshold" : 50,
+    "temporalLinkThreshold" : 1,
+    "maxSearchDepthLines" : 200
+  },
+  "linesOfCodePerComponent" : [ {
+    "name" : "backend",
+    "value" : 248,
+    "description" : [ ]
+  }, {
+    "name" : "frontend",
+    "value" : 7576,
+    "description" : [ ]
+  } ],
+  "fileCountPerComponent" : [ {
+    "name" : "backend",
+    "value" : 2,
+    "description" : [ ]
+  }, {
+    "name" : "frontend",
+    "value" : 82,
+    "description" : [ ]
+  } ]
+} ]

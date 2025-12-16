@@ -1,0 +1,156 @@
+duplicated block id: 1
+size: 9 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlans.css (97:105)
+ - frontend/src/components/shared/Recipe.css (556:564)
+
+duplicated block id: 2
+size: 8 cleaned lines of code
+in 2 files:
+ - frontend/src/components/cart/Cart.jsx (43:50)
+ - frontend/src/components/recipe/SavedRecipeDetails.jsx (119:126)
+
+duplicated block id: 3
+size: 8 cleaned lines of code
+in 2 files:
+ - frontend/src/components/payement/PayementSuccess.css (244:251)
+ - frontend/src/components/payement/StripePayement.css (107:114)
+
+duplicated block id: 4
+size: 8 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (335:346)
+ - frontend/src/components/recipe/SavedRecipeDetails.jsx (430:441)
+
+duplicated block id: 5
+size: 7 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlans.jsx (38:44)
+ - frontend/src/components/recipe/SavedRecipe.jsx (40:46)
+
+duplicated block id: 6
+size: 7 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (257:263)
+ - frontend/src/components/recipe/SavedRecipeDetails.jsx (303:309)
+
+duplicated block id: 7
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/shared/recipe/IngredientRow.jsx (94:103)
+ - frontend/src/components/shared/recipe/InstructionRow.jsx (26:34)
+
+duplicated block id: 8
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/DailyPlan.jsx (46:51)
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (183:188)
+
+duplicated block id: 9
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlans.jsx (57:63)
+ - frontend/src/components/recipe/SavedRecipe.jsx (116:122)
+
+duplicated block id: 10
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (118:124)
+ - frontend/src/components/recipe/SavedRecipeDetails.jsx (146:152)
+
+duplicated block id: 11
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/DailyPlan.jsx (1:6)
+ - frontend/src/components/recipe/CreateRecipe.jsx (1:6)
+
+duplicated block id: 12
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/DailyPlan.jsx (53:58)
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (152:157)
+
+duplicated block id: 13
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/calculators/CaloriesCalculator.jsx (6:11)
+ - frontend/src/components/calculators/CaloriesCalculator.jsx (91:96)
+
+duplicated block id: 14
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (55:60)
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (246:251)
+
+duplicated block id: 15
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/calculators/Calculators.css (58:64)
+ - frontend/src/components/shared/Tabs.css (79:85)
+
+duplicated block id: 16
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlanDetails.jsx (131:137)
+ - frontend/src/components/recipe/SavedRecipeDetails.jsx (161:167)
+
+duplicated block id: 17
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/shared/MealPlan.css (53:58)
+ - frontend/src/components/shared/buttons.css (4:9)
+
+duplicated block id: 18
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlans.css (66:71)
+ - frontend/src/components/shared/MealPlan.css (41:46)
+
+duplicated block id: 19
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/cart/Cart.jsx (26:32)
+ - frontend/src/components/cart/Cart.jsx (125:131)
+
+duplicated block id: 20
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/mealPlan/SavedPlans.jsx (25:33)
+ - frontend/src/components/recipe/SavedRecipe.jsx (28:35)
+
+duplicated block id: 21
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/recipe/CreateRecipe.jsx (18:23)
+ - frontend/src/components/shared/hooks/useRecipeForm.js (14:19)
+
+duplicated block id: 22
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/recipe/RecipeForm.jsx (215:223)
+ - frontend/src/components/shared/mealPlan/MealPlanEditor.jsx (174:182)
+
+duplicated block id: 23
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/shared/Recipe.css (450:455)
+ - frontend/src/components/shared/buttons.css (18:23)
+
+duplicated block id: 24
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/loginForm/loginForm.jsx (65:70)
+ - frontend/src/components/signupForm/signupForm.jsx (108:113)
+
+duplicated block id: 25
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/recipe/RecipeForm.jsx (24:29)
+ - frontend/src/components/shared/hooks/useRecipeForm.js (15:20)
+
+duplicated block id: 26
+size: 6 cleaned lines of code
+in 2 files:
+ - frontend/src/components/recipe/SavedRecipe.jsx (158:164)
+ - frontend/src/components/recipe/SavedRecipeDetails.jsx (371:377)
+

@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>frontend/src/components/shared/Tabs.css</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/shared/Tabs.css (<b>80</b> lines of code) (<a href="Tabs.css">raw</a>):</h3>
+<div id="editor">/* Styles communs pour pages avec onglets */
+
+.section-container {
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 1200px;
+}
+
+.section-container.is-wide {
+  max-width: 1600px;
+}
+
+.section-title {
+  text-align: center;
+  color: #b00020;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab-button {
+  padding: 1rem 2rem;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  margin: 0;
+  position: relative;
+}
+
+.tab-button:hover {
+  color: #b00020;
+  background: rgba(176, 0, 32, 0.05);
+}
+
+.tab-button.active {
+  color: #b00020;
+  border-bottom-color: #b00020;
+  background: rgba(176, 0, 32, 0.1);
+}
+
+.tab-content {
+  min-height: 400px;
+  width: 100%;
+}
+
+/* Responsive: larges &eacute;crans Recipes */
+@media (max-width: 1400px) {
+  .section-container.is-wide {
+    max-width: 1300px;
+  }
+}
+
+/* Responsive g&eacute;n&eacute;ral */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 0 0.5rem;
+    max-width: 100%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    width: 100%;
+    max-width: 250px;
+    margin: 0;
+    border-radius: 6px;
+    border-bottom: none;
+  }
+
+  .tab-button.active {
+    background: #b00020;
+    color: white;
+    border-bottom: none;
+  }
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/css");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

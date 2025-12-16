@@ -1,0 +1,208 @@
+<html>
+<head>
+    <title>frontend/src/components/shared/mealPlan/MealPlanEditor.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/shared/mealPlan/MealPlanEditor.jsx (<b>171</b> lines of code) (<a href="MealPlanEditor.jsx">raw</a>):</h3>
+<div id="editor">import React from &quot;react&quot;;
+import &quot;../../shared/MealPlan.css&quot;;
+import { mergeCartWithCatalogue } from &quot;./mapUtils&quot;;
+
+export function MealPlanEditor({
+  isOwner,
+  loading,
+  loadingCart,
+  cartFoods,
+  foods,
+  mealPlans,
+  addItemToMeal,
+  removeItemFromMeal,
+  updateMealItem,
+  onPrefillFromCart,
+  titleProps, // { title, setTitle, author, setAuthor }
+  saveProps, // { onSave, saveDisabledLabel }
+  onCancel,
+}) {
+  const renderMealSection = (mealType, mealTitle) =&gt; {
+    const mealItems = mealPlans[mealType] || [];
+    const mergedFoods = mergeCartWithCatalogue(cartFoods || [], foods || []);
+
+    return (
+      &lt;div className=&quot;meal-section&quot; key={mealType}&gt;
+        &lt;div className=&quot;meal-header&quot;&gt;
+          &lt;h3&gt;{mealTitle}&lt;/h3&gt;
+          {isOwner &amp;&amp; (
+            &lt;button
+              onClick={() =&gt; addItemToMeal(mealType)}
+              disabled={loading || loadingCart}
+              className=&quot;add-meal-item-btn&quot;
+            &gt;
+              Add food
+            &lt;/button&gt;
+          )}
+        &lt;/div&gt;
+
+        {mealItems.length === 0 ? (
+          &lt;div className=&quot;no-meal-items&quot;&gt;
+            &lt;p&gt;No foods for this meal&lt;/p&gt;
+          &lt;/div&gt;
+        ) : (
+          &lt;div className=&quot;meal-items-list&quot;&gt;
+            {mealItems.map((item) =&gt; (
+              &lt;div key={item.id} className=&quot;meal-item-row&quot;&gt;
+                &lt;div className=&quot;meal-item-field&quot;&gt;
+                  &lt;label&gt;Food&lt;/label&gt;
+                  &lt;select
+                    value={item.foodId}
+                    onChange={(e) =&gt;
+                      updateMealItem(
+                        mealType,
+                        item.id,
+                        &quot;foodId&quot;,
+                        e.target.value
+                      )
+                    }
+                    disabled={!isOwner}
+                  &gt;
+                    &lt;option value=&quot;&quot;&gt;-- Choose a food --&lt;/option&gt;
+                    {(mergedFoods.length ? mergedFoods : cartFoods || []).map(
+                      (food) =&gt; (
+                        &lt;option
+                          key={String(food.FoodID ?? food.foodId)}
+                          value={String(food.FoodID ?? food.foodId)}
+                        &gt;
+                          {food.FoodDescription ?? food.name}
+                          {food._fromCart ? &quot; (from cart)&quot; : &quot;&quot;}
+                        &lt;/option&gt;
+                      )
+                    )}
+                  &lt;/select&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;meal-item-field&quot;&gt;
+                  &lt;label&gt;Quantity (g)&lt;/label&gt;
+                  &lt;input
+                    type=&quot;number&quot;
+                    min=&quot;1&quot;
+                    value={item.quantity}
+                    onChange={(e) =&gt;
+                      updateMealItem(
+                        mealType,
+                        item.id,
+                        &quot;quantity&quot;,
+                        Number(e.target.value)
+                      )
+                    }
+                    placeholder=&quot;100&quot;
+                    disabled={!isOwner}
+                  /&gt;
+                &lt;/div&gt;
+
+                {isOwner &amp;&amp; (
+                  &lt;div className=&quot;meal-item-actions&quot;&gt;
+                    &lt;button
+                      onClick={() =&gt; removeItemFromMeal(mealType, item.id)}
+                      className=&quot;remove-meal-item-btn&quot;
+                      disabled={loading}
+                    &gt;
+                      Remove
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+                )}
+              &lt;/div&gt;
+            ))}
+          &lt;/div&gt;
+        )}
+      &lt;/div&gt;
+    );
+  };
+
+  const totalItems =
+    (mealPlans.morning?.length || 0) +
+    (mealPlans.lunch?.length || 0) +
+    (mealPlans.dinner?.length || 0);
+
+  return (
+    &lt;div className=&quot;edit-plan-form&quot;&gt;
+      &lt;h2&gt;Edit Plan&lt;/h2&gt;
+
+      &lt;div className=&quot;field-row&quot;&gt;
+        &lt;div style={{ marginRight: 12 }}&gt;
+          &lt;label htmlFor=&quot;edit-title&quot;&gt;Title&lt;/label&gt;
+          &lt;input
+            id=&quot;edit-title&quot;
+            value={titleProps.title}
+            onChange={(e) =&gt; titleProps.setTitle(e.target.value)}
+            placeholder=&quot;Plan title&quot;
+          /&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label htmlFor=&quot;edit-author&quot;&gt;Author&lt;/label&gt;
+          &lt;input
+            id=&quot;edit-author&quot;
+            value={titleProps.author}
+            onChange={(e) =&gt; titleProps.setAuthor(e.target.value)}
+            placeholder=&quot;Your name&quot;
+          /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      {isOwner &amp;&amp; !!onPrefillFromCart &amp;&amp; cartFoods &amp;&amp; cartFoods.length &gt; 0 &amp;&amp; (
+        &lt;div className=&quot;cart-section&quot; style={{ marginBottom: 12 }}&gt;
+          &lt;h3&gt;Foods available in your cart ({cartFoods.length})&lt;/h3&gt;
+          &lt;button
+            onClick={onPrefillFromCart}
+            disabled={loading || loadingCart}
+            className=&quot;prefill-btn&quot;
+          &gt;
+            Prefill from cart
+          &lt;/button&gt;
+        &lt;/div&gt;
+      )}
+
+      &lt;div className=&quot;meals-container&quot;&gt;
+        &lt;h3&gt;Meal planning&lt;/h3&gt;
+        &lt;div className=&quot;meals-grid&quot;&gt;
+          {renderMealSection(&quot;morning&quot;, &quot;🌅 Morning&quot;)}
+          {renderMealSection(&quot;lunch&quot;, &quot;🌞 Lunch&quot;)}
+          {renderMealSection(&quot;dinner&quot;, &quot;🌙 Dinner&quot;)}
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;form-actions&quot;&gt;
+        &lt;button
+          onClick={saveProps.onSave}
+          disabled={loading || totalItems === 0}
+          className=&quot;save-btn&quot;
+        &gt;
+          Save ({saveProps.saveDisabledLabel ?? totalItems} items)
+        &lt;/button&gt;
+        {onCancel &amp;&amp; (
+          &lt;button onClick={onCancel} disabled={loading} className=&quot;cancel-btn&quot;&gt;
+            Cancel
+          &lt;/button&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

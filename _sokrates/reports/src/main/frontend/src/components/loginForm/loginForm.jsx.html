@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>frontend/src/components/loginForm/loginForm.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/loginForm/loginForm.jsx (<b>78</b> lines of code) (<a href="loginForm.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useContext } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import &quot;../shared/form.css&quot;;
+
+export default function LoginForm() {
+  const [entredValues, setEntredValues] = useState({
+    user: &quot;&quot;,
+    password: &quot;&quot;,
+  });
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+
+  const handleInputChange = (identifier, value) =&gt; {
+    setEntredValues((prevValue) =&gt; ({
+      ...prevValue,
+      [identifier]: value,
+    }));
+  };
+
+  const handleLogin = async (event) =&gt; {
+    event.preventDefault();
+    setError(null);
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: entredValues.user,
+      password: entredValues.password,
+    });
+
+    if (error) {
+      setError(&quot;Invalid credentials !&quot;);
+      return;
+    }
+
+    auth.login(data.user.id, data.session.access_token);
+    navigate(&quot;/&quot;);
+  };
+
+  const handleSignInClick = (event) =&gt; {
+    event.preventDefault();
+    navigate(&quot;/signup&quot;);
+  };
+
+  return (
+    &lt;form className=&quot;login-form&quot; onSubmit={handleLogin}&gt;
+      &lt;h2 className=&quot;title&quot;&gt;LOGIN&lt;/h2&gt;
+      {error &amp;&amp; &lt;div style={{ color: &quot;red&quot; }}&gt;{error}&lt;/div&gt;}
+
+      &lt;div className=&quot;control&quot;&gt;
+        &lt;label htmlFor=&quot;user&quot;&gt;Email&lt;/label&gt;
+        &lt;input
+          id=&quot;user&quot;
+          type=&quot;email&quot;
+          name=&quot;user&quot;
+          placeholder=&quot;Enter your email&quot;
+          onChange={(event) =&gt; handleInputChange(&quot;user&quot;, event.target.value)}
+          value={entredValues.user}
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;control&quot;&gt;
+        &lt;label htmlFor=&quot;password&quot;&gt;Password&lt;/label&gt;
+        &lt;input
+          id=&quot;password&quot;
+          type=&quot;password&quot;
+          name=&quot;password&quot;
+          placeholder=&quot;Enter your password&quot;
+          onChange={(event) =&gt;
+            handleInputChange(&quot;password&quot;, event.target.value)
+          }
+          value={entredValues.password}
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      &lt;p className=&quot;form-actions&quot;&gt;
+        &lt;button className=&quot;button&quot; type=&quot;submit&quot;&gt;
+          LOG IN
+        &lt;/button&gt;
+        &lt;button className=&quot;button&quot; onClick={handleSignInClick}&gt;
+          SIGN UP
+        &lt;/button&gt;
+      &lt;/p&gt;
+    &lt;/form&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

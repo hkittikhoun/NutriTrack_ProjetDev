@@ -1,0 +1,33 @@
+graph G {
+    compound="true"
+    rankdir="TB"
+    bgcolor="white"
+    fontname="Tahoma"
+
+    node [
+        fixedsize="false"
+        fontname="Tahoma"
+        color="white"
+        fillcolor="deepskyblue2"
+        fontcolor="black"
+        shape="box"
+        style="filled"
+        penwidth="1.0"
+    ]
+    edge [
+        fontname="Arial"
+        color="#00688b"
+        fontcolor="black"
+        fontsize="12"
+        arrowsize="0.5"
+        penwidth="1.0"
+    ]
+
+
+
+
+    "frontend" -- "frontend" [label=" 57 ", penwidth="10", color="#a0a0a0FF"];
+    "backend" -- "frontend" [label=" 2 ", penwidth="1", color="#00688b4C"];
+    "backend" -- "backend" [label=" 1 ", penwidth="1", color="#a0a0a04C"];
+
+}

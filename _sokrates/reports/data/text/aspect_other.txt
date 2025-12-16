@@ -1,0 +1,10 @@
+Path	Lines of Code
+README.md	16
+backend/package-lock.json	1417
+backend/package.json	20
+backend/vercel.json	18
+frontend/README.md	7
+frontend/package-lock.json	4954
+frontend/package.json	31
+frontend/vercel.json	8
+test.txt	3

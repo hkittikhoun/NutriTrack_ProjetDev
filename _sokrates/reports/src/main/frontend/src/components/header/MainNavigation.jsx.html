@@ -1,0 +1,129 @@
+<html>
+<head>
+    <title>frontend/src/components/header/MainNavigation.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/header/MainNavigation.jsx (<b>99</b> lines of code) (<a href="MainNavigation.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useContext } from &quot;react&quot;;
+import { Link, NavLink } from &quot;react-router-dom&quot;;
+import &quot;./MainNavigation.css&quot;;
+
+import SideDrawer from &quot;./SideDrawer&quot;;
+import Backdrop from &quot;./Backdrop&quot;;
+import NavLinks from &quot;./NavLinks&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+
+const MainNavigation = ({ onOpenCart, cartIsOpen }) =&gt; {
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const auth = useContext(AuthContext);
+
+  const openDrawer = () =&gt; {
+    setDrawerIsOpen(true);
+  };
+  const closeDrawer = () =&gt; {
+    setDrawerIsOpen(false);
+  };
+
+  return (
+    &lt;&gt;
+      {drawerIsOpen &amp;&amp; &lt;Backdrop onClick={closeDrawer} /&gt;}
+      {drawerIsOpen &amp;&amp; (
+        &lt;SideDrawer&gt;
+          &lt;nav className=&quot;main-navigation__drawer-nav&quot;&gt;
+            &lt;NavLinks
+              onClose={closeDrawer}
+              onOpenCart={onOpenCart}
+              cartIsOpen={cartIsOpen}
+            /&gt;
+          &lt;/nav&gt;
+        &lt;/SideDrawer&gt;
+      )}
+      &lt;header className=&quot;main-header&quot;&gt;
+        &lt;button
+          className=&quot;main-navigation__menu-btn&quot;
+          onClick={openDrawer}
+          aria-label=&quot;Open menu&quot;
+          title=&quot;Open menu&quot;
+          aria-expanded={drawerIsOpen}
+        &gt;
+          &lt;span aria-hidden=&quot;true&quot; /&gt;
+          &lt;span aria-hidden=&quot;true&quot; /&gt;
+          &lt;span aria-hidden=&quot;true&quot; /&gt;
+        &lt;/button&gt;
+        &lt;div className=&quot;main-header__zone main-header__zone--left&quot;&gt;
+          &lt;h1 className=&quot;main-navigation__title&quot;&gt;
+            &lt;Link to=&quot;/&quot;&gt;NutriTrack&lt;/Link&gt;
+          &lt;/h1&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;main-header__zone main-header__zone--center&quot;&gt;
+          {auth.isLoggedIn &amp;&amp; (
+            &lt;&gt;
+              &lt;NavLink
+                to=&quot;/catalogue&quot;
+                className={({ isActive }) =&gt;
+                  &quot;main-navigation__catalogue-btn&quot; + (isActive ? &quot; active&quot; : &quot;&quot;)
+                }
+                end
+              &gt;
+                CATALOGUE
+              &lt;/NavLink&gt;
+              &lt;NavLink
+                to=&quot;/calculatrice&quot;
+                className={({ isActive }) =&gt;
+                  &quot;main-navigation__catalogue-btn&quot; + (isActive ? &quot; active&quot; : &quot;&quot;)
+                }
+                end
+              &gt;
+                CALCULATRICE
+              &lt;/NavLink&gt;
+              &lt;NavLink
+                to=&quot;/mealplan&quot;
+                className={({ isActive }) =&gt;
+                  &quot;main-navigation__catalogue-btn&quot; + (isActive ? &quot; active&quot; : &quot;&quot;)
+                }
+                end
+              &gt;
+                PLANS
+              &lt;/NavLink&gt;
+              &lt;NavLink
+                to=&quot;/recipe&quot;
+                className={({ isActive }) =&gt;
+                  &quot;main-navigation__catalogue-btn&quot; + (isActive ? &quot; active&quot; : &quot;&quot;)
+                }
+                end
+              &gt;
+                RECIPES
+              &lt;/NavLink&gt;
+            &lt;/&gt;
+          )}
+        &lt;/div&gt;
+        &lt;div className=&quot;main-header__zone main-header__zone--right&quot;&gt;
+          &lt;nav className=&quot;main-navigation__header-nav&quot;&gt;
+            &lt;NavLinks onOpenCart={onOpenCart} cartIsOpen={cartIsOpen} /&gt;
+          &lt;/nav&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+    &lt;/&gt;
+  );
+};
+export default MainNavigation;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

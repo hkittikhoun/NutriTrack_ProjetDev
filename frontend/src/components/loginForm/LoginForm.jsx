@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import { AuthContext } from "../../context/auth-context";
-import "./LoginForm.css";
+import "../shared/form.css";
 
 export default function LoginForm() {
   const [entredValues, setEntredValues] = useState({
@@ -31,7 +31,7 @@ export default function LoginForm() {
     });
 
     if (error) {
-      setError("Invalid credentials !");
+      setError(error.message || "Invalid credentials !");
       return;
     }
 
@@ -45,7 +45,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form className="login-form" onSubmit={handleLogin}>
       <h2 className="title">LOGIN</h2>
       {error && <div style={{ color: "red" }}>{error}</div>}
 

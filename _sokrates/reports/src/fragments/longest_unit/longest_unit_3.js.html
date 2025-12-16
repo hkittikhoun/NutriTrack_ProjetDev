@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>export function mapDbIngredientsToEdit()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function mapDbIngredientsToEdit()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/hooks/useRecipeForm.js [1:22]</i></p>
+<ul>
+    <li><b>22</b> lines of code</li>
+    <li><b>8</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function mapDbIngredientsToEdit(ingredientsData) {
+  const editIngs = (ingredientsData || []).map((ing) =&gt; ({
+    id: ing.id,
+    foodId: ing.food_id ? String(ing.food_id) : &quot;&quot;,
+    ingredientName: ing.ingredient_name || &quot;&quot;,
+    quantity: ing.quantity || &quot;&quot;,
+    unit: ing.unit || &quot;g&quot;,
+    preparation: ing.preparation || &quot;&quot;,
+  }));
+  return editIngs.length &gt; 0
+    ? editIngs
+    : [
+        {
+          id: Date.now(),
+          foodId: &quot;&quot;,
+          ingredientName: &quot;&quot;,
+          quantity: &quot;&quot;,
+          unit: &quot;g&quot;,
+          preparation: &quot;&quot;,
+        },
+      ];
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

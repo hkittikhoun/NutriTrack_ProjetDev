@@ -1,0 +1,137 @@
+<html>
+<head>
+    <title>frontend/src/components/foodCard/FoodCard.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/foodCard/FoodCard.jsx (<b>98</b> lines of code) (<a href="FoodCard.jsx">raw</a>):</h3>
+<div id="editor">import { useContext } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import { CartContext } from &quot;../../context/cart-context&quot;;
+import { useNutrition } from &quot;../../context/nutrition.jsx&quot;;
+import &quot;./FoodCard.css&quot;;
+
+export default function FoodCard({ food }) {
+  const { FoodDescription, nutrients } = food;
+  const navigate = useNavigate();
+  const { setSelectedFood } = useNutrition();
+  const auth = useContext(AuthContext);
+  const { refreshCart } = useContext(CartContext);
+
+  const handleUseInCalculator = () =&gt; {
+    setSelectedFood(food);
+    navigate(&quot;/calculatrice?tab=nutrition&quot;);
+  };
+
+  const handleAddToCart = async () =&gt; {
+    try {
+      if (!auth.isLoggedIn || !auth.userId) {
+        alert(&quot;Veuillez vous connecter pour ajouter au panier.&quot;);
+        navigate(&quot;/login&quot;);
+        return;
+      }
+
+      const quantity = 1;
+
+      const { error } = await supabase.from(&quot;cart_items&quot;).insert({
+        user_id: auth.userId,
+        food_id: food.FoodID,
+        quantity,
+      });
+
+      if (error) {
+        if (error.code === &quot;23505&quot;) {
+          const { data: existing, error: selErr } = await supabase
+            .from(&quot;cart_items&quot;)
+            .select(&quot;id, quantity&quot;)
+            .eq(&quot;user_id&quot;, auth.userId)
+            .eq(&quot;food_id&quot;, food.FoodID)
+            .single();
+
+          if (selErr || !existing) {
+            console.error(&quot;Failed to fetch existing cart item:&quot;, selErr);
+            alert(&quot;Impossible d'ajouter au panier.&quot;);
+            return;
+          }
+
+          const { error: updErr } = await supabase
+            .from(&quot;cart_items&quot;)
+            .update({ quantity: existing.quantity + quantity })
+            .eq(&quot;id&quot;, existing.id);
+
+          if (updErr) {
+            console.error(&quot;Failed to increment quantity:&quot;, updErr);
+            alert(&quot;Impossible de mettre &agrave; jour la quantit&eacute;.&quot;);
+            return;
+          }
+
+          alert(&quot;Quantit&eacute; augment&eacute;e dans le panier.&quot;);
+          refreshCart();
+          return;
+        }
+
+        console.error(&quot;Add to cart failed:&quot;, error);
+        alert(&quot;Impossible d'ajouter au panier: &quot; + error.message);
+        return;
+      }
+
+      alert(&quot;Ajout&eacute; au panier.&quot;);
+      refreshCart();
+    } catch (e) {
+      console.error(e);
+      alert(&quot;Une erreur inattendue s'est produite.&quot;);
+    }
+  };
+
+  return (
+    &lt;div className=&quot;food-card&quot;&gt;
+      &lt;h3 className=&quot;food-title&quot;&gt;{FoodDescription}&lt;/h3&gt;
+      &lt;div className=&quot;nutrients&quot;&gt;
+        {nutrients &amp;&amp; nutrients.length &gt; 0 ? (
+          nutrients.map((nutrient, index) =&gt; (
+            &lt;div key={index} className=&quot;nutrient&quot;&gt;
+              &lt;span className=&quot;nutrient-symbol&quot;&gt;{nutrient.NutrientSymbol}&lt;/span&gt;
+              &lt;span className=&quot;nutrient-value&quot;&gt;
+                {nutrient.NutrientValue} {nutrient.NutrientUnit}
+              &lt;/span&gt;
+            &lt;/div&gt;
+          ))
+        ) : (
+          &lt;div className=&quot;nutrient&quot;&gt;
+            &lt;span className=&quot;nutrient-symbol&quot;&gt;N/A&lt;/span&gt;
+            &lt;span className=&quot;nutrient-value&quot;&gt;No data&lt;/span&gt;
+          &lt;/div&gt;
+        )}
+      &lt;/div&gt;
+      &lt;div className=&quot;food-card-actions&quot;&gt;
+        &lt;button className=&quot;calculator-btn&quot; onClick={handleUseInCalculator}&gt;
+          &lt;span className=&quot;btn-text&quot;&gt;Use in Calculator&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button className=&quot;cart-btn&quot; onClick={handleAddToCart}&gt;
+          &lt;span className=&quot;btn-text&quot;&gt;Add to Cart&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

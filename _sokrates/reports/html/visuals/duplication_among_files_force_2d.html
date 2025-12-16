@@ -1,0 +1,271 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/force-graph"></script>
+</head>
+
+<body>
+<div id="graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "[frontend/src/components/cart/Cart.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/buttons.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/Recipe.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/MealPlan.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/payement/StripePayement.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/calculators/Calculators.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/Tabs.css]",
+    "size" : 1
+  } ],
+  "links" : [ {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 18
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 18
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 16
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 16
+  }, {
+    "source" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "target" : "[frontend/src/components/payement/StripePayement.css]",
+    "count" : 16
+  }, {
+    "source" : "[frontend/src/components/payement/StripePayement.css]",
+    "target" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "count" : 16
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 54
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 54
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 38
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.jsx]",
+    "count" : 38
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "target" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 24
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 24
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/calculators/Calculators.css]",
+    "target" : "[frontend/src/components/shared/Tabs.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/Tabs.css]",
+    "target" : "[frontend/src/components/calculators/Calculators.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/cart/Cart.jsx]",
+    "target" : "[frontend/src/components/cart/Cart.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "target" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "target" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 12
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => {
+        return {source: l.target, target: l.source, count: l.count}
+    });
+    const colorOf = (node) => {
+        if (!node.id.startsWith("[")) return "rgba(135, 206, 235, 0.6)";
+        return "rgba(100,100,100,0.6)";
+    }
+
+    const elem = document.getElementById('graph');
+    const Graph = ForceGraph()(elem)
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => colorOf(n))
+        .linkDirectionalParticles(1)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

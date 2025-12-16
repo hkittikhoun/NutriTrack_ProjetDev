@@ -1,0 +1,589 @@
+[ {
+  "relativePath" : "backend/routes/payement.js",
+  "extension" : "js",
+  "linesOfCode" : 208,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "backend/server.js",
+  "extension" : "js",
+  "linesOfCode" : 40,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/eslint.config.js",
+  "extension" : "js",
+  "linesOfCode" : 43,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/index.html",
+  "extension" : "html",
+  "linesOfCode" : 15,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/App.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 70,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/calculators/Calculators.css",
+  "extension" : "css",
+  "linesOfCode" : 58,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/calculators/Calculators.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 48,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/calculators/CaloriesCalculator.css",
+  "extension" : "css",
+  "linesOfCode" : 50,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/calculators/CaloriesCalculator.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 222,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/calculators/NutrientSection.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 29,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/calculators/NutritionCalculator.css",
+  "extension" : "css",
+  "linesOfCode" : 236,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/calculators/NutritionCalculator.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 200,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/cart/Cart.css",
+  "extension" : "css",
+  "linesOfCode" : 190,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/cart/Cart.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 273,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/catalogue/Catalogue.css",
+  "extension" : "css",
+  "linesOfCode" : 124,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/catalogue/Catalogue.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 118,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/foodCard/FoodCard.css",
+  "extension" : "css",
+  "linesOfCode" : 130,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/foodCard/FoodCard.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 98,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/Backdrop.css",
+  "extension" : "css",
+  "linesOfCode" : 9,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/Backdrop.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 9,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/MainNavigation.css",
+  "extension" : "css",
+  "linesOfCode" : 108,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/MainNavigation.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 99,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/NavLinks.css",
+  "extension" : "css",
+  "linesOfCode" : 88,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/NavLinks.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 78,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/SideDrawer.css",
+  "extension" : "css",
+  "linesOfCode" : 10,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/header/SideDrawer.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/loginForm/loginForm.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 78,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/mealPlan/DailyPlan.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 199,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/mealPlan/MealPlans.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 32,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 342,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/mealPlan/SavedPlans.css",
+  "extension" : "css",
+  "linesOfCode" : 109,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/mealPlan/SavedPlans.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 135,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/monthlyJournal/monthlyJournal.css",
+  "extension" : "css",
+  "linesOfCode" : 76,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/monthlyJournal/monthlyJournal.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 119,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/payement/PayementSuccess.css",
+  "extension" : "css",
+  "linesOfCode" : 304,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/payement/PayementSuccess.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 194,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/payement/StripePayement.css",
+  "extension" : "css",
+  "linesOfCode" : 148,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/payement/StripePayement.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 94,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/recipe/CreateRecipe.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 199,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/recipe/Recipe.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 32,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/recipe/RecipeForm.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 208,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/recipe/SavedRecipe.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 200,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/recipe/SavedRecipeDetails.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 425,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/animation.css",
+  "extension" : "css",
+  "linesOfCode" : 10,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/buttons.css",
+  "extension" : "css",
+  "linesOfCode" : 38,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/CalculatorsBase.css",
+  "extension" : "css",
+  "linesOfCode" : 172,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/CatalogueBase.css",
+  "extension" : "css",
+  "linesOfCode" : 19,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/form.css",
+  "extension" : "css",
+  "linesOfCode" : 155,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/hooks/useCartFoods.js",
+  "extension" : "js",
+  "linesOfCode" : 54,
+  "unitsCount" : 1,
+  "unitsMcCabeIndexSum" : 10,
+  "linesOfCodeInUnits" : 52
+}, {
+  "relativePath" : "frontend/src/components/shared/hooks/useCartPrefill.js",
+  "extension" : "js",
+  "linesOfCode" : 26,
+  "unitsCount" : 2,
+  "unitsMcCabeIndexSum" : 6,
+  "linesOfCodeInUnits" : 26
+}, {
+  "relativePath" : "frontend/src/components/shared/hooks/usePrefillAuthors.js",
+  "extension" : "js",
+  "linesOfCode" : 28,
+  "unitsCount" : 1,
+  "unitsMcCabeIndexSum" : 17,
+  "linesOfCodeInUnits" : 26
+}, {
+  "relativePath" : "frontend/src/components/shared/hooks/useRecipeForm.js",
+  "extension" : "js",
+  "linesOfCode" : 26,
+  "unitsCount" : 2,
+  "unitsMcCabeIndexSum" : 11,
+  "linesOfCodeInUnits" : 26
+}, {
+  "relativePath" : "frontend/src/components/shared/hooks/useUrlTabs.js",
+  "extension" : "js",
+  "linesOfCode" : 23,
+  "unitsCount" : 1,
+  "unitsMcCabeIndexSum" : 5,
+  "linesOfCodeInUnits" : 21
+}, {
+  "relativePath" : "frontend/src/components/shared/mealPlan/mapUtils.js",
+  "extension" : "js",
+  "linesOfCode" : 28,
+  "unitsCount" : 2,
+  "unitsMcCabeIndexSum" : 9,
+  "linesOfCodeInUnits" : 28
+}, {
+  "relativePath" : "frontend/src/components/shared/mealPlan/MealPlanEditor.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 171,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/MealPlan.css",
+  "extension" : "css",
+  "linesOfCode" : 381,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/recipe/IngredientRow.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 97,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/recipe/InstructionRow.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 33,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/recipe/utils.js",
+  "extension" : "js",
+  "linesOfCode" : 69,
+  "unitsCount" : 8,
+  "unitsMcCabeIndexSum" : 54,
+  "linesOfCodeInUnits" : 94
+}, {
+  "relativePath" : "frontend/src/components/shared/Recipe.css",
+  "extension" : "css",
+  "linesOfCode" : 564,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/status.css",
+  "extension" : "css",
+  "linesOfCode" : 22,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/shared/Tabs.css",
+  "extension" : "css",
+  "linesOfCode" : 80,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/components/signupForm/signupForm.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 170,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/config/api.js",
+  "extension" : "js",
+  "linesOfCode" : 2,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/config/stripe.js",
+  "extension" : "js",
+  "linesOfCode" : 3,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Calculatrices.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Catalogue.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/ErrorPage.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 13,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Home.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 4,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Login.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 4,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Plans.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Recipes.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Roots.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 41,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/SavedPlan.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/SavedRecipes.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/containers/Signup.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 4,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/context/auth-context.js",
+  "extension" : "js",
+  "linesOfCode" : 8,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/context/cart-context.js",
+  "extension" : "js",
+  "linesOfCode" : 4,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/context/nutrition-context.js",
+  "extension" : "js",
+  "linesOfCode" : 6,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/context/nutrition.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 9,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/context/NutritionProvider.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 19,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/main.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 8,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/src/supabaseClient.js",
+  "extension" : "js",
+  "linesOfCode" : 4,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/vite.config.js",
+  "extension" : "js",
+  "linesOfCode" : 5,
+  "unitsCount" : 1,
+  "unitsMcCabeIndexSum" : 1,
+  "linesOfCodeInUnits" : 3
+} ]

@@ -1,0 +1,407 @@
+@import "./buttons.css";
+
+/* Base conteneurs */
+.daily-plan,
+.saved-plans {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Notices / erreurs */
+.error {
+  background: #ffebee;
+  color: #b00020;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  border-left: 4px solid #f44336;
+}
+.notice.success {
+  background: #e6ffed;
+  border: 1px solid #b7f0c7;
+  color: #2e7d32;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+}
+
+/* Listes sauvegardées */
+.plans-list {
+  list-style: none;
+  padding: 0;
+}
+.plan-item {
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+}
+.plan-title {
+  font-weight: 600;
+}
+.plan-meta {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+/* Actions (communs via buttons.css) */
+.plan-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Détails */
+.plan-details {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.plan-details h2 {
+  color: #b00020;
+  margin-bottom: 16px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+.plan-details .plan-meta {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+.plan-details .plan-meta span {
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+}
+
+/* Grilles */
+.meals-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.meal-display-section {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #b00020;
+}
+.meal-display-section h4 {
+  margin: 0 0 12px;
+  color: #b00020;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.meal-items-display {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.meal-items-display li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+}
+.meal-items-display li:last-child {
+  border-bottom: none;
+}
+.no-items-text {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Formulaires et champs */
+.validation-errors {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #ffebee;
+  border-left: 4px solid #f44336;
+  border-radius: 4px;
+}
+.validation-errors .error-item {
+  color: #b00020;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.edit-plan-form {
+  width: 100%;
+  max-width: 100%;
+}
+.edit-plan-form h2 {
+  color: #b00020;
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.field-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.field-row label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 1rem;
+}
+.field-row input {
+  padding: 10px 14px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  width: 220px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+.field-row input:focus {
+  outline: none;
+  border-color: #b00020;
+  box-shadow: 0 0 0 3px rgba(176, 0, 32, 0.1);
+}
+
+.meals-container {
+  margin-bottom: 24px;
+  width: 100%;
+}
+.meals-container h3,
+.meals-container h2 {
+  color: #b00020;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+.meals-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 100%;
+}
+
+/* Sections repas */
+.meal-section {
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+.meal-section:hover {
+  border-color: #b00020;
+}
+.meal-section:not(:last-child) {
+  margin-bottom: 8px;
+}
+.meal-section[data-meal="morning"] {
+  border-left: 4px solid #ff9800;
+}
+.meal-section[data-meal="lunch"] {
+  border-left: 4px solid #2196f3;
+}
+.meal-section[data-meal="dinner"] {
+  border-left: 4px solid #9c27b0;
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.meal-header h3 {
+  margin: 0;
+  color: #b00020;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.add-meal-item-btn {
+  background: #b00020;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.add-meal-item-btn:hover {
+  background: #d00030;
+}
+.add-meal-item-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.meal-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.meal-item-row {
+  display: grid;
+  grid-template-columns: 2fr 120px 100px;
+  gap: 16px;
+  align-items: end;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+.meal-item-field {
+  display: flex;
+  flex-direction: column;
+}
+.meal-item-field label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+  font-size: 0.9rem;
+}
+.meal-item-field select,
+.meal-item-field input {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+.meal-item-field select:focus,
+.meal-item-field input:focus {
+  outline: none;
+  border-color: #b00020;
+}
+.meal-item-field input[type="number"] {
+  text-align: center;
+}
+
+.meal-item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.remove-meal-item-btn {
+  background: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  white-space: nowrap;
+  width: 100%;
+  min-width: 90px;
+}
+.remove-meal-item-btn:hover {
+  background: #da190b;
+}
+.remove-meal-item-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Header plan */
+.plan-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.plan-header-info h2 {
+  margin: 0;
+}
+.owner-badge {
+  background: #4caf50;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Responsive (spécifique meal plans; sizing commun est dans buttons.css) */
+@media (max-width: 768px) {
+  .daily-plan,
+  .saved-plans {
+    padding: 12px;
+  }
+  .plan-details {
+    padding: 16px;
+  }
+  .plan-details .plan-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .meals-display {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .field-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .field-row input {
+    width: 100%;
+  }
+  .meal-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .meal-item-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+  /* supprimé: sizing des .action-buttons/.form-actions/.plan-actions (déjà dans buttons.css) */
+}
+@media (max-width: 480px) {
+  .daily-plan,
+  .saved-plans {
+    padding: 8px;
+  }
+  .edit-plan-form .field-row input {
+    padding: 8px 10px;
+  }
+  .meal-section {
+    padding: 12px;
+  }
+  .meal-item-row {
+    padding: 12px;
+  }
+}

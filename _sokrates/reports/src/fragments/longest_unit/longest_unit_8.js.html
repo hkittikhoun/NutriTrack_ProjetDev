@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>export function buildIngredientsData()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export function buildIngredientsData()</h3>
+<p style="margin-top: 4px">in <i>frontend/src/components/shared/recipe/utils.js [47:61]</i></p>
+<ul>
+    <li><b>15</b> lines of code</li>
+    <li><b>11</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export function buildIngredientsData(ingredients, recipeId) {
+  return (ingredients || [])
+    .filter((ing) =&gt;
+      String(ing.ingredientName || ing.ingredient_name || &quot;&quot;).trim()
+    )
+    .map((ing, index) =&gt; ({
+      recipe_id: recipeId,
+      food_id: ing.foodId ? parseInt(ing.foodId) : null,
+      ingredient_name: String(ing.ingredientName || ing.ingredient_name).trim(),
+      quantity: ing.quantity ? parseFloat(ing.quantity) : null,
+      unit: String(ing.unit || &quot;&quot;).trim() || null,
+      preparation: String(ing.preparation || &quot;&quot;).trim() || null,
+      order_index: index + 1,
+    }));
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

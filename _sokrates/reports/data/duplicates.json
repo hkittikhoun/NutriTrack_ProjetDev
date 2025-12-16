@@ -1,0 +1,760 @@
+{
+  "title" : "Duplication",
+  "timestamp" : "2025-12-13 00:35:15",
+  "duplicates" : [ {
+    "blockSize" : 9,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlans.css",
+        "extension" : "css",
+        "linesOfCode" : 109,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 109,
+      "startLine" : 97,
+      "endLine" : 105,
+      "cleanedStartLine" : 85,
+      "cleanedEndLine" : 93
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/Recipe.css",
+        "extension" : "css",
+        "linesOfCode" : 564,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 564,
+      "startLine" : 556,
+      "endLine" : 564,
+      "cleanedStartLine" : 514,
+      "cleanedEndLine" : 522
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/cart/Cart.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 273,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 258,
+      "startLine" : 43,
+      "endLine" : 50,
+      "cleanedStartLine" : 38,
+      "cleanedEndLine" : 45
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipeDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 425,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 400,
+      "startLine" : 119,
+      "endLine" : 126,
+      "cleanedStartLine" : 103,
+      "cleanedEndLine" : 110
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/payement/PayementSuccess.css",
+        "extension" : "css",
+        "linesOfCode" : 304,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 304,
+      "startLine" : 244,
+      "endLine" : 251,
+      "cleanedStartLine" : 216,
+      "cleanedEndLine" : 223
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/payement/StripePayement.css",
+        "extension" : "css",
+        "linesOfCode" : 148,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 148,
+      "startLine" : 107,
+      "endLine" : 114,
+      "cleanedStartLine" : 93,
+      "cleanedEndLine" : 100
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 335,
+      "endLine" : 346,
+      "cleanedStartLine" : 292,
+      "cleanedEndLine" : 299
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipeDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 425,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 400,
+      "startLine" : 430,
+      "endLine" : 441,
+      "cleanedStartLine" : 358,
+      "cleanedEndLine" : 365
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlans.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 135,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 120,
+      "startLine" : 38,
+      "endLine" : 44,
+      "cleanedStartLine" : 32,
+      "cleanedEndLine" : 38
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipe.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 200,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 176,
+      "startLine" : 40,
+      "endLine" : 46,
+      "cleanedStartLine" : 35,
+      "cleanedEndLine" : 41
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 257,
+      "endLine" : 263,
+      "cleanedStartLine" : 229,
+      "cleanedEndLine" : 235
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipeDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 425,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 400,
+      "startLine" : 303,
+      "endLine" : 309,
+      "cleanedStartLine" : 261,
+      "cleanedEndLine" : 267
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/recipe/IngredientRow.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 97,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 82,
+      "startLine" : 94,
+      "endLine" : 103,
+      "cleanedStartLine" : 77,
+      "cleanedEndLine" : 82
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/recipe/InstructionRow.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 33,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 29,
+      "startLine" : 26,
+      "endLine" : 34,
+      "cleanedStartLine" : 24,
+      "cleanedEndLine" : 29
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/DailyPlan.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 199,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 196,
+      "startLine" : 46,
+      "endLine" : 51,
+      "cleanedStartLine" : 43,
+      "cleanedEndLine" : 48
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 183,
+      "endLine" : 188,
+      "cleanedStartLine" : 164,
+      "cleanedEndLine" : 169
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlans.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 135,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 120,
+      "startLine" : 57,
+      "endLine" : 63,
+      "cleanedStartLine" : 48,
+      "cleanedEndLine" : 53
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipe.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 200,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 176,
+      "startLine" : 116,
+      "endLine" : 122,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 102
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 118,
+      "endLine" : 124,
+      "cleanedStartLine" : 106,
+      "cleanedEndLine" : 111
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipeDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 425,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 400,
+      "startLine" : 146,
+      "endLine" : 152,
+      "cleanedStartLine" : 129,
+      "cleanedEndLine" : 134
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/DailyPlan.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 199,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 196,
+      "startLine" : 1,
+      "endLine" : 6,
+      "cleanedStartLine" : 1,
+      "cleanedEndLine" : 6
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/CreateRecipe.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 199,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 196,
+      "startLine" : 1,
+      "endLine" : 6,
+      "cleanedStartLine" : 1,
+      "cleanedEndLine" : 6
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/DailyPlan.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 199,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 196,
+      "startLine" : 53,
+      "endLine" : 58,
+      "cleanedStartLine" : 50,
+      "cleanedEndLine" : 55
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 152,
+      "endLine" : 157,
+      "cleanedStartLine" : 134,
+      "cleanedEndLine" : 139
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/calculators/CaloriesCalculator.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 222,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 195,
+      "startLine" : 6,
+      "endLine" : 11,
+      "cleanedStartLine" : 5,
+      "cleanedEndLine" : 10
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/calculators/CaloriesCalculator.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 222,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 195,
+      "startLine" : 91,
+      "endLine" : 96,
+      "cleanedStartLine" : 78,
+      "cleanedEndLine" : 83
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 55,
+      "endLine" : 60,
+      "cleanedStartLine" : 47,
+      "cleanedEndLine" : 52
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 246,
+      "endLine" : 251,
+      "cleanedStartLine" : 219,
+      "cleanedEndLine" : 224
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/calculators/Calculators.css",
+        "extension" : "css",
+        "linesOfCode" : 58,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 58,
+      "startLine" : 58,
+      "endLine" : 64,
+      "cleanedStartLine" : 49,
+      "cleanedEndLine" : 54
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/Tabs.css",
+        "extension" : "css",
+        "linesOfCode" : 80,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 80,
+      "startLine" : 79,
+      "endLine" : 85,
+      "cleanedStartLine" : 64,
+      "cleanedEndLine" : 69
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlanDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 342,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 326,
+      "startLine" : 131,
+      "endLine" : 137,
+      "cleanedStartLine" : 116,
+      "cleanedEndLine" : 121
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipeDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 425,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 400,
+      "startLine" : 161,
+      "endLine" : 167,
+      "cleanedStartLine" : 141,
+      "cleanedEndLine" : 146
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/MealPlan.css",
+        "extension" : "css",
+        "linesOfCode" : 381,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 381,
+      "startLine" : 53,
+      "endLine" : 58,
+      "cleanedStartLine" : 45,
+      "cleanedEndLine" : 50
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/buttons.css",
+        "extension" : "css",
+        "linesOfCode" : 38,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 38,
+      "startLine" : 4,
+      "endLine" : 9,
+      "cleanedStartLine" : 3,
+      "cleanedEndLine" : 8
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlans.css",
+        "extension" : "css",
+        "linesOfCode" : 109,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 109,
+      "startLine" : 66,
+      "endLine" : 71,
+      "cleanedStartLine" : 60,
+      "cleanedEndLine" : 65
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/MealPlan.css",
+        "extension" : "css",
+        "linesOfCode" : 381,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 381,
+      "startLine" : 41,
+      "endLine" : 46,
+      "cleanedStartLine" : 35,
+      "cleanedEndLine" : 40
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/cart/Cart.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 273,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 258,
+      "startLine" : 26,
+      "endLine" : 32,
+      "cleanedStartLine" : 23,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/cart/Cart.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 273,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 258,
+      "startLine" : 125,
+      "endLine" : 131,
+      "cleanedStartLine" : 108,
+      "cleanedEndLine" : 113
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/mealPlan/SavedPlans.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 135,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 120,
+      "startLine" : 25,
+      "endLine" : 33,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 27
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipe.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 200,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 176,
+      "startLine" : 28,
+      "endLine" : 35,
+      "cleanedStartLine" : 25,
+      "cleanedEndLine" : 30
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/CreateRecipe.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 199,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 196,
+      "startLine" : 18,
+      "endLine" : 23,
+      "cleanedStartLine" : 17,
+      "cleanedEndLine" : 22
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/hooks/useRecipeForm.js",
+        "extension" : "js",
+        "linesOfCode" : 26,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 23,
+      "startLine" : 14,
+      "endLine" : 19,
+      "cleanedStartLine" : 13,
+      "cleanedEndLine" : 18
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/RecipeForm.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 208,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 187,
+      "startLine" : 215,
+      "endLine" : 223,
+      "cleanedStartLine" : 182,
+      "cleanedEndLine" : 187
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/mealPlan/MealPlanEditor.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 171,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 148,
+      "startLine" : 174,
+      "endLine" : 182,
+      "cleanedStartLine" : 143,
+      "cleanedEndLine" : 148
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/Recipe.css",
+        "extension" : "css",
+        "linesOfCode" : 564,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 564,
+      "startLine" : 450,
+      "endLine" : 455,
+      "cleanedStartLine" : 413,
+      "cleanedEndLine" : 418
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/buttons.css",
+        "extension" : "css",
+        "linesOfCode" : 38,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 38,
+      "startLine" : 18,
+      "endLine" : 23,
+      "cleanedStartLine" : 16,
+      "cleanedEndLine" : 21
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/loginForm/loginForm.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 78,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 72,
+      "startLine" : 65,
+      "endLine" : 70,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 58
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/signupForm/signupForm.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 170,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 153,
+      "startLine" : 108,
+      "endLine" : 113,
+      "cleanedStartLine" : 90,
+      "cleanedEndLine" : 95
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/RecipeForm.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 208,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 187,
+      "startLine" : 24,
+      "endLine" : 29,
+      "cleanedStartLine" : 23,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/shared/hooks/useRecipeForm.js",
+        "extension" : "js",
+        "linesOfCode" : 26,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 23,
+      "startLine" : 15,
+      "endLine" : 20,
+      "cleanedStartLine" : 14,
+      "cleanedEndLine" : 19
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipe.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 200,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 176,
+      "startLine" : 158,
+      "endLine" : 164,
+      "cleanedStartLine" : 129,
+      "cleanedEndLine" : 134
+    }, {
+      "file" : {
+        "relativePath" : "frontend/src/components/recipe/SavedRecipeDetails.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 425,
+        "components" : [ "primary::frontend" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 400,
+      "startLine" : 371,
+      "endLine" : 377,
+      "cleanedStartLine" : 313,
+      "cleanedEndLine" : 318
+    } ]
+  } ],
+  "overallDuplication" : null
+}

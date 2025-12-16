@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>frontend/src/components/App.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/App.jsx (<b>70</b> lines of code) (<a href="App.jsx">raw</a>):</h3>
+<div id="editor">import { createBrowserRouter, RouterProvider } from &quot;react-router-dom&quot;;
+import { useCallback, useState } from &quot;react&quot;;
+import { AuthContext } from &quot;../context/auth-context&quot;;
+import { NutritionProvider } from &quot;../context/NutritionProvider.jsx&quot;;
+
+import RootLayout from &quot;../containers/Roots&quot;;
+import ErrorPage from &quot;../containers/ErrorPage&quot;;
+import Home from &quot;../containers/Home&quot;;
+import Login from &quot;../containers/Login&quot;;
+import Signup from &quot;../containers/Signup&quot;;
+import CatalogueContainer from &quot;../containers/Catalogue&quot;;
+import CalculatricesContainer from &quot;../containers/Calculatrices&quot;;
+import PaymentSuccess from &quot;./payement/PayementSuccess&quot;;
+import PlansContainer from &quot;../containers/Plans.jsx&quot;;
+import SavedPlanDetailsContainer from &quot;../containers/SavedPlan.jsx&quot;;
+import RecipeContainer from &quot;../containers/Recipes.jsx&quot;;
+import SavedRecipesContainer from &quot;../containers/SavedRecipes.jsx&quot;;
+
+const App = () =&gt; {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    sessionStorage.getItem(&quot;isLoggedIn&quot;) === &quot;true&quot;
+  );
+  const [userId, setUserId] = useState(sessionStorage.getItem(&quot;userId&quot;));
+  const [userToken, setUserToken] = useState(
+    sessionStorage.getItem(&quot;userToken&quot;)
+  );
+
+  const login = useCallback((id, token) =&gt; {
+    setIsLoggedIn(true);
+    setUserId(id);
+    setUserToken(token);
+    sessionStorage.setItem(&quot;isLoggedIn&quot;, &quot;true&quot;);
+    sessionStorage.setItem(&quot;userId&quot;, id);
+    sessionStorage.setItem(&quot;userToken&quot;, token);
+  }, []);
+
+  const logout = useCallback(() =&gt; {
+    setIsLoggedIn(false);
+    setUserId(null);
+    setUserToken(null);
+    sessionStorage.removeItem(&quot;isLoggedIn&quot;);
+    sessionStorage.removeItem(&quot;userId&quot;);
+    sessionStorage.removeItem(&quot;userToken&quot;);
+  }, []);
+
+  const router = createBrowserRouter([
+    {
+      path: &quot;/&quot;,
+      element: &lt;RootLayout /&gt;,
+      errorElement: &lt;ErrorPage /&gt;,
+      children: [
+        { path: &quot;/&quot;, element: &lt;Home /&gt; },
+        { path: &quot;/login&quot;, element: &lt;Login /&gt; },
+        { path: &quot;/signup&quot;, element: &lt;Signup /&gt; },
+        { path: &quot;/catalogue&quot;, element: &lt;CatalogueContainer /&gt; },
+        { path: &quot;/calculatrice&quot;, element: &lt;CalculatricesContainer /&gt; },
+        { path: &quot;/mealplan&quot;, element: &lt;PlansContainer /&gt; },
+        { path: &quot;/mealplan/:id&quot;, element: &lt;SavedPlanDetailsContainer /&gt; },
+        { path: &quot;/recipe&quot;, element: &lt;RecipeContainer /&gt; },
+        { path: &quot;/recipe/:id&quot;, element: &lt;SavedRecipesContainer /&gt; },
+        { path: &quot;/payment-success&quot;, element: &lt;PaymentSuccess /&gt; },
+      ],
+    },
+  ]);
+
+  return (
+    &lt;AuthContext.Provider
+      value={{ isLoggedIn, userId, userToken, login, logout }}
+    &gt;
+      &lt;NutritionProvider&gt;
+        &lt;RouterProvider router={router} /&gt;
+      &lt;/NutritionProvider&gt;
+    &lt;/AuthContext.Provider&gt;
+  );
+};
+
+export default App;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

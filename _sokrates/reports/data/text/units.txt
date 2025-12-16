@@ -1,0 +1,162 @@
+id: 1
+unit: export function useCartFoods()
+file: frontend/src/components/shared/hooks/useCartFoods.js
+start line: 5
+end line: 62
+size: 52 LOC
+McCabe index: 10
+number of parameters: 0
+
+id: 2
+unit: export function usePrefillAuthor()
+file: frontend/src/components/shared/hooks/usePrefillAuthors.js
+start line: 5
+end line: 30
+size: 26 LOC
+McCabe index: 17
+number of parameters: 3
+
+id: 3
+unit: export function mapDbIngredientsToEdit()
+file: frontend/src/components/shared/hooks/useRecipeForm.js
+start line: 1
+end line: 22
+size: 22 LOC
+McCabe index: 8
+number of parameters: 1
+
+id: 4
+unit: export function useUrlTabs()
+file: frontend/src/components/shared/hooks/useUrlTabs.js
+start line: 8
+end line: 33
+size: 21 LOC
+McCabe index: 5
+number of parameters: 2
+
+id: 5
+unit: export function validateRecipe()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 1
+end line: 18
+size: 18 LOC
+McCabe index: 11
+number of parameters: 4
+
+id: 6
+unit: export function prefillFromCartToMealPlans()
+file: frontend/src/components/shared/hooks/useCartPrefill.js
+start line: 1
+end line: 15
+size: 15 LOC
+McCabe index: 3
+number of parameters: 1
+
+id: 7
+unit: export function mapItemsToEditMealPlans()
+file: frontend/src/components/shared/mealPlan/mapUtils.js
+start line: 1
+end line: 15
+size: 15 LOC
+McCabe index: 7
+number of parameters: 1
+
+id: 8
+unit: export function buildIngredientsData()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 47
+end line: 61
+size: 15 LOC
+McCabe index: 11
+number of parameters: 2
+
+id: 9
+unit: export function mergeCartWithCatalogue()
+file: frontend/src/components/shared/mealPlan/mapUtils.js
+start line: 17
+end line: 29
+size: 13 LOC
+McCabe index: 2
+number of parameters: 2
+
+id: 10
+unit: export function getDifficultyColor()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 20
+end line: 31
+size: 12 LOC
+McCabe index: 4
+number of parameters: 1
+
+id: 11
+unit: export function getDifficultyLabel()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 33
+end line: 44
+size: 12 LOC
+McCabe index: 5
+number of parameters: 1
+
+id: 12
+unit: export function buildInstructionsData()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 63
+end line: 75
+size: 12 LOC
+McCabe index: 5
+number of parameters: 2
+
+id: 13
+unit: export function prefillFromCartToIngredients()
+file: frontend/src/components/shared/hooks/useCartPrefill.js
+start line: 17
+end line: 27
+size: 11 LOC
+McCabe index: 3
+number of parameters: 1
+
+id: 14
+unit: ingredient_name: String()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 55
+end line: 66
+size: 10 LOC
+McCabe index: 8
+number of parameters: 1
+
+id: 15
+unit: unit: String()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 57
+end line: 66
+size: 8 LOC
+McCabe index: 6
+number of parameters: 1
+
+id: 16
+unit: preparation: String()
+file: frontend/src/components/shared/recipe/utils.js
+start line: 58
+end line: 66
+size: 7 LOC
+McCabe index: 4
+number of parameters: 1
+
+id: 17
+unit: export function mapDbInstructionsToEdit()
+file: frontend/src/components/shared/hooks/useRecipeForm.js
+start line: 24
+end line: 27
+size: 4 LOC
+McCabe index: 3
+number of parameters: 1
+
+id: 18
+unit: export default defineConfig()
+file: frontend/vite.config.js
+start line: 5
+end line: 7
+size: 3 LOC
+McCabe index: 1
+number of parameters: 1
+

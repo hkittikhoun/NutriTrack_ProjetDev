@@ -1,0 +1,722 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph"></script>
+</head>
+
+<body>
+<div id="3d-graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "commit_0d698c4339f7dd29ce29ec6d630bc53d65331c09",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/buttons.css]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/calculators/NutritionCalculator.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/calculators/NutrientSection.jsx]",
+    "size" : 1
+  }, {
+    "id" : "commit_37ff85d00ec97eb00cb6f1934056c2537326630d",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "size" : 1
+  }, {
+    "id" : "commit_07731703a05b4d4783a6a70efc5ac247c27aebc6",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "size" : 5
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/form.css]",
+    "size" : 1
+  }, {
+    "id" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "size" : 3
+  }, {
+    "id" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "size" : 5
+  }, {
+    "id" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/utils.js]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/Recipe.css]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "size" : 2
+  }, {
+    "id" : "commit_9d73ab0f2d8b62da598ad8760637b8b18d64f73d",
+    "size" : 3
+  }, {
+    "id" : "commit_fd98085387a423ffdb9d3710e2714d57facfbeff",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/Tabs.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/header/MainNavigation.css]",
+    "size" : 1
+  }, {
+    "id" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "size" : 5
+  }, {
+    "id" : "commit_50cba8856ae872743f9dacfa7cb70207f01a1e79",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "size" : 2
+  }, {
+    "id" : "commit_d0e0e819f9e066bbfcf6d48afbfecc9c721b95a7",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/MealPlan.css]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "size" : 1
+  }, {
+    "id" : "commit_6848745059f8407c2026e27c6c2051154208b3c9",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "size" : 3
+  }, {
+    "id" : "commit_42ec27a95da374828594039b9bfec1ee3aac1043",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "size" : 5
+  }, {
+    "id" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/shared/status.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/header/NavLinks.css]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "size" : 2
+  }, {
+    "id" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "size" : 6
+  }, {
+    "id" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "size" : 1
+  }, {
+    "id" : "commit_8b398508d362397d5d617a15644a7bbd17a6d0bd",
+    "size" : 3
+  }, {
+    "id" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "size" : 1
+  }, {
+    "id" : "commit_0891328815c0ef55af7567ef758a38318fbc4d16",
+    "size" : 3
+  }, {
+    "id" : "commit_9599a0cc5ad6cfedd57242ac004a7527cf3a3eeb",
+    "size" : 2
+  }, {
+    "id" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[frontend/src/components/shared/animation.css]",
+    "size" : 1
+  }, {
+    "id" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "size" : 4
+  }, {
+    "id" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "size" : 1
+  } ],
+  "links" : [ {
+    "source" : "commit_9d73ab0f2d8b62da598ad8760637b8b18d64f73d",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "commit_9d73ab0f2d8b62da598ad8760637b8b18d64f73d",
+    "count" : 2
+  }, {
+    "source" : "commit_9d73ab0f2d8b62da598ad8760637b8b18d64f73d",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "commit_9d73ab0f2d8b62da598ad8760637b8b18d64f73d",
+    "count" : 2
+  }, {
+    "source" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "count" : 3
+  }, {
+    "source" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "count" : 3
+  }, {
+    "source" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "count" : 4
+  }, {
+    "source" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "count" : 4
+  }, {
+    "source" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "count" : 3
+  }, {
+    "source" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "count" : 3
+  }, {
+    "source" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "count" : 3
+  }, {
+    "source" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "count" : 3
+  }, {
+    "source" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "count" : 5
+  }, {
+    "source" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "count" : 5
+  }, {
+    "source" : "commit_07731703a05b4d4783a6a70efc5ac247c27aebc6",
+    "target" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlanDetails.jsx]",
+    "target" : "commit_07731703a05b4d4783a6a70efc5ac247c27aebc6",
+    "count" : 2
+  }, {
+    "source" : "commit_07731703a05b4d4783a6a70efc5ac247c27aebc6",
+    "target" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/DailyPlan.jsx]",
+    "target" : "commit_07731703a05b4d4783a6a70efc5ac247c27aebc6",
+    "count" : 2
+  }, {
+    "source" : "commit_6848745059f8407c2026e27c6c2051154208b3c9",
+    "target" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "target" : "commit_6848745059f8407c2026e27c6c2051154208b3c9",
+    "count" : 2
+  }, {
+    "source" : "commit_6848745059f8407c2026e27c6c2051154208b3c9",
+    "target" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "target" : "commit_6848745059f8407c2026e27c6c2051154208b3c9",
+    "count" : 2
+  }, {
+    "source" : "commit_8b398508d362397d5d617a15644a7bbd17a6d0bd",
+    "target" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/recipe/Recipe.jsx]",
+    "target" : "commit_8b398508d362397d5d617a15644a7bbd17a6d0bd",
+    "count" : 2
+  }, {
+    "source" : "commit_8b398508d362397d5d617a15644a7bbd17a6d0bd",
+    "target" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/mealPlan/MealPlans.jsx]",
+    "target" : "commit_8b398508d362397d5d617a15644a7bbd17a6d0bd",
+    "count" : 2
+  }, {
+    "source" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "count" : 3
+  }, {
+    "source" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "count" : 3
+  }, {
+    "source" : "commit_0891328815c0ef55af7567ef758a38318fbc4d16",
+    "target" : "[frontend/src/components/shared/buttons.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/buttons.css]",
+    "target" : "commit_0891328815c0ef55af7567ef758a38318fbc4d16",
+    "count" : 2
+  }, {
+    "source" : "commit_0891328815c0ef55af7567ef758a38318fbc4d16",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "commit_0891328815c0ef55af7567ef758a38318fbc4d16",
+    "count" : 2
+  }, {
+    "source" : "commit_0d698c4339f7dd29ce29ec6d630bc53d65331c09",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "target" : "commit_0d698c4339f7dd29ce29ec6d630bc53d65331c09",
+    "count" : 2
+  }, {
+    "source" : "commit_0d698c4339f7dd29ce29ec6d630bc53d65331c09",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "commit_0d698c4339f7dd29ce29ec6d630bc53d65331c09",
+    "count" : 2
+  }, {
+    "source" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.css]",
+    "target" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "count" : 4
+  }, {
+    "source" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "count" : 4
+  }, {
+    "source" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "count" : 3
+  }, {
+    "source" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "target" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipe.jsx]",
+    "target" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "count" : 3
+  }, {
+    "source" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "count" : 3
+  }, {
+    "source" : "commit_0891328815c0ef55af7567ef758a38318fbc4d16",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "commit_0891328815c0ef55af7567ef758a38318fbc4d16",
+    "count" : 2
+  }, {
+    "source" : "commit_9d73ab0f2d8b62da598ad8760637b8b18d64f73d",
+    "target" : "[frontend/src/components/shared/recipe/utils.js]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/utils.js]",
+    "target" : "commit_9d73ab0f2d8b62da598ad8760637b8b18d64f73d",
+    "count" : 2
+  }, {
+    "source" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "target" : "[frontend/src/components/shared/recipe/utils.js]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/utils.js]",
+    "target" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "count" : 4
+  }, {
+    "source" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "target" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/recipe/RecipeForm.jsx]",
+    "target" : "commit_a3bea24b5d79a25b32913d3eb1cb3b3cf4c742a3",
+    "count" : 3
+  }, {
+    "source" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "target" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "count" : 5
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartFoods.js]",
+    "target" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "count" : 5
+  }, {
+    "source" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "target" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/shared/CatalogueBase.css]",
+    "target" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "count" : 4
+  }, {
+    "source" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "target" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/calculators/CaloriesCalculator.css]",
+    "target" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "count" : 4
+  }, {
+    "source" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "target" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/MealPlanEditor.jsx]",
+    "target" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "count" : 3
+  }, {
+    "source" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "target" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[frontend/src/components/recipe/CreateRecipe.jsx]",
+    "target" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "count" : 5
+  }, {
+    "source" : "commit_d0e0e819f9e066bbfcf6d48afbfecc9c721b95a7",
+    "target" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/signupForm/signupForm.jsx]",
+    "target" : "commit_d0e0e819f9e066bbfcf6d48afbfecc9c721b95a7",
+    "count" : 2
+  }, {
+    "source" : "commit_d0e0e819f9e066bbfcf6d48afbfecc9c721b95a7",
+    "target" : "[frontend/src/components/shared/form.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/form.css]",
+    "target" : "commit_d0e0e819f9e066bbfcf6d48afbfecc9c721b95a7",
+    "count" : 2
+  }, {
+    "source" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "target" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/mealPlan/SavedPlans.css]",
+    "target" : "commit_96d39df3108805c2c7f2816457d22988b68c5235",
+    "count" : 3
+  }, {
+    "source" : "commit_6848745059f8407c2026e27c6c2051154208b3c9",
+    "target" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useUrlTabs.js]",
+    "target" : "commit_6848745059f8407c2026e27c6c2051154208b3c9",
+    "count" : 2
+  }, {
+    "source" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "target" : "[frontend/src/components/shared/Recipe.css]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/shared/Recipe.css]",
+    "target" : "commit_2c0eff8a409f50bbd0e7093f078e91e1393ec343",
+    "count" : 3
+  }, {
+    "source" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "target" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "count" : 5
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/usePrefillAuthors.js]",
+    "target" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "count" : 5
+  }, {
+    "source" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "target" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/IngredientRow.jsx]",
+    "target" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "count" : 4
+  }, {
+    "source" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "target" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "count" : 5
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useCartPrefill.js]",
+    "target" : "commit_acf21452b0edaa4d9df27a640e46dbe7621630c6",
+    "count" : 5
+  }, {
+    "source" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "target" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/shared/CalculatorsBase.css]",
+    "target" : "commit_f6ea04e4bca844e496729d08258ba70f8ec2aadc",
+    "count" : 4
+  }, {
+    "source" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "target" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "count" : 3
+  }, {
+    "source" : "[frontend/src/components/shared/mealPlan/mapUtils.js]",
+    "target" : "commit_55f44f6adc8eb661f6681f31b69ca8a8015611bb",
+    "count" : 3
+  }, {
+    "source" : "commit_8b398508d362397d5d617a15644a7bbd17a6d0bd",
+    "target" : "[frontend/src/components/shared/Tabs.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/Tabs.css]",
+    "target" : "commit_8b398508d362397d5d617a15644a7bbd17a6d0bd",
+    "count" : 2
+  }, {
+    "source" : "commit_50cba8856ae872743f9dacfa7cb70207f01a1e79",
+    "target" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "target" : "commit_50cba8856ae872743f9dacfa7cb70207f01a1e79",
+    "count" : 2
+  }, {
+    "source" : "commit_50cba8856ae872743f9dacfa7cb70207f01a1e79",
+    "target" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.css]",
+    "target" : "commit_50cba8856ae872743f9dacfa7cb70207f01a1e79",
+    "count" : 2
+  }, {
+    "source" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "target" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[frontend/src/components/shared/recipe/InstructionRow.jsx]",
+    "target" : "commit_2f8a01625c8aba68f4aae92b8f327a1a8611238e",
+    "count" : 4
+  }, {
+    "source" : "commit_0d698c4339f7dd29ce29ec6d630bc53d65331c09",
+    "target" : "[frontend/src/components/shared/status.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/status.css]",
+    "target" : "commit_0d698c4339f7dd29ce29ec6d630bc53d65331c09",
+    "count" : 2
+  }, {
+    "source" : "commit_07731703a05b4d4783a6a70efc5ac247c27aebc6",
+    "target" : "[frontend/src/components/shared/MealPlan.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/MealPlan.css]",
+    "target" : "commit_07731703a05b4d4783a6a70efc5ac247c27aebc6",
+    "count" : 2
+  }, {
+    "source" : "commit_d0e0e819f9e066bbfcf6d48afbfecc9c721b95a7",
+    "target" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/loginForm/loginForm.jsx]",
+    "target" : "commit_d0e0e819f9e066bbfcf6d48afbfecc9c721b95a7",
+    "count" : 2
+  }, {
+    "source" : "commit_42ec27a95da374828594039b9bfec1ee3aac1043",
+    "target" : "[frontend/src/components/calculators/NutritionCalculator.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutritionCalculator.jsx]",
+    "target" : "commit_42ec27a95da374828594039b9bfec1ee3aac1043",
+    "count" : 1
+  }, {
+    "source" : "commit_42ec27a95da374828594039b9bfec1ee3aac1043",
+    "target" : "[frontend/src/components/calculators/NutrientSection.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/calculators/NutrientSection.jsx]",
+    "target" : "commit_42ec27a95da374828594039b9bfec1ee3aac1043",
+    "count" : 1
+  }, {
+    "source" : "commit_50cba8856ae872743f9dacfa7cb70207f01a1e79",
+    "target" : "[frontend/src/components/shared/animation.css]",
+    "count" : 2
+  }, {
+    "source" : "[frontend/src/components/shared/animation.css]",
+    "target" : "commit_50cba8856ae872743f9dacfa7cb70207f01a1e79",
+    "count" : 2
+  }, {
+    "source" : "commit_37ff85d00ec97eb00cb6f1934056c2537326630d",
+    "target" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/shared/hooks/useRecipeForm.js]",
+    "target" : "commit_37ff85d00ec97eb00cb6f1934056c2537326630d",
+    "count" : 1
+  }, {
+    "source" : "commit_37ff85d00ec97eb00cb6f1934056c2537326630d",
+    "target" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/recipe/SavedRecipeDetails.jsx]",
+    "target" : "commit_37ff85d00ec97eb00cb6f1934056c2537326630d",
+    "count" : 1
+  }, {
+    "source" : "commit_9599a0cc5ad6cfedd57242ac004a7527cf3a3eeb",
+    "target" : "[frontend/src/components/header/NavLinks.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/header/NavLinks.css]",
+    "target" : "commit_9599a0cc5ad6cfedd57242ac004a7527cf3a3eeb",
+    "count" : 1
+  }, {
+    "source" : "commit_9599a0cc5ad6cfedd57242ac004a7527cf3a3eeb",
+    "target" : "[frontend/src/components/header/MainNavigation.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/header/MainNavigation.css]",
+    "target" : "commit_9599a0cc5ad6cfedd57242ac004a7527cf3a3eeb",
+    "count" : 1
+  }, {
+    "source" : "commit_fd98085387a423ffdb9d3710e2714d57facfbeff",
+    "target" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/catalogue/Catalogue.jsx]",
+    "target" : "commit_fd98085387a423ffdb9d3710e2714d57facfbeff",
+    "count" : 1
+  }, {
+    "source" : "commit_fd98085387a423ffdb9d3710e2714d57facfbeff",
+    "target" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "count" : 1
+  }, {
+    "source" : "[frontend/src/components/payement/PayementSuccess.css]",
+    "target" : "commit_fd98085387a423ffdb9d3710e2714d57facfbeff",
+    "count" : 1
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => { return {source: l.target, target: l.source, count: l.count} });
+
+    const Graph = ForceGraph3D()
+    (document.getElementById('3d-graph'))
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => n.id.startsWith("[") ? "skyblue" : "")
+        .linkDirectionalParticles(6)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title>frontend/src/components/calculators/Calculators.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/calculators/Calculators.jsx (<b>48</b> lines of code) (<a href="Calculators.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useEffect } from &quot;react&quot;;
+import { useSearchParams } from &quot;react-router-dom&quot;;
+import CaloriesCalculator from &quot;./CaloriesCalculator&quot;;
+import NutritionCalculator from &quot;./NutritionCalculator&quot;;
+import &quot;./Calculators.css&quot;;
+
+export default function Calculatrices() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeCalculator, setActiveCalculator] = useState(
+    searchParams.get(&quot;tab&quot;) || &quot;calories&quot;
+  );
+
+  useEffect(() =&gt; {
+    const tab = searchParams.get(&quot;tab&quot;);
+    if (tab &amp;&amp; (tab === &quot;calories&quot; || tab === &quot;nutrition&quot;)) {
+      setActiveCalculator(tab);
+    }
+  }, [searchParams]);
+
+  const handleTabChange = (tab) =&gt; {
+    setActiveCalculator(tab);
+    setSearchParams({ tab });
+  };
+
+  return (
+    &lt;div className=&quot;calculators-container&quot;&gt;
+      &lt;h1&gt;Health Calculators&lt;/h1&gt;
+
+      &lt;div className=&quot;calculator-tabs&quot;&gt;
+        &lt;button
+          className={`tab-button ${
+            activeCalculator === &quot;calories&quot; ? &quot;active&quot; : &quot;&quot;
+          }`}
+          onClick={() =&gt; handleTabChange(&quot;calories&quot;)}
+        &gt;
+          Calorie Calculator
+        &lt;/button&gt;
+        &lt;button
+          className={`tab-button ${
+            activeCalculator === &quot;nutrition&quot; ? &quot;active&quot; : &quot;&quot;
+          }`}
+          onClick={() =&gt; handleTabChange(&quot;nutrition&quot;)}
+        &gt;
+          Nutrition Calculator
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;calculator-content&quot;&gt;
+        {activeCalculator === &quot;calories&quot; &amp;&amp; &lt;CaloriesCalculator /&gt;}
+        {activeCalculator === &quot;nutrition&quot; &amp;&amp; &lt;NutritionCalculator /&gt;}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

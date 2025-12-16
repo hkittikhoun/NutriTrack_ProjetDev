@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>frontend/src/components/shared/mealPlan/mapUtils.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/shared/mealPlan/mapUtils.js (<b>28</b> lines of code) (<a href="mapUtils.js">raw</a>):</h3>
+<div id="editor">export function mapItemsToEditMealPlans(items) {
+  const mealPlans = { morning: [], lunch: [], dinner: [] };
+  (items || []).forEach((item) =&gt; {
+    const mealType = item.meal_type || &quot;morning&quot;;
+    if (mealPlans[mealType]) {
+      mealPlans[mealType].push({
+        id: item.id,
+        foodId: String(item.food_id || item.foodId || &quot;&quot;),
+        quantity: Number(item.quantity || 1),
+        mealType,
+      });
+    }
+  });
+  return mealPlans;
+}
+
+export function mergeCartWithCatalogue(cartFoods = [], foods = []) {
+  const cartOptions = (cartFoods || []).map((f) =&gt; ({
+    FoodID: f.foodId,
+    FoodDescription: f.name,
+    _fromCart: true,
+  }));
+  return [
+    ...cartOptions,
+    ...foods.filter(
+      (fd) =&gt; !cartOptions.some((c) =&gt; String(c.FoodID) === String(fd.FoodID))
+    ),
+  ];
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

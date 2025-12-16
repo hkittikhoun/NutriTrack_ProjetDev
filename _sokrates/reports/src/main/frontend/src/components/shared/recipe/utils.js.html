@@ -1,0 +1,101 @@
+<html>
+<head>
+    <title>frontend/src/components/shared/recipe/utils.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/shared/recipe/utils.js (<b>69</b> lines of code) (<a href="utils.js">raw</a>):</h3>
+<div id="editor">export function validateRecipe({ title, author, ingredients, instructions }) {
+  const errors = [];
+  if (!String(title || &quot;&quot;).trim()) errors.push(&quot;Le titre est requis&quot;);
+  if (!String(author || &quot;&quot;).trim()) errors.push(&quot;L'auteur est requis&quot;);
+  if (
+    ingredients.some(
+      (ing) =&gt; !String(ing.ingredientName || ing.ingredient_name || &quot;&quot;).trim()
+    )
+  ) {
+    errors.push(&quot;Tous les ingr&eacute;dients doivent avoir un nom&quot;);
+  }
+  if (
+    instructions.some((inst) =&gt; !String(inst || inst?.instruction || &quot;&quot;).trim())
+  ) {
+    errors.push(&quot;Toutes les instructions doivent &ecirc;tre remplies&quot;);
+  }
+  return errors;
+}
+
+export function getDifficultyColor(difficulty) {
+  switch (difficulty) {
+    case &quot;easy&quot;:
+      return &quot;#4caf50&quot;;
+    case &quot;medium&quot;:
+      return &quot;#ff9800&quot;;
+    case &quot;hard&quot;:
+      return &quot;#f44336&quot;;
+    default:
+      return &quot;#666&quot;;
+  }
+}
+
+export function getDifficultyLabel(difficulty) {
+  switch (difficulty) {
+    case &quot;easy&quot;:
+      return &quot;Easy&quot;;
+    case &quot;medium&quot;:
+      return &quot;Medium&quot;;
+    case &quot;hard&quot;:
+      return &quot;Hard&quot;;
+    default:
+      return difficulty || &quot;Unknown&quot;;
+  }
+}
+
+/* Helpers pour normaliser l&rsquo;insert/update */
+export function buildIngredientsData(ingredients, recipeId) {
+  return (ingredients || [])
+    .filter((ing) =&gt;
+      String(ing.ingredientName || ing.ingredient_name || &quot;&quot;).trim()
+    )
+    .map((ing, index) =&gt; ({
+      recipe_id: recipeId,
+      food_id: ing.foodId ? parseInt(ing.foodId) : null,
+      ingredient_name: String(ing.ingredientName || ing.ingredient_name).trim(),
+      quantity: ing.quantity ? parseFloat(ing.quantity) : null,
+      unit: String(ing.unit || &quot;&quot;).trim() || null,
+      preparation: String(ing.preparation || &quot;&quot;).trim() || null,
+      order_index: index + 1,
+    }));
+}
+
+export function buildInstructionsData(instructions, recipeId) {
+  // accepte tableau de strings ou d&rsquo;objets { instruction }
+  return (instructions || [])
+    .filter((inst) =&gt; {
+      const s = typeof inst === &quot;string&quot; ? inst : inst?.instruction;
+      return String(s || &quot;&quot;).trim();
+    })
+    .map((inst, index) =&gt; ({
+      recipe_id: recipeId,
+      step_number: index + 1,
+      instruction: (typeof inst === &quot;string&quot; ? inst : inst.instruction).trim(),
+    }));
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

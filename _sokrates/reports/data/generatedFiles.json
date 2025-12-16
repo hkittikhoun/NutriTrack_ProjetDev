@@ -1,0 +1,15 @@
+[ {
+  "relativePath" : "backend/package-lock.json",
+  "extension" : "json",
+  "linesOfCode" : 1417,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "frontend/package-lock.json",
+  "extension" : "json",
+  "linesOfCode" : 4954,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+} ]

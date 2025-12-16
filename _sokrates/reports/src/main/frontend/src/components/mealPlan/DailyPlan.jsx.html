@@ -1,0 +1,238 @@
+<html>
+<head>
+    <title>frontend/src/components/mealPlan/DailyPlan.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/mealPlan/DailyPlan.jsx (<b>199</b> lines of code) (<a href="DailyPlan.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useContext } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import { usePrefillAuthor } from &quot;../shared/hooks/usePrefillAuthors&quot;;
+import { useCartFoods } from &quot;../shared/hooks/useCartFoods&quot;;
+import { prefillFromCartToMealPlans } from &quot;../shared/hooks/useCartPrefill&quot;;
+import &quot;../shared/MealPlan.css&quot;;
+import { MealPlanEditor } from &quot;../shared/mealPlan/MealPlanEditor&quot;;
+
+export default function DailyPlan() {
+  const [mealPlans, setMealPlans] = useState({
+    morning: [],
+    lunch: [],
+    dinner: [],
+  });
+  const [title, setTitle] = useState(&quot;&quot;);
+  const [author, setAuthor] = useState(&quot;&quot;);
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [notice, setNotice] = useState(null);
+  const [error, setError] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+  const { cartFoods, loadingCart, cartError } = useCartFoods();
+  usePrefillAuthor(author, setAuthor, auth);
+
+  const addItemToMeal = (mealType) =&gt; {
+    setMealPlans((prev) =&gt; ({
+      ...prev,
+      [mealType]: [
+        ...prev[mealType],
+        { id: Date.now() + Math.random(), foodId: &quot;&quot;, quantity: 100, mealType },
+      ],
+    }));
+  };
+  const removeItemFromMeal = (mealType, itemId) =&gt; {
+    setMealPlans((prev) =&gt; ({
+      ...prev,
+      [mealType]: prev[mealType].filter((item) =&gt; item.id !== itemId),
+    }));
+  };
+  const updateMealItem = (mealType, itemId, field, value) =&gt; {
+    setMealPlans((prev) =&gt; ({
+      ...prev,
+      [mealType]: prev[mealType].map((item) =&gt;
+        item.id === itemId ? { ...item, [field]: value } : item
+      ),
+    }));
+  };
+  const prefillFromCart = () =&gt; {
+    const mapped = prefillFromCartToMealPlans(cartFoods);
+    if (!mapped) {
+      setNotice(&quot;No items in cart to prefill.&quot;);
+      setTimeout(() =&gt; setNotice(null), 2000);
+      return;
+    }
+    setMealPlans(mapped);
+    setNotice(`Prefilled with ${cartFoods.length} items from cart.`);
+    setTimeout(() =&gt; setNotice(null), 2500);
+  };
+  const getAllSelectedItems = () =&gt; [
+    ...mealPlans.morning,
+    ...mealPlans.lunch,
+    ...mealPlans.dinner,
+  ];
+
+  const handleSave = async () =&gt; {
+    const selectedItems = getAllSelectedItems();
+    const errors = [];
+    if (!title?.trim()) errors.push(&quot;Title is required.&quot;);
+    if (!author?.trim()) errors.push(&quot;Author is required.&quot;);
+    if (selectedItems.length === 0)
+      errors.push(&quot;Add at least one food to the plan.&quot;);
+    if (selectedItems.some((item) =&gt; !item.foodId))
+      errors.push(&quot;All items must have a selected food.&quot;);
+    if (errors.length &gt; 0) {
+      setValidationErrors(errors);
+      return;
+    }
+    setValidationErrors([]);
+    setSaving(true);
+    setError(null);
+
+    try {
+      const { data: authData, error: authErr } = await supabase.auth.getUser();
+      if (authErr) {
+        setError(authErr.message || &quot;Authentication error&quot;);
+        return;
+      }
+      const userId = authData?.user?.id || auth?.userId;
+      if (!userId) {
+        setError(&quot;Please sign in to save the plan.&quot;);
+        return;
+      }
+
+      let totalKcal = 0;
+      const selected = selectedItems
+        .map((i) =&gt; Number(i.foodId))
+        .filter(Boolean);
+      const quantities = selectedItems.reduce((acc, item) =&gt; {
+        const k = String(item.foodId);
+        acc[k] = (acc[k] || 0) + Number(item.quantity || 0);
+        return acc;
+      }, {});
+      if (selected.length &gt; 0) {
+        const { data: energies, error: energyErr } = await supabase
+          .from(&quot;nutrient_amount&quot;)
+          .select(`FoodID, NutrientValue, nutrient_name!inner(NutrientCode)`)
+          .in(&quot;FoodID&quot;, selected)
+          .eq(&quot;nutrient_name.NutrientCode&quot;, 208);
+        if (!energyErr &amp;&amp; energies?.length) {
+          const energyMap = new Map(
+            energies.map((e) =&gt; [
+              String(e.FoodID),
+              Number(e.NutrientValue) || 0,
+            ])
+          );
+          Object.entries(quantities).forEach(([foodId, qty]) =&gt; {
+            const kcalPer100g = energyMap.get(String(foodId)) || 0;
+            totalKcal += (kcalPer100g * Number(qty)) / 100;
+          });
+        }
+      }
+
+      const planPayload = {
+        user_id: userId,
+        total_kcal: Math.round(totalKcal),
+        status: &quot;daily&quot;,
+        title: title.trim() || null,
+        author: author.trim() || null,
+      };
+
+      const { data: plan, error: planErr } = await supabase
+        .from(&quot;meal_plans&quot;)
+        .insert(planPayload)
+        .select()
+        .single();
+      if (planErr) {
+        setError(planErr.message || &quot;Failed to create plan&quot;);
+        return;
+      }
+
+      const toInsert = selectedItems.map((item) =&gt; ({
+        meal_plan_id: plan.id,
+        food_id: Number(item.foodId),
+        quantity: Number(item.quantity) || 0,
+        meal_type: item.mealType,
+      }));
+      const { error: itemsErr } = await supabase
+        .from(&quot;meal_plan_items&quot;)
+        .insert(toInsert);
+      if (itemsErr) {
+        setError(itemsErr.message || &quot;Failed to save items&quot;);
+        return;
+      }
+
+      setNotice(&quot;Plan created successfully!&quot;);
+      setTimeout(() =&gt; setNotice(null), 2500);
+      navigate(&quot;/mealplan?tab=saved&quot;, { state: { notice: &quot;Plan saved.&quot; } });
+    } catch (e) {
+      console.error(&quot;Error saving plan:&quot;, e);
+      setError(&quot;Unexpected error while saving&quot;);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const totalSelectedItems =
+    (mealPlans.morning?.length || 0) +
+    (mealPlans.lunch?.length || 0) +
+    (mealPlans.dinner?.length || 0);
+
+  return (
+    &lt;div className=&quot;daily-plan&quot;&gt;
+      &lt;h1&gt;Create your meal plan&lt;/h1&gt;
+      {error &amp;&amp; &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;}
+      {notice &amp;&amp; &lt;div className=&quot;notice success&quot;&gt;{notice}&lt;/div&gt;}
+      {validationErrors.length &gt; 0 &amp;&amp; (
+        &lt;div className=&quot;validation-errors&quot;&gt;
+          {validationErrors.map((err, idx) =&gt; (
+            &lt;div key={idx} className=&quot;error-item&quot;&gt;
+              {err}
+            &lt;/div&gt;
+          ))}
+        &lt;/div&gt;
+      )}
+      {loadingCart &amp;&amp; &lt;div&gt;Loading...&lt;/div&gt;}
+      {cartError &amp;&amp; &lt;div className=&quot;error&quot;&gt;{cartError}&lt;/div&gt;}
+
+      &lt;MealPlanEditor
+        isOwner={true}
+        loading={saving}
+        loadingCart={loadingCart}
+        cartFoods={cartFoods}
+        foods={[]}
+        mealPlans={mealPlans}
+        addItemToMeal={addItemToMeal}
+        removeItemFromMeal={removeItemFromMeal}
+        updateMealItem={updateMealItem}
+        onPrefillFromCart={prefillFromCart}
+        titleProps={{ title, setTitle, author, setAuthor }}
+        saveProps={{
+          onSave: handleSave,
+          saveDisabledLabel: totalSelectedItems,
+        }}
+        onCancel={() =&gt; navigate(-1)}
+      /&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

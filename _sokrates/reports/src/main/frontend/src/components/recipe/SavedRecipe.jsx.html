@@ -1,0 +1,253 @@
+<html>
+<head>
+    <title>frontend/src/components/recipe/SavedRecipe.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">frontend/src/components/recipe/SavedRecipe.jsx (<b>200</b> lines of code) (<a href="SavedRecipe.jsx">raw</a>):</h3>
+<div id="editor">import { useEffect, useState, useContext } from &quot;react&quot;;
+import { supabase } from &quot;../../supabaseClient&quot;;
+import { AuthContext } from &quot;../../context/auth-context&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import &quot;../shared/Recipe.css&quot;;
+import { getDifficultyColor, getDifficultyLabel } from &quot;../shared/recipe/utils&quot;;
+
+export default function SavedRecipe() {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [notice, setNotice] = useState(null);
+  const [viewMode, setViewMode] = useState(&quot;all&quot;);
+
+  useEffect(() =&gt; {
+    const fetchRecipes = async () =&gt; {
+      try {
+        setLoading(true);
+        setError(null);
+
+        let query = supabase
+          .from(&quot;recipes&quot;)
+          .select(
+            &quot;id, title, author, description, servings, difficulty_level, category, cooking_time, prep_time, created_at, user_id&quot;
+          )
+          .order(&quot;created_at&quot;, { ascending: false });
+
+        if (viewMode === &quot;mine&quot; &amp;&amp; auth?.userId) {
+          query = query.eq(&quot;user_id&quot;, auth.userId);
+        }
+
+        const { data, error } = await query;
+        if (error) {
+          setError(error.message || &quot;Failed to load recipes&quot;);
+          return;
+        }
+        setRecipes(data || []);
+      } catch (e) {
+        console.error(e);
+        setError(&quot;Unexpected error&quot;);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRecipes();
+  }, [auth?.userId, viewMode]);
+
+  const isOwner = (recipe) =&gt; {
+    return auth?.userId &amp;&amp; recipe.user_id === auth.userId;
+  };
+
+  const handleDelete = async (recipe) =&gt; {
+    if (!isOwner(recipe)) {
+      setNotice(&quot;You can only delete your own recipes.&quot;);
+      setTimeout(() =&gt; setNotice(null), 3000);
+      return;
+    }
+
+    const ok = window.confirm(`Delete recipe &quot;${recipe.title}&quot;?`);
+    if (!ok) return;
+
+    try {
+      setLoading(true);
+
+      const { error: instructionsErr } = await supabase
+        .from(&quot;recipe_instructions&quot;)
+        .delete()
+        .eq(&quot;recipe_id&quot;, recipe.id);
+
+      if (instructionsErr) {
+        setError(&quot;Failed to delete instructions: &quot; + instructionsErr.message);
+        return;
+      }
+
+      const { error: ingredientsErr } = await supabase
+        .from(&quot;recipe_ingredients&quot;)
+        .delete()
+        .eq(&quot;recipe_id&quot;, recipe.id);
+
+      if (ingredientsErr) {
+        setError(&quot;Failed to delete ingredients: &quot; + ingredientsErr.message);
+        return;
+      }
+
+      const { error: recipeErr } = await supabase
+        .from(&quot;recipes&quot;)
+        .delete()
+        .eq(&quot;id&quot;, recipe.id)
+        .eq(&quot;user_id&quot;, auth.userId);
+
+      if (recipeErr) {
+        setError(&quot;Failed to delete recipe: &quot; + recipeErr.message);
+        return;
+      }
+
+      setRecipes((prev) =&gt; prev.filter((r) =&gt; r.id !== recipe.id));
+      setNotice(&quot;Recipe deleted successfully.&quot;);
+      setTimeout(() =&gt; setNotice(null), 3000);
+    } catch (e) {
+      console.error(e);
+      setError(&quot;Error while deleting&quot;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    &lt;div className=&quot;saved-recipes&quot;&gt;
+      &lt;h2&gt;Recipe Collection&lt;/h2&gt;
+
+      {notice &amp;&amp; &lt;div className=&quot;notice success&quot;&gt;{notice}&lt;/div&gt;}
+      {loading &amp;&amp; &lt;div className=&quot;loading&quot;&gt;Loading recipes...&lt;/div&gt;}
+      {error &amp;&amp; &lt;div className=&quot;error&quot;&gt;{error}&lt;/div&gt;}
+
+      &lt;div className=&quot;view-filters&quot;&gt;
+        &lt;button
+          className={`filter-btn ${viewMode === &quot;all&quot; ? &quot;active&quot; : &quot;&quot;}`}
+          onClick={() =&gt; setViewMode(&quot;all&quot;)}
+        &gt;
+          All Recipes ({recipes.length})
+        &lt;/button&gt;
+        {auth?.userId &amp;&amp; (
+          &lt;button
+            className={`filter-btn ${viewMode === &quot;mine&quot; ? &quot;active&quot; : &quot;&quot;}`}
+            onClick={() =&gt; setViewMode(&quot;mine&quot;)}
+          &gt;
+            My Recipes
+          &lt;/button&gt;
+        )}
+      &lt;/div&gt;
+
+      {!loading &amp;&amp; !error &amp;&amp; recipes.length === 0 &amp;&amp; (
+        &lt;div className=&quot;no-recipes-message&quot;&gt;
+          {viewMode === &quot;mine&quot;
+            ? &quot;You haven't created any recipes yet.&quot;
+            : &quot;No recipes available at the moment.&quot;}
+        &lt;/div&gt;
+      )}
+
+      &lt;div className=&quot;recipes-grid&quot;&gt;
+        {recipes.map((recipe) =&gt; (
+          &lt;div key={recipe.id} className=&quot;recipe-card&quot;&gt;
+            &lt;div className=&quot;recipe-header&quot;&gt;
+              &lt;div className=&quot;recipe-title-row&quot;&gt;
+                &lt;h3&gt;{recipe.title}&lt;/h3&gt;
+                {isOwner(recipe) &amp;&amp; (
+                  &lt;span className=&quot;owner-badge&quot;&gt;Your Recipe&lt;/span&gt;
+                )}
+              &lt;/div&gt;
+
+              &lt;div className=&quot;recipe-header-info&quot;&gt;
+                &lt;span&gt;
+                  &lt;strong&gt;By:&lt;/strong&gt; {recipe.author || &quot;Anonymous&quot;}
+                &lt;/span&gt;
+                {recipe.category &amp;&amp; (
+                  &lt;span&gt;
+                    &lt;strong&gt;Category:&lt;/strong&gt; {recipe.category}
+                  &lt;/span&gt;
+                )}
+                {recipe.prep_time &amp;&amp; (
+                  &lt;span&gt;
+                    &lt;strong&gt;Prep:&lt;/strong&gt; {recipe.prep_time} min
+                  &lt;/span&gt;
+                )}
+              &lt;/div&gt;
+
+              &lt;div className=&quot;recipe-meta&quot;&gt;
+                &lt;span className=&quot;cooking-time&quot;&gt;
+                  ⏱️ {recipe.cooking_time ? `${recipe.cooking_time} min` : &quot;&mdash;&quot;}
+                &lt;/span&gt;
+                &lt;span className=&quot;servings&quot;&gt;
+                  🍽️ {recipe.servings ? `${recipe.servings} servings` : &quot;&mdash;&quot;}
+                &lt;/span&gt;
+                &lt;span
+                  className=&quot;difficulty&quot;
+                  style={{ color: getDifficultyColor(recipe.difficulty_level) }}
+                &gt;
+                  📊 {getDifficultyLabel(recipe.difficulty_level)}
+                &lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div className=&quot;recipe-description&quot;&gt;{recipe.description || &quot;&quot;}&lt;/div&gt;
+
+            &lt;div className=&quot;recipe-actions&quot;&gt;
+              &lt;button
+                className=&quot;view-btn&quot;
+                onClick={() =&gt; navigate(`/recipe/${recipe.id}`)}
+              &gt;
+                View Recipe
+              &lt;/button&gt;
+              {isOwner(recipe) &amp;&amp; (
+                &lt;&gt;
+                  &lt;button
+                    className=&quot;edit-btn&quot;
+                    onClick={() =&gt; navigate(`/recipe/${recipe.id}?edit=true`)}
+                  &gt;
+                    Edit
+                  &lt;/button&gt;
+                  &lt;button
+                    className=&quot;delete-btn&quot;
+                    onClick={() =&gt; handleDelete(recipe)}
+                    disabled={loading}
+                  &gt;
+                    Delete
+                  &lt;/button&gt;
+                &lt;/&gt;
+              )}
+            &lt;/div&gt;
+
+            &lt;div className=&quot;recipe-footer&quot;&gt;
+              &lt;span className=&quot;created-date&quot;&gt;
+                Created:{&quot; &quot;}
+                {recipe.created_at
+                  ? new Date(recipe.created_at).toLocaleDateString()
+                  : &quot;&mdash;&quot;}
+              &lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>
