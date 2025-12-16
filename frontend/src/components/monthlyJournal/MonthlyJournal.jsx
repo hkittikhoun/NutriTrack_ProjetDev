@@ -3,16 +3,13 @@ import "./MonthlyJournal.css";
 export default function MonthlyJournal() {
   return (
     <section>
-      <h1>Monthly Journal: October</h1>
+      <h1>Monthly Journal: December</h1>
       <article style={{ marginBottom: "2rem" }}>
-        <h2>Nutrition Tip: Embrace Fall Flavors</h2>
+        <h2>Nutrition Tip: Use Your Holiday Leftovers!</h2>
         <p>
-          October brings cooler weather and harvest season! It&apos;s time to
-          incorporate warming, nutrient-rich foods. Focus on seasonal vegetables
-          like pumpkin, sweet potatoes, Brussels sprouts, and mushrooms. These
-          are packed with vitamins A and C, perfect for boosting your immune
-          system as winter approaches. Don&apos;t forget to add warming spices
-          like cinnamon, ginger, and nutmeg to your meals!
+          December brings colder nights and the perfect opportunity to use up
+          leftover vegetables from your holiday meals. Try this hearty, healthy
+          soup for a warming winter dinner!
         </p>
       </article>
 
@@ -27,15 +24,15 @@ export default function MonthlyJournal() {
           }}
         >
           <a
-            href="https://www.salutbonjour.ca/cuisine/recettes/puree-de-citrouille-facile-et-rapide"
+            href="https://www.powershealth.org/newsletter/articles/2025/11/december-recipe"
             target="_blank"
             rel="noopener noreferrer"
             style={{ flexShrink: 0 }}
           >
             <img
-              srcSet="https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&x=0&y=0&w=0&h=0&width=480 1x, https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&x=0&y=0&w=0&h=0&width=960 2x"
-              src="https://m1.quebecormedia.com/emp/emp/recette_puree_citrouille43a0fbff-2c57-41d9-83ae-d6d2884ba402_ORIGINAL.jpg?impolicy=crop-resize&x=0&y=0&w=0&h=0&width=925"
-              alt="Easy and quick homemade pumpkin puree"
+              srcSet="https://www.powershealth.org/-/media/images/community-healthcare-only/newsletter/2025/garden-harvest-soup-515x275.ashx?h=320&w=600&la=en&hash=ABB77AFE3FED5D048BFBFED0FCAC3A25"
+              src="https://www.powershealth.org/-/media/images/community-healthcare-only/newsletter/2025/garden-harvest-soup-515x275.ashx?h=320&w=600&la=en&hash=ABB77AFE3FED5D048BFBFED0FCAC3A25"
+              alt="Garden Harvest Soup"
               style={{
                 width: "100%",
                 maxWidth: "350px",
@@ -45,55 +42,54 @@ export default function MonthlyJournal() {
             />
           </a>
           <div style={{ flex: 1, minWidth: "250px" }}>
-            <h2 style={{ marginTop: 0 }}>
-              Easy and Quick Homemade Pumpkin Puree
-            </h2>
+            <h2 style={{ marginTop: 0 }}>Garden Harvest Soup</h2>
             <p style={{ color: "#666", fontSize: "0.95rem" }}>
-              Perfect for pies or as a base for soups, this pumpkin puree recipe
-              is as easy as it is quick to prepare. An essential fall recipe to
-              use however you like!
+              This American Diabetes Association recipe is great for a cold
+              winter night with warm bread. Easy to make using your leftover
+              vegetables from a holiday meal!
             </p>
           </div>
         </div>
 
         <div style={{ marginBottom: "1rem" }}>
-          <strong>Prep time:</strong> 25 min | <strong>Cook time:</strong> 2h
+          <strong>Prep time:</strong> ~10 min | <strong>Cook time:</strong> ~25
+          min
         </div>
 
         <h3 style={{ color: "#b00020", marginTop: "1.5rem" }}>Ingredients</h3>
         <ul>
-          <li>2 pumpkins, 3.5 lbs (1.75 kg) each</li>
-          <li>Canola oil for cooking</li>
+          <li>1 tsp olive oil</li>
+          <li>
+            2 cups vegetables (uncooked, chopped, e.g. bell peppers, carrots,
+            green beans, yellow squash, zucchini)
+          </li>
+          <li>1/4 cup onion, finely chopped</li>
+          <li>1 tsp Italian seasoning blend (crumbled)</li>
+          <li>2 cups low-sodium chicken broth (or vegetable broth)</li>
+          <li>1 cup fresh spinach leaves (loosely packed, coarsely chopped)</li>
+          <li>1 tbsp Parmesan cheese (shredded or grated)</li>
         </ul>
 
         <h3 style={{ color: "#b00020", marginTop: "1.5rem" }}>Preparation</h3>
         <ol style={{ lineHeight: "1.8" }}>
-          <li>Preheat oven to 300°F (150°C).</li>
-          <li>Cut around the stem. Remove and discard the flesh.</li>
-          <li>Cut the pumpkins into six or eight equal sections.</li>
           <li>
-            Remove the inner flesh. Reserve the seeds to roast them, if desired.
+            In a medium saucepan, heat the oil over medium heat, swirling to
+            coat the bottom.
           </li>
           <li>
-            Cut the pumpkin quarters in the middle to obtain triangular pieces
-            of identical size.
+            Cook the 2 cups chopped vegetables, onion, and seasoning blend for 8
+            to 10 minutes, or until tender-crisp, stirring occasionally. (If the
+            vegetables get dry or start to scorch, add a little water to the
+            saucepan.)
           </li>
           <li>
-            Place the pumpkin pieces in a baking dish. Drizzle with a little oil
-            and bake in the center of the oven for 2 hours or until a knife tip
-            inserted into the flesh comes out easily.
+            Stir in the broth. Increase the heat to medium high and bring to a
+            boil. Reduce the heat and simmer for 15 minutes so the flavors
+            blend, stirring occasionally.
           </li>
           <li>
-            After 2 hours of cooking, the pumpkin will be soft and have a
-            beautiful orange color.
+            Stir in the spinach. Sprinkle each serving with Parmesan cheese.
           </li>
-          <li>Cut the ends of each piece of pumpkin. Detach the flesh.</li>
-          <li>
-            Cut into quarters and place in a large bowl. The pumpkin flesh will
-            be tender and easy to cut.
-          </li>
-          <li>Using a hand mixer or food processor, puree until smooth.</li>
-          <li>Season to taste and follow the desired recipe.</li>
         </ol>
 
         <div
@@ -105,19 +101,37 @@ export default function MonthlyJournal() {
             borderLeft: "4px solid #b00020",
           }}
         >
-          <strong>Good to know:</strong> Use this puree in your fall pumpkin
-          latte, cookie, pie and muffin recipes.
+          <strong>Good to know:</strong> Chop firmer vegetables, such as
+          carrots, into smaller pieces than more tender vegetables, such as
+          zucchini, so all the vegetables will cook at about the same rate. For
+          a vegetarian dish, use vegetable broth.
+        </div>
+
+        <div style={{ marginTop: "1.5rem" }}>
+          <strong>
+            Nutrition per serving (1 1/4 cups, recipe makes 2 servings):
+          </strong>
+          <ul>
+            <li>Calories: 95</li>
+            <li>Total Fat: 3.5g (Saturated Fat: 0.9g)</li>
+            <li>Cholesterol: 5mg</li>
+            <li>Sodium: 200mg</li>
+            <li>
+              Total Carbohydrate: 13g (Dietary Fiber: 4g, Total Sugars: 6g)
+            </li>
+            <li>Protein: 3g</li>
+          </ul>
         </div>
 
         <p style={{ fontSize: "0.95rem", color: "#888", marginTop: "1.5rem" }}>
           Source:{" "}
           <a
-            href="https://www.salutbonjour.ca/cuisine/recettes/puree-de-citrouille-facile-et-rapide"
+            href="https://www.powershealth.org/newsletter/articles/2025/11/december-recipe"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: "#b00020" }}
           >
-            salutbonjour.ca
+            powershealth.org
           </a>
         </p>
       </article>
