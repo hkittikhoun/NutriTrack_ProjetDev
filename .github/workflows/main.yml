@@ -13,36 +13,50 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Backend
       - name: Setup Node for backend
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "npm"
+          node-version: 20
+          cache: npm
           cache-dependency-path: backend/package-lock.json
 
       - name: Install backend deps
         working-directory: backend
         run: npm ci
 
+      - name: Setup backend .env
+        run: |
+          echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> backend/.env
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> backend/.env
+          echo "SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" >> backend/.env
+          echo "FRONTEND_URL=http://localhost:5173" >> backend/.env
+
       - name: Start backend server
         working-directory: backend
         env:
           NODE_ENV: test
         run: |
-          nohup npm start >/dev/null 2>&1 & echo $! > backend.pid
+          nohup npm start > ../backend.log 2>&1 & echo $! > backend.pid
 
       - name: Wait for backend
+        working-directory: backend
         run: npx wait-on http://localhost:3001/api/health
+
+      - name: Show backend logs if failed
+        if: failure()
+        run: cat backend.log || true
 
       - name: Test d'intégration (backend)
         working-directory: backend
         run: npx cypress run
 
+      # Frontend
       - name: Setup Node for frontend
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "npm"
+          node-version: 20
+          cache: npm
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install frontend deps
@@ -53,11 +67,20 @@ jobs:
         working-directory: frontend
         env:
           NODE_ENV: test
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_STRIPE_PUBLISHABLE_KEY: ${{ secrets.VITE_STRIPE_PUBLISHABLE_KEY }}
+          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
         run: |
-          nohup npm run dev >/dev/null 2>&1 & echo $! > frontend.pid
+          nohup npm run dev > ../frontend.log 2>&1 & echo $! > frontend.pid
 
       - name: Wait for frontend
+        working-directory: frontend
         run: npx wait-on http://localhost:5173
+
+      - name: Show frontend logs if failed
+        if: failure()
+        run: cat frontend.log || true
 
       - name: Tests unitaires (Vitest)
         working-directory: frontend
